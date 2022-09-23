@@ -1,10 +1,21 @@
-import { Box, Button, ButtonGroup, Container, Heading, Skeleton, Text } from '@chakra-ui/react';
+import {
+  Box,
+  Button,
+  ButtonGroup,
+  Container,
+  Grid,
+  Heading,
+  Skeleton,
+  Text,
+} from '@chakra-ui/react';
+import { BiLockAlt } from 'react-icons/bi';
+import FeatureCard from '../components/FeatureCard';
 import Head from 'next/head';
 import Image from 'next/image';
 
 export default function Home() {
   return (
-    <Box p={5}>
+    <Box>
       <Head>
         <title>Floorp</title>
         <meta
@@ -15,7 +26,7 @@ export default function Home() {
       </Head>
       <Container as="header" maxW="container.lg" py={20} px={15} display="flex">
         <Box mr={24}>
-          <Heading as="h2" fontSize="6xl" fontWeight="extrabold">
+          <Heading as="h1" fontSize="6xl" fontWeight="extrabold">
             Proident proident
             <br />
             <Text as="span" color="purple.500">
@@ -32,6 +43,49 @@ export default function Home() {
         </Box>
         <Skeleton flexShrink={0} isLoaded={false} ml="auto" w="420px" h="300px" />
       </Container>
+      <Box
+        bg="gray.50"
+        backgroundImage="url('curve.svg')"
+        backgroundSize="100%"
+        backgroundRepeat="no-repeat"
+        backgroundPosition="0 0"
+      >
+        <Container maxW={'container.lg'} pt={32} pb={20}>
+          <Heading as="h2">特徴</Heading>
+          <Grid gridTemplateColumns={'repeat(auto-fill,minmax(240px,1fr))'} mt={10} gap={6}>
+            <FeatureCard
+              title="Nice Feature"
+              description="すごい特徴すごい特徴すごい特徴すごい特徴すごい特徴すごい特徴すごい特徴すごい特徴すごい特徴すごい特徴すごい特徴すごい特徴すごい特徴"
+              icon={<BiLockAlt size={20} />}
+            />
+            <FeatureCard
+              title="Nice Feature"
+              description="すごい特徴すごい特徴すごい特徴すごい特徴すごい特徴すごい特徴すごい特徴すごい特徴すごい特徴すごい特徴すごい特徴すごい特徴すごい特徴"
+              icon={<BiLockAlt size={20} />}
+            />
+            <FeatureCard
+              title="Nice Feature"
+              description="すごい特徴すごい特徴すごい特徴すごい特徴すごい特徴すごい特徴すごい特徴すごい特徴すごい特徴すごい特徴すごい特徴すごい特徴すごい特徴"
+              icon={<BiLockAlt size={20} />}
+            />
+            <FeatureCard
+              title="Nice Feature"
+              description="すごい特徴すごい特徴すごい特徴すごい特徴すごい特徴すごい特徴すごい特徴すごい特徴すごい特徴すごい特徴すごい特徴すごい特徴すごい特徴"
+              icon={<BiLockAlt size={20} />}
+            />
+            <FeatureCard
+              title="Nice Feature"
+              description="すごい特徴すごい特徴すごい特徴すごい特徴すごい特徴すごい特徴すごい特徴すごい特徴すごい特徴すごい特徴すごい特徴すごい特徴すごい特徴"
+              icon={<BiLockAlt size={20} />}
+            />
+            <FeatureCard
+              title="Nice Feature"
+              description="すごい特徴すごい特徴すごい特徴すごい特徴すごい特徴すごい特徴すごい特徴すごい特徴すごい特徴すごい特徴すごい特徴すごい特徴すごい特徴"
+              icon={<BiLockAlt size={20} />}
+            />
+          </Grid>
+        </Container>
+      </Box>
     </Box>
   );
 }
