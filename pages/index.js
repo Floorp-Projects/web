@@ -5,7 +5,7 @@ import {
   Container,
   Grid,
   Heading,
-  Skeleton,
+  AspectRatio,
   Text,
 } from '@chakra-ui/react';
 import { BiLockAlt } from 'react-icons/bi';
@@ -24,8 +24,20 @@ export default function Home() {
         />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <Container as="header" maxW="container.lg" py={20} px={15} display="flex">
-        <Box mr={24}>
+      <Container
+        as="header"
+        maxW="container.lg"
+        py={20}
+        px={29}
+        display="flex"
+        flexWrap={{ base: 'wrap', lg: 'nowrap' }}
+        justifyContent={{ base: 'center', lg: 'normal' }}
+      >
+        <Box
+          display={{ base: 'flex', lg: 'block' }}
+          flexDirection={{ base: 'column', lg: 'normal' }}
+          mr={{ base: 0, lg: 24 }}
+        >
           <Heading as="h1" fontSize="6xl" fontWeight="extrabold">
             Proident proident
             <br />
@@ -36,12 +48,22 @@ export default function Home() {
           <Text color="gray.600" mt={7}>
             長い文章長い文章長い文章長い文章長い文章長い文章長い文章長い文章長い文章長い文章長い文章長い文章長い文章長い文章長い文章
           </Text>
-          <ButtonGroup size="lg" mt={12}>
+          <ButtonGroup size="lg" mt={12} mx={{ base: 'auto', lg: 0 }}>
             <Button colorScheme="blue">Download</Button>
             <Button>Documentation</Button>
           </ButtonGroup>
         </Box>
-        <Skeleton flexShrink={0} isLoaded={false} ml="auto" w="420px" h="300px" />
+        <AspectRatio
+          flexShrink={0}
+          isLoaded={false}
+          ml={{ lg: 10 }}
+          w={{ base: '80%', lg: '420px' }}
+          h={{ lg: '300px' }}
+          mt={{ base: 10 }}
+          ratio={4 / 3}
+        >
+          <Box w="full" h="full" bg={'gray.200'} />
+        </AspectRatio>
       </Container>
       <Box
         bg="gray.50"
