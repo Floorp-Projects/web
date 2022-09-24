@@ -17,6 +17,7 @@ import { BiLockAlt } from 'react-icons/bi';
 import NavBar from '../components/NavBar';
 import FeatureCard from '../components/FeatureCard';
 import Feature from '../components/Feature';
+import Footer from '../components/Footer';
 import Head from 'next/head';
 import Image from 'next/image';
 import NextLink from 'next/link';
@@ -180,6 +181,7 @@ export default function Home({ article }) {
           Download
         </Button>
       </Container>
+      <Footer />
     </Box>
   );
 }
