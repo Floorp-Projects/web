@@ -1,4 +1,4 @@
-import { GridItem, HStack, Flex, Icon, Heading, Text } from '@chakra-ui/react';
+import { GridItem, HStack, Flex, Heading, Text } from '@chakra-ui/react';
 
 function FeatureCard({ title, icon, description }) {
   return (
