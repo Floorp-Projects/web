@@ -66,13 +66,7 @@ export default function Home() {
           <Box w="full" h="full" bg={'gray.200'} />
         </AspectRatio>
       </Container>
-      <Box
-        bg="gray.50"
-        backgroundImage="url('curve.svg')"
-        backgroundSize="100%"
-        backgroundRepeat="no-repeat"
-        backgroundPosition="0 0"
-      >
+      <Box bg="gray.50">
         <Container maxW="container.lg" pt={32} pb={20}>
           <Heading as="h2">特徴</Heading>
           <Grid gridTemplateColumns={'repeat(auto-fill,minmax(240px,1fr))'} mt={10} gap={6}>
