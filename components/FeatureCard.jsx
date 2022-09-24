@@ -9,7 +9,7 @@ function FeatureCard({ title, icon, description }) {
           h={10}
           alignItems="center"
           justifyContent="center"
-          borderColor="gray.300"
+          borderColor="gray.200"
           borderWidth={1}
           bg="white"
           borderRadius="md"
