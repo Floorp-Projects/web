@@ -7,15 +7,20 @@ import {
   Heading,
   AspectRatio,
   Text,
+  LinkOverlay,
+  HStack,
   Flex,
+  LinkBox,
+  Link,
 } from '@chakra-ui/react';
 import { BiLockAlt } from 'react-icons/bi';
 import FeatureCard from '../components/FeatureCard';
 import Feature from '../components/Feature';
 import Head from 'next/head';
 import Image from 'next/image';
+import NextLink from 'next/link';
 
-export default function Home() {
+export default function Home({ article }) {
   return (
     <Box mx={5}>
       <Head>
@@ -120,12 +125,41 @@ export default function Home() {
           buttonLabel="ちょっと見てみる"
         />
       </Container>
+      <Container maxW="container.lg">
+        <Heading fontSize="3xl" mb={10}>
+          最新の記事
+        </Heading>
+        <LinkBox>
+          <NextLink href={article.link} passHref>
+            <LinkOverlay>
+              <HStack spacing={5} alignItems="start">
+                <Box>
+                  <Heading as="h3" fontSize="2xl" py={5}>
+                    {article.title}
+                  </Heading>
+                  <Text color="gray.600">{article.description}</Text>
+                </Box>
+                <Box>
+                  <Image src="/floorp-thumbnail.png" alt={article.title} width={400} height={225} />
+                </Box>
+              </HStack>
+            </LinkOverlay>
+          </NextLink>
+        </LinkBox>
+        <Flex justifyContent="center" mt={5}>
+          <NextLink href="https://blog.ablaze.one/category/ablaze/ablaze-project/floorp/" passHref>
+            <Button as={Link} textDecoration="none!important">
+              もっと見る
+            </Button>
+          </NextLink>
+        </Flex>
+      </Container>
       <Container
         maxW="container.lg"
         bg="blue.50"
         borderRadius="xl"
         py={24}
-        my={10}
+        my={20}
         display="flex"
         flexDirection="column"
         alignContent="center"
@@ -142,4 +176,15 @@ export default function Home() {
       </Container>
     </Box>
   );
+}
+
+export async function getStaticProps() {
+  const res = await fetch('https://wpapi.ablaze.one/?home=https://blog.ablaze.one/&categories=1');
+  const article = (await res.json()).items[0];
+
+  return {
+    props: {
+      article,
+    },
+  };
 }
