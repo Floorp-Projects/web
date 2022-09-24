@@ -7,9 +7,11 @@ import {
   Heading,
   AspectRatio,
   Text,
+  Flex,
 } from '@chakra-ui/react';
 import { BiLockAlt } from 'react-icons/bi';
 import FeatureCard from '../components/FeatureCard';
+import Feature from '../components/Feature';
 import Head from 'next/head';
 import Image from 'next/image';
 
@@ -55,7 +57,6 @@ export default function Home() {
         </Box>
         <AspectRatio
           flexShrink={0}
-          isLoaded={false}
           ml={{ lg: 10 }}
           w={{ base: '80%', lg: '420px' }}
           h={{ lg: '300px' }}
@@ -72,7 +73,7 @@ export default function Home() {
         backgroundRepeat="no-repeat"
         backgroundPosition="0 0"
       >
-        <Container maxW={'container.lg'} pt={32} pb={20}>
+        <Container maxW="container.lg" pt={32} pb={20}>
           <Heading as="h2">特徴</Heading>
           <Grid gridTemplateColumns={'repeat(auto-fill,minmax(240px,1fr))'} mt={10} gap={6}>
             <FeatureCard
@@ -106,6 +107,23 @@ export default function Home() {
               icon={<BiLockAlt size={20} />}
             />
           </Grid>
+        </Container>
+        <Container maxW="container.lg">
+          <Feature
+            title="素晴らしい機能"
+            description="すごい機能すごい機能すごい機能すごい機能すごい機能すごい機能すごい機能すごい機能すごい機能すごい機能"
+            buttonLabel="ちょっと見てみる"
+          />
+          <Feature
+            title="素晴らしい機能"
+            description="すごい機能すごい機能すごい機能すごい機能すごい機能すごい機能すごい機能すごい機能すごい機能すごい機能"
+            buttonLabel="ちょっと見てみる"
+          />
+          <Feature
+            title="素晴らしい機能"
+            description="すごい機能すごい機能すごい機能すごい機能すごい機能すごい機能すごい機能すごい機能すごい機能すごい機能"
+            buttonLabel="ちょっと見てみる"
+          />
         </Container>
       </Box>
     </Box>
