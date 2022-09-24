@@ -14,6 +14,7 @@ import {
   Link,
 } from '@chakra-ui/react';
 import { BiLockAlt } from 'react-icons/bi';
+import NavBar from '../components/NavBar';
 import FeatureCard from '../components/FeatureCard';
 import Feature from '../components/Feature';
 import Head from 'next/head';
@@ -22,7 +23,8 @@ import NextLink from 'next/link';
 
 export default function Home({ article }) {
   return (
-    <Box mx={5}>
+    <Box as="main">
+      <NavBar />
       <Head>
         <title>Floorp</title>
         <meta
@@ -34,7 +36,8 @@ export default function Home({ article }) {
       <Container
         as="header"
         maxW="container.lg"
-        py={20}
+        pt={40}
+        pb={20}
         px={29}
         display="flex"
         flexWrap={{ base: 'wrap', lg: 'nowrap' }}
