@@ -17,7 +17,7 @@ import Image from 'next/image';
 
 export default function Home() {
   return (
-    <Box>
+    <Box mx={5}>
       <Head>
         <title>Floorp</title>
         <meta
@@ -69,7 +69,7 @@ export default function Home() {
       <Box bg="gray.50">
         <Container maxW="container.lg" pt={32} pb={20}>
           <Heading as="h2">特徴</Heading>
-          <Grid gridTemplateColumns={'repeat(auto-fill,minmax(240px,1fr))'} mt={10} gap={6}>
+          <Grid gridTemplateColumns={'repeat(auto-fill,minmax(240px,1fr))'} mt={10} gap={10}>
             <FeatureCard
               title="Nice Feature"
               description="すごい特徴すごい特徴すごい特徴すごい特徴すごい特徴すごい特徴すごい特徴すごい特徴すごい特徴すごい特徴すごい特徴すごい特徴すごい特徴"
@@ -119,6 +119,26 @@ export default function Home() {
           description="すごい機能すごい機能すごい機能すごい機能すごい機能すごい機能すごい機能すごい機能すごい機能すごい機能"
           buttonLabel="ちょっと見てみる"
         />
+      </Container>
+      <Container
+        maxW="container.lg"
+        bg="blue.50"
+        borderRadius="xl"
+        py={24}
+        my={10}
+        display="flex"
+        flexDirection="column"
+        alignContent="center"
+      >
+        <Heading as="h2" size="lg" textAlign="center">
+          <Text as="span" color="blackAlpha.500">
+            Proident proident
+          </Text>{' '}
+          Qui ad aute ea
+        </Heading>
+        <Button colorScheme="blue" mx="auto" mt={10}>
+          Download
+        </Button>
       </Container>
     </Box>
   );
