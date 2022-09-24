@@ -169,10 +169,13 @@ export default function Home({ article }) {
       >
         <Heading as="h2" size="lg" textAlign="center">
           <Text as="span" color="blackAlpha.500">
-            Proident proident
+            Ad labore eu magna deserunt sit eu irure
           </Text>{' '}
-          Qui ad aute ea
+          aute reprehenderit reprehenderit
         </Heading>
+        <Text color="gray.600" textAlign="center" mt={8}>
+          ダミーのテキストダミーのテキストダミーのテキストダミーのテキストダミーのテキスト
+        </Text>
         <Button colorScheme="blue" mx="auto" mt={10}>
           Download
         </Button>
