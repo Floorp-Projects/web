@@ -102,24 +102,24 @@ export default function Home() {
             />
           </Grid>
         </Container>
-        <Container maxW="container.lg">
-          <Feature
-            title="素晴らしい機能"
-            description="すごい機能すごい機能すごい機能すごい機能すごい機能すごい機能すごい機能すごい機能すごい機能すごい機能"
-            buttonLabel="ちょっと見てみる"
-          />
-          <Feature
-            title="素晴らしい機能"
-            description="すごい機能すごい機能すごい機能すごい機能すごい機能すごい機能すごい機能すごい機能すごい機能すごい機能"
-            buttonLabel="ちょっと見てみる"
-          />
-          <Feature
-            title="素晴らしい機能"
-            description="すごい機能すごい機能すごい機能すごい機能すごい機能すごい機能すごい機能すごい機能すごい機能すごい機能"
-            buttonLabel="ちょっと見てみる"
-          />
-        </Container>
       </Box>
+      <Container maxW="container.lg">
+        <Feature
+          title="素晴らしい機能"
+          description="すごい機能すごい機能すごい機能すごい機能すごい機能すごい機能すごい機能すごい機能すごい機能すごい機能"
+          buttonLabel="ちょっと見てみる"
+        />
+        <Feature
+          title="素晴らしい機能"
+          description="すごい機能すごい機能すごい機能すごい機能すごい機能すごい機能すごい機能すごい機能すごい機能すごい機能"
+          buttonLabel="ちょっと見てみる"
+        />
+        <Feature
+          title="素晴らしい機能"
+          description="すごい機能すごい機能すごい機能すごい機能すごい機能すごい機能すごい機能すごい機能すごい機能すごい機能"
+          buttonLabel="ちょっと見てみる"
+        />
+      </Container>
     </Box>
   );
 }
