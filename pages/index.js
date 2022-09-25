@@ -59,7 +59,11 @@ export default function Home({ article }) {
             長い文章長い文章長い文章長い文章長い文章長い文章長い文章長い文章長い文章長い文章長い文章長い文章長い文章長い文章長い文章
           </Text>
           <ButtonGroup size="lg" mt={12} mx={{ base: 'auto', lg: 0 }}>
-            <Button colorScheme="blue">Download</Button>
+            <NextLink href="download/" passHref>
+              <Button as={Link} colorScheme="blue">
+                Download
+              </Button>
+            </NextLink>
             <Button>Documentation</Button>
           </ButtonGroup>
         </Box>
