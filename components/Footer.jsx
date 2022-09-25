@@ -3,8 +3,6 @@ import {
   ButtonGroup,
   IconButton,
   Container,
-  Flex,
-  Heading,
   Text,
   Link,
   VStack,
