@@ -23,7 +23,11 @@ function NavBar() {
         alignItems="center"
         justifyContent="space-between"
       >
-        <Image src="/logo.svg" alt="logo" width={100} height={50} />
+        <Link href="/">
+          <a>
+            <Image src="/logo.svg" alt="logo" width={100} height={50} />
+          </a>
+        </Link>
         <ButtonGroup spacing={4}>
           <Button
             as={Link}
