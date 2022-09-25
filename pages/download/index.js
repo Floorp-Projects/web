@@ -82,22 +82,20 @@ export default function Download() {
               <Heading as="h3" fontSize="xl" my={2}>
                 Source Code
               </Heading>
-              <NextLink href="https://github.com/floorp-projects/floorp" passHref>
-                <Link>https://github.com/floorp-projects/floorp</Link>
-              </NextLink>
+              <Link href="https://github.com/floorp-projects/floorp" isExternal>
+                https://github.com/floorp-projects/floorp
+              </Link>
             </Box>
             <Box>
               <Heading as="h3" fontSize="xl" my={2}>
                 Documentation
               </Heading>
-              <NextLink
+              <Link
                 href="https://github.com/Floorp-Projects/Floorp/blob/ESR102/.github/workflow.md"
-                passHref
+                isExternal
               >
-                <Link>
-                  https://github.com/Floorp-Projects/Floorp/blob/ESR102/.github/workflow.md
-                </Link>
-              </NextLink>
+                https://github.com/Floorp-Projects/Floorp/blob/ESR102/.github/workflow.md
+              </Link>
             </Box>
           </Stack>
         </Box>
