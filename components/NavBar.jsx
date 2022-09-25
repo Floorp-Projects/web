@@ -24,7 +24,7 @@ function NavBar() {
         justifyContent="space-between"
       >
         <NextLink href="/">
-          <a>
+          <a className="logo-image">
             <Image src="/logo.svg" alt="logo" width={100} height={50} />
           </a>
         </NextLink>
