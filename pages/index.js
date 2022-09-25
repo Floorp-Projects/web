@@ -151,6 +151,7 @@ export default function Home({ article }) {
                     src="/floorp-thumbnail.png"
                     alt={article.title}
                     width={400}
+                    height={225}
                     borderRadius="lg"
                   />
                 </Box>
