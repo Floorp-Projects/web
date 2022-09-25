@@ -6,7 +6,8 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "export": "next build && next export && next-export-optimize-images"
   },
   "dependencies": {
     "@chakra-ui/react": "^2.3.4",
@@ -20,6 +21,7 @@
   },
   "devDependencies": {
     "eslint": "8.23.1",
-    "eslint-config-next": "12.3.1"
+    "eslint-config-next": "12.3.1",
+    "next-export-optimize-images": "^1.8.0"
   }
 }
