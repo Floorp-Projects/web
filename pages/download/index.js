@@ -25,7 +25,7 @@ const platforms = [
   },
   {
     platform: 'macOS',
-    label: 'Download for macOS Univerasal',
+    label: 'Download for macOS Universal',
     url: 'https://github.com/floorp-Projects/floorp/releases/latest/download/floorp-macOS-Univerasal.dmg',
   },
   {
