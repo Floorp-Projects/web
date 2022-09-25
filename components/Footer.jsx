@@ -43,7 +43,7 @@ function Footer() {
             <Text color="gray.500">© 2022 Ablaze</Text>
           </HStack>
         </VStack>
-        <Divider mx={5} />
+        <Divider mx={5} w="unset" />
         <Box textAlign="center" p={4}>
           <NextLink href="https://ablaze.one">
             <a>
