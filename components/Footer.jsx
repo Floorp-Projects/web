@@ -24,7 +24,7 @@ function Footer() {
               <IconButton
                 as={Link}
                 icon={<FaDiscord size={20} />}
-                href="https://discord.gg/ca7sH3ct"
+                href="https://aka.ablaze.one/discord"
                 isExternal
               />
               <IconButton
