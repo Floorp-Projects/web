@@ -1,3 +1,4 @@
-.logo-image > span {
+.logo-image > span,
+.thumbnail-image > span {
   vertical-align: middle;
 }

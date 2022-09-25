@@ -146,14 +146,8 @@ export default function Home({ article }) {
                   </Heading>
                   <Text color="gray.600">{article.description}</Text>
                 </Box>
-                <Box>
-                  <Image
-                    src="/floorp-thumbnail.png"
-                    alt={article.title}
-                    width={400}
-                    height={225}
-                    borderRadius="lg"
-                  />
+                <Box borderRadius="lg" overflow="hidden" className="thumbnail-image">
+                  <Image src="/floorp-thumbnail.png" alt={article.title} width={400} height={225} />
                 </Box>
               </HStack>
             </LinkOverlay>
