@@ -16,6 +16,7 @@ import Footer from '../../components/Footer';
 import Head from 'next/head';
 import NextLink from 'next/link';
 import { useEffect, useState } from 'react';
+import { Octokit } from '@octokit/rest';
 
 const platforms = [
   {
@@ -103,4 +104,17 @@ export default function Download() {
       <Footer />
     </Box>
   );
+}
+
+export async function getStaticProps() {
+  const octokit = new Octokit();
+  const response = await octokit.rest.repos.getRelease({
+    owner: 'Floorp-Projects',
+    repo: 'Floorp',
+    release_id: 'latest',
+  });
+
+  return {
+    props: {},
+  };
 }
