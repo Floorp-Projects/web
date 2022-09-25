@@ -39,7 +39,6 @@ export default function Home({ article }) {
         maxW="container.lg"
         pt={40}
         pb={20}
-        px={29}
         display="flex"
         flexWrap={{ base: 'wrap', lg: 'nowrap' }}
         justifyContent={{ base: 'center', lg: 'normal' }}
@@ -152,9 +151,7 @@ export default function Home({ article }) {
         </LinkBox>
         <Flex justifyContent="center" mt={5}>
           <NextLink href="https://blog.ablaze.one/category/ablaze/ablaze-project/floorp/" passHref>
-            <Button as={Link} textDecoration="none!important">
-              もっと見る
-            </Button>
+            <Button as={Link}>もっと見る</Button>
           </NextLink>
         </Flex>
       </Container>
