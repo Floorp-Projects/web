@@ -12,6 +12,7 @@ import {
   Flex,
   LinkBox,
   Link,
+  Image,
 } from '@chakra-ui/react';
 import { BiLockAlt } from 'react-icons/bi';
 import NavBar from '../components/NavBar';
@@ -19,7 +20,6 @@ import FeatureCard from '../components/FeatureCard';
 import Feature from '../components/Feature';
 import Footer from '../components/Footer';
 import Head from 'next/head';
-import Image from 'next/image';
 import NextLink from 'next/link';
 
 export default function Home({ article }) {
@@ -143,7 +143,12 @@ export default function Home({ article }) {
                   <Text color="gray.600">{article.description}</Text>
                 </Box>
                 <Box>
-                  <Image src="/floorp-thumbnail.png" alt={article.title} width={400} height={225} />
+                  <Image
+                    src="/floorp-thumbnail.png"
+                    alt={article.title}
+                    width={400}
+                    borderRadius="lg"
+                  />
                 </Box>
               </HStack>
             </LinkOverlay>
