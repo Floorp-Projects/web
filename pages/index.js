@@ -25,7 +25,6 @@ import NextLink from 'next/link';
 export default function Home({ article }) {
   return (
     <Box as="main">
-      <NavBar />
       <Head>
         <title>Floorp</title>
         <meta
@@ -34,6 +33,7 @@ export default function Home({ article }) {
         />
         <link rel="icon" href="/favicon.ico" />
       </Head>
+      <NavBar />
       <Container
         as="header"
         maxW="container.lg"
