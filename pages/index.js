@@ -49,14 +49,14 @@ export default function Home({ article }) {
           mr={{ base: 0, lg: 24 }}
         >
           <Heading as="h1" fontSize="6xl" fontWeight="extrabold">
-            Proident proident
+            Unlimited customization
             <br />
             <Text as="span" color="purple.500">
-              Qui ad aute ea
+              with Floorp
             </Text>
           </Heading>
           <Text color="gray.600" mt={7}>
-            長い文章長い文章長い文章長い文章長い文章長い文章長い文章長い文章長い文章長い文章長い文章長い文章長い文章長い文章長い文章
+            Floorp は Firefox をベースに、ウェブの公開性、匿名性、安全性、機能性のバランスにフォーカスを当てた日本製のウェブブラウザーです。
           </Text>
           <ButtonGroup size="lg" mt={12} mx={{ base: 'auto', lg: 0 }}>
             <NextLink href="download/" passHref>
@@ -83,33 +83,33 @@ export default function Home({ article }) {
           <Heading as="h2">特徴</Heading>
           <Grid gridTemplateColumns={'repeat(auto-fill,minmax(240px,1fr))'} mt={10} gap={10}>
             <FeatureCard
-              title="Nice Feature"
-              description="すごい特徴すごい特徴すごい特徴すごい特徴すごい特徴すごい特徴すごい特徴すごい特徴すごい特徴すごい特徴すごい特徴すごい特徴すごい特徴"
+              title="強力なトラッカー保護"
+              description="Floorp は既定で強力な追跡遮断機能が含まれており、ウェブに潜む様々な悪意あるトラッキングからユーザーを守ります。更に、指紋採取対策も。"
               icon={<BiLockAlt size={20} />}
             />
             <FeatureCard
-              title="Nice Feature"
-              description="すごい特徴すごい特徴すごい特徴すごい特徴すごい特徴すごい特徴すごい特徴すごい特徴すごい特徴すごい特徴すごい特徴すごい特徴すごい特徴"
+              title="幅広いカスタマイズ"
+              description="Floorp のレイアウトカスタマイズは無制限。タブバーの位置をウインドウの一番下に移動したりタイトルバーを非表示にしたり。あなただけの Floorp を。"
               icon={<BiLockAlt size={20} />}
             />
             <FeatureCard
-              title="Nice Feature"
-              description="すごい特徴すごい特徴すごい特徴すごい特徴すごい特徴すごい特徴すごい特徴すごい特徴すごい特徴すごい特徴すごい特徴すごい特徴すごい特徴"
+              title="切り替え可能なデザイン"
+              description="Firefox の普通のテーマによるカスタマイズに加え、５つのデザインからブラウザーのインターフェイスを切り替えられます。更に、OS 固有のデザインも。"
               icon={<BiLockAlt size={20} />}
             />
             <FeatureCard
-              title="Nice Feature"
-              description="すごい特徴すごい特徴すごい特徴すごい特徴すごい特徴すごい特徴すごい特徴すごい特徴すごい特徴すごい特徴すごい特徴すごい特徴すごい特徴"
+              title="定期的なリリース"
+              description="Floorp は Firefox ESR に基づき、４週間に一回の機能更新を行うラピッドリリースを採用するブラウザーです。Firefox より早くアップデートを提供し、セキュリティ問題を迅速に修正しています。"
               icon={<BiLockAlt size={20} />}
             />
             <FeatureCard
-              title="Nice Feature"
-              description="すごい特徴すごい特徴すごい特徴すごい特徴すごい特徴すごい特徴すごい特徴すごい特徴すごい特徴すごい特徴すごい特徴すごい特徴すごい特徴"
+              title="情報収集なし"
+              description="Floorp にはユーザーの情報を集める機能は備わっていません。私たちは、全ユーザーの総ダウンロード数とアップデート回数しか知りません！あなたの個人情報を知る必要はありません。"
               icon={<BiLockAlt size={20} />}
             />
             <FeatureCard
-              title="Nice Feature"
-              description="すごい特徴すごい特徴すごい特徴すごい特徴すごい特徴すごい特徴すごい特徴すごい特徴すごい特徴すごい特徴すごい特徴すごい特徴すごい特徴"
+              title="完全なオープンソース"
+              description="Floorp のソースコードは完全公開されており、誰でもソースコードを見たり Floorp を構築することができます。公開するのはブラウザー自体だけではありません。ビルド環境もオープンソースです。"
               icon={<BiLockAlt size={20} />}
             />
           </Grid>
@@ -117,18 +117,18 @@ export default function Home({ article }) {
       </Box>
       <Container maxW="container.lg">
         <Feature
-          title="素晴らしい機能"
-          description="すごい機能すごい機能すごい機能すごい機能すごい機能すごい機能すごい機能すごい機能すごい機能すごい機能"
+          title="両サイドに配置できるサイドバー"
+          description="サイドバーは１つで満足でしょうか？サイドバーでウェブサイトを開きたいと思いませんか？ Floorp にはウェブパネルとブラウザー管理ツールを表示できるサイドバーが組み込まれており、快適なブラウジングが可能です。"
           buttonLabel="ちょっと見てみる"
         />
         <Feature
-          title="素晴らしい機能"
-          description="すごい機能すごい機能すごい機能すごい機能すごい機能すごい機能すごい機能すごい機能すごい機能すごい機能"
+          title="細部までカスタマイズできるレイアウト"
+          description="ツリー型タブを組み込み、垂直タブとして使用、または併用したり。ブックマークバーのカスタマイズなども。痒い所に手が届く、そんなブラウザーです。"
           buttonLabel="ちょっと見てみる"
         />
         <Feature
-          title="素晴らしい機能"
-          description="すごい機能すごい機能すごい機能すごい機能すごい機能すごい機能すごい機能すごい機能すごい機能すごい機能"
+          title="ウェブとユーザーの双方を第一に考えました"
+          description="Floorp はユーザーを追跡しません。また、ウェブサイトでの悪意ある追跡のみをブロックします。Floorp を使えば、ウェブサイト側、ユーザー側の双方に利益のあるインターネットを構築できます。"
           buttonLabel="ちょっと見てみる"
         />
       </Container>
@@ -171,12 +171,12 @@ export default function Home({ article }) {
       >
         <Heading as="h2" size="xl" fontWeight="black" textAlign="center">
           <Text as="span" color="blackAlpha.500">
-            Ad labore eu magna
+            Make it your own "Browser" with
           </Text>{' '}
-          reprehenderit reprehenderit
+            Floorp
         </Heading>
         <Text color="gray.600" textAlign="center" mt={8}>
-          ダミーのテキストダミーのテキストダミーのテキストダミーのテキストダミーのテキスト
+          最新バージョンの Floorp を入手する
         </Text>
         <NextLink href="download" passHref>
           <Button as={Link} colorScheme="blue" mx="auto" mt={10}>
