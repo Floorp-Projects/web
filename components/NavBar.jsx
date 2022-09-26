@@ -29,17 +29,19 @@ function NavBar() {
           </a>
         </NextLink>
         <ButtonGroup spacing={4}>
-          <Button
-            as={Link}
-            href="https://github.com/floorp-Projects/floorp/"
-            variant="ghost"
-            textDecoration="none!important"
-            leftIcon={<BiStar color="#ECC94B" />}
-            rightIcon={<BiLinkExternal />}
-            isExternal
-          >
-            Star us on GitHub
-          </Button>
+          <Box display={{ base: 'none', sm: 'block' }}>
+            <Button
+              as={Link}
+              href="https://github.com/floorp-Projects/floorp/"
+              variant="ghost"
+              textDecoration="none!important"
+              leftIcon={<BiStar color="#ECC94B" />}
+              rightIcon={<BiLinkExternal />}
+              isExternal
+            >
+              Star us on GitHub
+            </Button>
+          </Box>
           <NextLink href="/download/" passHref>
             <Button as={Link} textDecoration="none!important" colorScheme="blue">
               Download
