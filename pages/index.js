@@ -171,9 +171,9 @@ export default function Home({ article }) {
       >
         <Heading as="h2" size="lg" textAlign="center">
           <Text as="span" color="blackAlpha.500">
-            Ad labore eu magna deserunt sit eu irure
+            Ad labore eu magna
           </Text>{' '}
-          aute reprehenderit reprehenderit
+          reprehenderit reprehenderit
         </Heading>
         <Text color="gray.600" textAlign="center" mt={8}>
           ダミーのテキストダミーのテキストダミーのテキストダミーのテキストダミーのテキスト
