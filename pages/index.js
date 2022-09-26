@@ -178,9 +178,11 @@ export default function Home({ article }) {
         <Text color="gray.600" textAlign="center" mt={8}>
           ダミーのテキストダミーのテキストダミーのテキストダミーのテキストダミーのテキスト
         </Text>
-        <Button colorScheme="blue" mx="auto" mt={10}>
-          Download
-        </Button>
+        <NextLink href="download" passHref>
+          <Button as={Link} colorScheme="blue" mx="auto" mt={10}>
+            Download
+          </Button>
+        </NextLink>
       </Container>
       <Footer />
     </Box>
