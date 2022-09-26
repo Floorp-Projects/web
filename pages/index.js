@@ -169,7 +169,7 @@ export default function Home({ article }) {
         flexDirection="column"
         alignContent="center"
       >
-        <Heading as="h2" size="lg" textAlign="center">
+        <Heading as="h2" size="xl" fontWeight="black" textAlign="center">
           <Text as="span" color="blackAlpha.500">
             Ad labore eu magna
           </Text>{' '}
