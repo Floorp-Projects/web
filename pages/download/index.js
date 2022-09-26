@@ -11,6 +11,7 @@ import {
   Stack,
   Text,
   FormHelperText,
+  ButtonGroup,
 } from '@chakra-ui/react';
 import NavBar from '../../components/NavBar';
 import Footer from '../../components/Footer';
@@ -70,11 +71,27 @@ export default function Download({ release, assets, releasedOn }) {
               {release}
             </FormHelperText>
           </FormControl>
-          <NextLink href={assets[currentPlatform].url} passHref>
-            <Button as={Link} mt={5}>
-              {assets[currentPlatform].label}
-            </Button>
-          </NextLink>
+          {currentPlatform == 2 ? (
+            <Box bg="gray.50" borderRadius="lg" mt={7} p={5} w="full">
+              <Text fontFamily="monospace" fontSize="md">
+                <Text as="span" userSelect="none">
+                  ${' '}
+                </Text>
+                flatpak install flathub one.ablaze.floorp
+                <br />
+                <Text as="span" userSelect="none">
+                  ${' '}
+                </Text>
+                flatpak run one.ablaze.floorp
+              </Text>
+            </Box>
+          ) : (
+            <NextLink href={assets[currentPlatform].url} passHref>
+              <Button as={Link} mt={5}>
+                {assets[currentPlatform].label}
+              </Button>
+            </NextLink>
+          )}
           <Text color="gray.500" textAlign="center" my={12}>
             OR
           </Text>
@@ -117,11 +134,7 @@ export async function getStaticProps() {
     release_id: 'latest',
   });
   const platforms = ['Windows', 'macOS', 'Linux'];
-  const labels = [
-    'Download for Windows 64bit',
-    'Download for macOS Universal',
-    'Download for Linux',
-  ];
+  const labels = ['Download for Windows 64bit', 'Download for macOS Universal', null];
   const fileNames = [
     'floorp-stub.installer.exe',
     'floorp-macOS-Univerasal.dmg',
