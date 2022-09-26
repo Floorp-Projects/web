@@ -10,6 +10,7 @@ import {
   Select,
   Stack,
   Text,
+  FormHelperText,
 } from '@chakra-ui/react';
 import NavBar from '../../components/NavBar';
 import Footer from '../../components/Footer';
@@ -18,25 +19,20 @@ import NextLink from 'next/link';
 import { useEffect, useState } from 'react';
 import { Octokit } from '@octokit/rest';
 
-const platforms = [
-  {
-    platform: 'Windows',
-    label: 'Download for Windows 64bit',
-    url: 'https://github.com/Floorp-Projects/Floorp/releases/latest/download/floorp-stub.installer.exe',
-  },
-  {
-    platform: 'macOS',
-    label: 'Download for macOS Universal',
-    url: 'https://github.com/floorp-Projects/floorp/releases/latest/download/floorp-macOS-Univerasal.dmg',
-  },
-  {
-    platform: 'Linux',
-    label: 'Download from FLATHUB',
-    url: 'https://flathub.org/apps/details/one.ablaze.floorp',
-  },
-];
+function CustomDivider() {
+  return (
+    <Divider
+      orientation="vertical"
+      h={3}
+      display="inline-block"
+      mx={2}
+      transform="translateY(1px)"
+      borderColor="gray.600"
+    />
+  );
+}
 
-export default function Download() {
+export default function Download({ release, assets, releasedOn }) {
   const [currentPlatform, setCurrentPlatform] = useState(0);
   useEffect(() => {
     const userAgent = navigator.userAgent.toLowerCase();
@@ -66,10 +62,17 @@ export default function Download() {
               <option value="1">macOS</option>
               <option value="2">Linux</option>
             </Select>
+            <FormHelperText>
+              {assets[currentPlatform].fileSize}
+              <CustomDivider />
+              {releasedOn}
+              <CustomDivider />
+              {release}
+            </FormHelperText>
           </FormControl>
-          <NextLink href={platforms[currentPlatform].url}>
+          <NextLink href={assets[currentPlatform].url} passHref>
             <Button as={Link} mt={5}>
-              {platforms[currentPlatform].label}
+              {assets[currentPlatform].label}
             </Button>
           </NextLink>
           <Text color="gray.500" textAlign="center" my={12}>
@@ -113,8 +116,37 @@ export async function getStaticProps() {
     repo: 'Floorp',
     release_id: 'latest',
   });
-
+  const platforms = ['Windows', 'macOS', 'Linux'];
+  const labels = [
+    'Download for Windows 64bit',
+    'Download for macOS Universal',
+    'Download for Linux',
+  ];
+  const fileNames = [
+    'floorp-stub.installer.exe',
+    'floorp-macOS-Univerasal.dmg',
+    'linux-x86_64.tar.bz2',
+  ];
+  const date = new Date(response.data.published_at);
+  const assets = fileNames.map((fileName, index) => {
+    const asset = response.data.assets.find((asset) => asset.name.includes(fileName));
+    return {
+      platform: platforms[index],
+      label: labels[index],
+      url: asset.browser_download_url,
+      fileSize:
+        asset.size > 1024 * 1024
+          ? `${Math.round(asset.size / 1024 / 1024)}MB`
+          : `${Math.round(asset.size / 1024)}KB`,
+    };
+  });
   return {
-    props: {},
+    props: {
+      release: `Release ${response.data.name}`,
+      assets,
+      releasedOn: `Released on ${date.toLocaleString('en', {
+        month: 'long',
+      })} ${date.getDate()}, ${date.getFullYear()}`,
+    },
   };
 }
