@@ -176,7 +176,7 @@ export default function Home({ article }) {
           </Text>{' '}
           own &#34;Browser&#34; with Floorp
         </Heading>
-        <Text color="gray.600" textAlign="center" mt={8}>
+        <Text color="gray.600" textAlign="center" mt={5}>
           最新バージョンの Floorp を入手する
         </Text>
         <NextLink href="download" passHref>
