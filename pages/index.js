@@ -164,8 +164,8 @@ export default function Home({ article }) {
         maxW="container.lg"
         bg="blue.50"
         borderRadius="xl"
-        py={24}
-        my={20}
+        py={20}
+        my={16}
         display="flex"
         flexDirection="column"
         alignContent="center"
