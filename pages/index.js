@@ -172,7 +172,7 @@ export default function Home({ article }) {
       >
         <Heading as="h2" size="lg" fontWeight="black" textAlign="center">
           <Text as="span" color="blackAlpha.500">
-            Make it your
+            Create your
           </Text>{' '}
           own &#34;Browser&#34; with Floorp
         </Heading>
