@@ -56,7 +56,8 @@ export default function Home({ article }) {
             </Text>
           </Heading>
           <Text color="gray.600" mt={7}>
-            Floorp は Firefox をベースに、ウェブの公開性、匿名性、安全性、機能性のバランスにフォーカスを当てた日本製のウェブブラウザーです。
+            Floorp は Firefox
+            をベースに、ウェブの公開性、匿名性、安全性、機能性のバランスにフォーカスを当てた日本製のウェブブラウザーです。
           </Text>
           <ButtonGroup size="lg" mt={12} mx={{ base: 'auto', lg: 0 }}>
             <NextLink href="download/" passHref>
@@ -171,9 +172,9 @@ export default function Home({ article }) {
       >
         <Heading as="h2" size="xl" fontWeight="black" textAlign="center">
           <Text as="span" color="blackAlpha.500">
-            Make it your own &#34;Browser&#34; with
+            Make it your
           </Text>{' '}
-            Floorp
+          own &#34;Browser&#34; with Floorp
         </Heading>
         <Text color="gray.600" textAlign="center" mt={8}>
           最新バージョンの Floorp を入手する
