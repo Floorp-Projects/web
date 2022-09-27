@@ -160,30 +160,31 @@ export default function Home({ article }) {
           </NextLink>
         </Flex>
       </Container>
-      <Container
-        maxW="container.lg"
-        bg="blue.50"
-        borderRadius="xl"
-        py={20}
-        my={16}
-        display="flex"
-        flexDirection="column"
-        alignContent="center"
-      >
-        <Heading as="h2" size="lg" fontWeight="black" textAlign="center">
-          <Text as="span" color="blackAlpha.500">
-            Create your
-          </Text>{' '}
-          own &#34;Browser&#34; with Floorp
-        </Heading>
-        <Text color="gray.600" textAlign="center" mt={5}>
-          最新バージョンの Floorp を入手する
-        </Text>
-        <NextLink href="download" passHref>
-          <Button as={Link} colorScheme="blue" mx="auto" mt={10}>
-            Download
-          </Button>
-        </NextLink>
+      <Container maxW="container.lg">
+        <Box
+          bg="blue.50"
+          borderRadius="xl"
+          py={20}
+          my={16}
+          display="flex"
+          flexDirection="column"
+          alignContent="center"
+        >
+          <Heading as="h2" size="lg" fontWeight="black" textAlign="center">
+            <Text as="span" color="blackAlpha.500">
+              Create your
+            </Text>{' '}
+            own &#34;Browser&#34; with Floorp
+          </Heading>
+          <Text color="gray.600" textAlign="center" mt={5}>
+            最新バージョンの Floorp を入手する
+          </Text>
+          <NextLink href="download" passHref>
+            <Button as={Link} colorScheme="blue" mx="auto" mt={10}>
+              Download
+            </Button>
+          </NextLink>
+        </Box>
       </Container>
       <Footer />
     </Box>
