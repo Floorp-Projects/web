@@ -13,7 +13,15 @@ import {
   LinkBox,
   Link,
 } from '@chakra-ui/react';
-import { BiLockAlt } from 'react-icons/bi';
+import {
+  BiBadgeCheck,
+  BiBrush,
+  BiCheck,
+  BiCodeAlt,
+  BiLockAlt,
+  BiPaintRoll,
+  BiShield,
+} from 'react-icons/bi';
 import NavBar from '../components/NavBar';
 import FeatureCard from '../components/FeatureCard';
 import Feature from '../components/Feature';
@@ -86,22 +94,22 @@ export default function Home({ article }) {
             <FeatureCard
               title="強力なトラッカー保護"
               description="Floorp は既定で強力な追跡遮断機能が含まれており、ウェブに潜む様々な悪意あるトラッキングからユーザーを守ります。更に、指紋採取対策も。"
-              icon={<BiLockAlt size={20} />}
+              icon={<BiShield size={20} />}
             />
             <FeatureCard
               title="幅広いカスタマイズ"
               description="Floorp のレイアウトカスタマイズは無制限。タブバーの位置をウインドウの一番下に移動したりタイトルバーを非表示にしたり。あなただけの Floorp を。"
-              icon={<BiLockAlt size={20} />}
+              icon={<BiBrush size={20} />}
             />
             <FeatureCard
               title="切り替え可能なデザイン"
               description="Firefox の普通のテーマによるカスタマイズに加え、５つのデザインからブラウザーのインターフェイスを切り替えられます。更に、OS 固有のデザインも。"
-              icon={<BiLockAlt size={20} />}
+              icon={<BiPaintRoll size={20} />}
             />
             <FeatureCard
               title="定期的なリリース"
               description="Floorp は Firefox ESR に基づき、４週間に一回の機能更新を行うラピッドリリースを採用するブラウザーです。Firefox より早くアップデートを提供し、セキュリティ問題を迅速に修正しています。"
-              icon={<BiLockAlt size={20} />}
+              icon={<BiBadgeCheck size={20} />}
             />
             <FeatureCard
               title="情報収集なし"
@@ -111,7 +119,7 @@ export default function Home({ article }) {
             <FeatureCard
               title="完全なオープンソース"
               description="Floorp のソースコードは完全公開されており、誰でもソースコードを見たり Floorp を構築することができます。公開するのはブラウザー自体だけではありません。ビルド環境もオープンソースです。"
-              icon={<BiLockAlt size={20} />}
+              icon={<BiCodeAlt size={20} />}
             />
           </Grid>
         </Container>
