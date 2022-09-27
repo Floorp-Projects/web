@@ -170,7 +170,7 @@ export default function Home({ article }) {
         flexDirection="column"
         alignContent="center"
       >
-        <Heading as="h2" size="xl" fontWeight="black" textAlign="center">
+        <Heading as="h2" size="lg" fontWeight="black" textAlign="center">
           <Text as="span" color="blackAlpha.500">
             Make it your
           </Text>{' '}
