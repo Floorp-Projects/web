@@ -134,7 +134,7 @@ export default function Home({ article }) {
         />
       </Container>
       <Container maxW="container.lg">
-        <Heading fontSize="3xl" mb={10}>
+        <Heading fontSize="3xl" mt={20} mb={8}>
           最新の記事
         </Heading>
         <LinkBox>
