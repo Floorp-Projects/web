@@ -13,15 +13,7 @@ import {
   LinkBox,
   Link,
 } from '@chakra-ui/react';
-import {
-  BiBadgeCheck,
-  BiBrush,
-  BiCheck,
-  BiCodeAlt,
-  BiLockAlt,
-  BiPaintRoll,
-  BiShield,
-} from 'react-icons/bi';
+import { BiBadgeCheck, BiBrush, BiCodeAlt, BiLockAlt, BiPaintRoll, BiShield } from 'react-icons/bi';
 import NavBar from '../components/NavBar';
 import FeatureCard from '../components/FeatureCard';
 import Feature from '../components/Feature';
