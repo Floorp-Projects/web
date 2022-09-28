@@ -56,7 +56,7 @@ export default function Home({ article }) {
           flexDirection={{ base: 'column', lg: 'normal' }}
           mr={{ base: 0, lg: 24 }}
         >
-          <Heading as="h1" fontSize="6xl" fontWeight="extrabold">
+          <Heading as="h1" fontSize="6xl" fontWeight="extrabold" word-wrap="break-word">
             Unlimited customization
             <br />
             <Text as="span" color="purple.500">
