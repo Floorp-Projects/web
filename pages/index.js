@@ -148,7 +148,11 @@ export default function Home({ article }) {
         <LinkBox>
           <NextLink href={article.link} passHref>
             <LinkOverlay>
-              <HStack spacing={5} alignItems="start">
+              <Flex
+                gap={5}
+                alignItems="center"
+                flexDirection={{ base: 'column-reverse', md: 'row' }}
+              >
                 <Box>
                   <Heading as="h3" fontSize="2xl" py={5}>
                     {article.title}
@@ -158,7 +162,7 @@ export default function Home({ article }) {
                 <Box borderRadius="lg" overflow="hidden" className="thumbnail-image">
                   <Image src="/floorp-thumbnail.png" alt={article.title} width={400} height={225} />
                 </Box>
-              </HStack>
+              </Flex>
             </LinkOverlay>
           </NextLink>
         </LinkBox>
