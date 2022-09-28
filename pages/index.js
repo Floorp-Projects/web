@@ -65,7 +65,9 @@ export default function Home({ article }) {
                 Download
               </Button>
             </NextLink>
-            <Button>Documentation</Button>
+            <Button as={Link} href="https://github.com/Floorp-Projects/Floorp/" isExternal>
+              View Source Code
+            </Button>
           </ButtonGroup>
         </Box>
         <AspectRatio
