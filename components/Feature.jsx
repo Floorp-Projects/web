@@ -9,13 +9,13 @@ function FeatureCard({ title, description, buttonLabel }) {
       _odd={{ flexDirection: { base: 'column', sm: 'row-reverse' } }}
     >
       <Box
-        w={{ base: 'full', sm: '440px' }}
+        w={{ base: 'full', sm: '480px' }}
         my={{ base: 12, sm: 0 }}
-        h="300px"
+        h="270px"
         bg="gray.200"
         mx="auto"
       />
-      <Box w={{ base: 'full', sm: '440px' }} mx="auto" px={4}>
+      <Box w={{ base: 'full', sm: '480px' }} mx="auto" px={4}>
         <Heading as="h2" fontSize="xl" fontWeight="bold">
           {title}
         </Heading>
