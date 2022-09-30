@@ -128,6 +128,7 @@ export default function Home({ article }) {
           title="細部までカスタマイズできるレイアウト"
           description="ツリー型タブを組み込み、垂直タブとして使用、または併用したり。ブックマークバーのカスタマイズなども。痒い所に手が届く、そんなブラウザーです。"
           buttonLabel="ちょっと見てみる"
+          image="./feature2.svg"
         />
         <Feature
           title="ウェブとユーザーの双方を第一に考えました"
