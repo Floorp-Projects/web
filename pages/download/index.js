@@ -63,13 +63,15 @@ export default function Download({ release, assets, releasedOn }) {
               <option value="1">macOS</option>
               <option value="2">Linux</option>
             </Select>
-            <FormHelperText>
-              {assets[currentPlatform].fileSize}
-              <CustomDivider />
-              {releasedOn}
-              <CustomDivider />
-              {release}
-            </FormHelperText>
+            {currentPlatform != 2 ? (
+              <FormHelperText>
+                {assets[currentPlatform].fileSize}
+                <CustomDivider />
+                {releasedOn}
+                <CustomDivider />
+                {release}
+              </FormHelperText>
+            ) : null}
           </FormControl>
           {currentPlatform == 2 ? (
             <Box bg="gray.50" borderRadius="lg" mt={7} p={5} w="full">
@@ -135,11 +137,7 @@ export async function getStaticProps() {
   });
   const platforms = ['Windows', 'macOS', 'Linux'];
   const labels = ['Download for Windows 64bit', 'Download for macOS Universal', null];
-  const fileNames = [
-    'floorp-stub.installer.exe',
-    'floorp-macOS-Univerasal.dmg',
-    'linux-x86_64.tar.bz2',
-  ];
+  const fileNames = ['floorp-stub.installer.exe', 'floorp-macOS-Univerasal.dmg'];
   const date = new Date(response.data.published_at);
   const assets = fileNames.map((fileName, index) => {
     const asset = response.data.assets.find((asset) => asset.name.includes(fileName));
