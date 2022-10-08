@@ -123,6 +123,7 @@ export default function Home({ article }) {
           title="両サイドに配置できるサイドバー"
           description="サイドバーは１つで満足でしょうか？サイドバーでウェブサイトを開きたいと思いませんか？ Floorp にはウェブパネルとブラウザー管理ツールを表示できるサイドバーが組み込まれており、快適なブラウジングが可能です。"
           buttonLabel="ちょっと見てみる"
+          image="./feature1.svg"
         />
         <Feature
           title="細部までカスタマイズできるレイアウト"
@@ -134,6 +135,7 @@ export default function Home({ article }) {
           title="ウェブとユーザーの双方を第一に考えました"
           description="Floorp はユーザーを追跡しません。また、ウェブサイトでの悪意ある追跡のみをブロックします。Floorp を使えば、ウェブサイト側、ユーザー側の双方に利益のあるインターネットを構築できます。"
           buttonLabel="ちょっと見てみる"
+          image="./feature3.svg"
         />
       </Container>
       <Container maxW="container.lg">
