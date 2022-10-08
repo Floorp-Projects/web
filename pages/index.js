@@ -201,7 +201,7 @@ export default function Home({ article }) {
 }
 
 export async function getStaticProps() {
-  const res = await fetch('https://wpapi.ablaze.one/?home=https://blog.ablaze.one/&categories=1');
+  const res = await fetch('https://wpapi.ablaze.one/?home=https://blog.ablaze.one/&categories=45');
   const article = (await res.json()).items[0];
 
   return {
