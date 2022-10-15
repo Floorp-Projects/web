@@ -46,7 +46,7 @@ export default function Home({ article }) {
         <Box
           display={{ base: 'flex', lg: 'block' }}
           flexDirection={{ base: 'column', lg: 'normal' }}
-          mr={{ base: 0, lg: 24 }}
+          mr={{ base: 0, lg: 12 }}
         >
           <Heading as="h1" fontSize="6xl" fontWeight="extrabold" wordBreak="break-word">
             Unlimited customization
