@@ -70,16 +70,11 @@ export default function Home({ article }) {
             </Button>
           </ButtonGroup>
         </Box>
-        <AspectRatio
-          flexShrink={0}
-          ml={{ lg: 10 }}
-          w={{ base: '80%', lg: '420px' }}
-          h={{ lg: '300px' }}
-          mt={{ base: 10 }}
-          ratio={4 / 3}
-        >
-          <Box w="full" h="full" bg={'gray.200'} />
-        </AspectRatio>
+        <Flex alignItems="center">
+          <AspectRatio flexShrink={0} w={{ base: '80%', lg: '420px' }} ratio={1920 / 1031}>
+            <Image src="/hero.png" layout="fill" alt="Floorp Screenshot" />
+          </AspectRatio>
+        </Flex>
       </Container>
       <Box bg="gray.50">
         <Container maxW="container.lg" pt={32} pb={20}>
