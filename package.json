@@ -6,12 +6,14 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "export": "next build && next export && next-export-optimize-images"
   },
   "dependencies": {
     "@chakra-ui/react": "^2.3.4",
     "@emotion/react": "^11.10.4",
     "@emotion/styled": "^11.10.4",
+    "@octokit/rest": "^19.0.4",
     "framer-motion": "^6.5.1",
     "next": "12.3.1",
     "react": "18.2.0",
@@ -20,6 +22,7 @@
   },
   "devDependencies": {
     "eslint": "8.23.1",
-    "eslint-config-next": "12.3.1"
+    "eslint-config-next": "12.3.1",
+    "next-export-optimize-images": "^1.8.0"
   }
 }

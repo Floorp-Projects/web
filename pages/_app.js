@@ -18,6 +18,7 @@ const theme = extendTheme({
 });
 
 function App({ Component, pageProps }) {
+  console.log('%cつくったひと%c：http://itta.dev', 'font-size: 1.5em; color: #000;');
   return (
     <ChakraProvider theme={theme}>
       <Component {...pageProps} />
