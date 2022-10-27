@@ -24,7 +24,7 @@ function Footer() {
               <IconButton
                 as={Link}
                 icon={<FaDiscord size={20} />}
-                href="https://discord.gg/ca7sH3ct"
+                href="https://aka.ablaze.one/discord"
                 isExternal
               />
               <IconButton
@@ -43,7 +43,7 @@ function Footer() {
             <Text color="gray.500">© 2022 Ablaze</Text>
           </HStack>
         </VStack>
-        <Divider mx={5} />
+        <Divider mx={5} w="unset" />
         <Box textAlign="center" p={4}>
           <NextLink href="https://ablaze.one">
             <a>
