@@ -1,7 +1,21 @@
-import { Box, Flex, Heading, Text, Button } from '@chakra-ui/react';
+import {
+  Box,
+  Flex,
+  Heading,
+  Text,
+  Button,
+  useDisclosure,
+  Modal,
+  ModalOverlay,
+  ModalContent,
+  ModalHeader,
+  ModalCloseButton,
+  ModalBody,
+} from '@chakra-ui/react';
 import Image from 'next/image';
 
-function FeatureCard({ title, image, description, buttonLabel }) {
+function FeatureCard({ title, image, description, buttonLabel, modalText, modalImage }) {
+  const { isOpen, onOpen, onClose } = useDisclosure();
   return (
     <Flex
       my={20}
@@ -19,9 +33,22 @@ function FeatureCard({ title, image, description, buttonLabel }) {
         <Text color="gray.600" fontSize="sm" lineHeight="" mt={7}>
           {description}
         </Text>
-        <Button w="full" mt={7} variant="outline">
+        <Button w="full" mt={7} variant="outline" onClick={onOpen}>
           {buttonLabel}
         </Button>
+        <Modal size="3xl" isOpen={isOpen} onClose={onClose}>
+          <ModalOverlay />
+          <ModalContent px={5} py={10}>
+            <ModalHeader>{title}</ModalHeader>
+            <ModalCloseButton />
+            <ModalBody display="flex">
+              <Text>{modalText}</Text>
+              <Box flexShrink={0}>
+                <Image src={modalImage} width="360px" height="203px" alt="Feature Image" />
+              </Box>
+            </ModalBody>
+          </ModalContent>
+        </Modal>
       </Box>
     </Flex>
   );
