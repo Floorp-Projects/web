@@ -1,4 +1,5 @@
 import { ChakraProvider, extendTheme } from '@chakra-ui/react';
+import { useEffect } from 'react';
 import './styles.css';
 
 const theme = extendTheme({
@@ -18,7 +19,9 @@ const theme = extendTheme({
 });
 
 function App({ Component, pageProps }) {
-  console.log('%cつくったひと%c：http://itta.dev', 'font-size: 1.5em; color: #000;');
+  useEffect(() => {
+    console.log('%cつくったひと：http://itta.dev', 'font-size: 1.5em; color: #000;');
+  }, []);
   return (
     <ChakraProvider theme={theme}>
       <Component {...pageProps} />
