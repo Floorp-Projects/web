@@ -119,16 +119,16 @@ export default function Home({ article }) {
           description="サイドバーは１つで満足でしょうか？サイドバーでウェブサイトを開きたいと思いませんか？ Floorp にはウェブパネルとブラウザー管理ツールを表示できるサイドバーが組み込まれており、快適なブラウジングが可能です。"
           buttonLabel="ちょっと見てみる"
           image="./feature1.svg"
-          modalText="ああああああああああああああああああああああああああああああ"
-          modalImage="./feature1.svg"
+          modalText="サクッと横で見たい！忙しいあなたのためのサイドバーです！ブックマークや履歴から、ウェブサイトまで全てをチェックできます！"
+          modalImage="./sidebar.png"
         />
         <Feature
           title="細部までカスタマイズできるレイアウト"
           description="ツリー型タブを組み込み、垂直タブとして使用、または併用したり。ブックマークバーのカスタマイズなども。痒い所に手が届く、そんなブラウザーです。"
           buttonLabel="ちょっと見てみる"
           image="./feature2.svg"
-          modalText="ああああああああああああああああああああああああああああああ"
-          modalImage="./feature1.svg"
+          modalText="こだわりにこだわりたい人のためのカスタムCSSや、基本的なテーマなど、カスタマイズ初心者から玄人までの全ての人に最高のカスタマイズをお届けします！"
+          modalImage="./feature2.svg"
         />
         <Feature
           title="ウェブとユーザーの双方を第一に考えました"
