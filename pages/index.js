@@ -135,8 +135,8 @@ export default function Home({ article }) {
           description="Floorp はユーザーを追跡しません。また、ウェブサイトでの悪意ある追跡のみをブロックします。Floorp を使えば、ウェブサイト側、ユーザー側の双方に利益のあるインターネットを構築できます。"
           buttonLabel="ちょっと見てみる"
           image="./feature3.svg"
-          modalText="ああああああああああああああああああああああああああああああ"
-          modalImage="./feature1.svg"
+          modalText="広告で生計を立てるウェブサイト運営者と、プライバシーを守りたいユーザーの双方の意見を取り入れ、有害なトラッカーのみをブロックします。より良いインターネットをFloorpと共に探してみませんか？"
+          modalImage="./feature3.svg"
         />
       </Container>
       <Container maxW="container.lg">
