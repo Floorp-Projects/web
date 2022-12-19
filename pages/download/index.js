@@ -137,7 +137,7 @@ export async function getStaticProps() {
   });
   const platforms = ['Windows', 'macOS', 'Linux'];
   const labels = ['Download for Windows 64bit', 'Download for macOS Universal', null];
-  const fileNames = ['floorp-stub.installer.exe', 'floorp-macOS-Univerasal.dmg'];
+  const fileNames = ['floorp-stub.installer.exe', 'floorp-macOS-universal.dmg'];
   const date = new Date(response.data.published_at);
   const assets = fileNames.map((fileName, index) => {
     const asset = response.data.assets.find((asset) => asset.name.includes(fileName));
