@@ -11,8 +11,9 @@ import {
   Stack,
   Text,
   FormHelperText,
-  ButtonGroup,
+  Alert,
 } from '@chakra-ui/react';
+import { BiInfoCircle } from 'react-icons/bi';
 import NavBar from '../../components/NavBar';
 import Footer from '../../components/Footer';
 import Head from 'next/head';
@@ -54,7 +55,14 @@ export default function Download({ release, assets, releasedOn }) {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <Container as="header" maxW="container.lg" pt={28} pb={10}>
-        <Heading as="h1">Download</Heading>
+        <Alert status="error" p={5} borderRadius="xl">
+          ダウンロードすることで
+          <Link href="https://docs.ablaze.one/floorp_privacy_policy">プライバシーポリシー</Link>
+          に同意したものとします。
+        </Alert>
+        <Heading as="h1" mt={10}>
+          Download
+        </Heading>
         <Box maxW="container.sm" mx="auto" py={20}>
           <FormControl>
             <FormLabel>Platform</FormLabel>
@@ -137,7 +145,7 @@ export async function getStaticProps() {
   });
   const platforms = ['Windows', 'macOS', 'Linux'];
   const labels = ['Download for Windows 64bit', 'Download for macOS Universal', null];
-  const fileNames = ['floorp-stub.installer.exe', 'floorp-macOS-Univerasal.dmg'];
+  const fileNames = ['floorp-stub.installer.exe', 'floorp-macOS-universal.dmg'];
   const date = new Date(response.data.published_at);
   const assets = fileNames.map((fileName, index) => {
     const asset = response.data.assets.find((asset) => asset.name.includes(fileName));
