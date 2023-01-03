@@ -43,8 +43,8 @@ function FeatureCard({ title, image, description, buttonLabel, modalText, modalI
             <ModalCloseButton />
             <ModalBody display="flex" gap="2">
               <Text>{modalText}</Text>
-              <Box flexShrink={0}>
-                <Image src={modalImage} width="360px" height="203px" objectFit="cover" alt="Feature Image" />
+              <Box flexShrink={0} ml={3}>
+                <Image src={modalImage} width="360px" height="202.5px" alt="Feature Image" />
               </Box>
             </ModalBody>
           </ModalContent>
