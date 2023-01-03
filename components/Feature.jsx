@@ -45,7 +45,7 @@ function FeatureCard({ title, image, description, buttonLabel, modalText, modalI
               <Text>{modalText}</Text>
               <Box flexShrink={0} ml={3} w={96}>
                 <Image
-                  src={image}
+                  src={modalImage}
                   width="480px"
                   height="270px"
                   objectFit="contain"
