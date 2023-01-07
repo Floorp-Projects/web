@@ -120,7 +120,7 @@ export default function Home({ article }) {
           buttonLabel="ちょっと見てみる"
           image="feature1.svg"
           modalText="サクッと横で見たい！忙しいあなたのためのサイドバーです！ブックマークや履歴から、ウェブサイトまで全てをチェックできます！"
-          modalImage={<Image src="sidebar.png" width="480px" height="270px" alt="Feature Image" />}
+          modalImage="sidebar.png"
         />
         <Feature
           title="細部までカスタマイズできるレイアウト"
@@ -128,7 +128,7 @@ export default function Home({ article }) {
           buttonLabel="ちょっと見てみる"
           image="feature2.svg"
           modalText="こだわりにこだわりたい人のためのカスタムCSSや、基本的なテーマなど、カスタマイズ初心者から玄人までの全ての人に最高のカスタマイズをお届けします！"
-          modalImage={<Image src="feature2.svg" width="480px" height="270px" alt="Feature Image" />}
+          modalImage="feature2.svg"
         />
         <Feature
           title="ウェブとユーザーの双方を第一に考えました"
@@ -136,7 +136,7 @@ export default function Home({ article }) {
           buttonLabel="ちょっと見てみる"
           image="feature3.svg"
           modalText="広告で生計を立てるウェブサイト運営者と、プライバシーを守りたいユーザーの双方の意見を取り入れ、有害なトラッカーのみをブロックします。より良いインターネットをFloorpと共に探してみませんか？"
-          modalImage={<Image src="feature3.svg" width="480px" height="270px" alt="Feature Image" />}
+          modalImage="feature3.svg"
         />
       </Container>
       <Container maxW="container.lg">
