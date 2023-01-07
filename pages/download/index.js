@@ -55,7 +55,7 @@ export default function Download({ release, assets, releasedOn }) {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <Container as="header" maxW="container.lg" pt={28} pb={10}>
-        <Alert status="error" p={5} borderRadius="xl">
+        <Alert status="error" p={5} borderRadius="xl" display="block">
           ダウンロードすることで
           <Link href="https://docs.ablaze.one/floorp_privacy_policy">プライバシーポリシー</Link>
           に同意したものとします。
