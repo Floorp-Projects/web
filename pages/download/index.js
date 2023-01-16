@@ -13,7 +13,7 @@ import {
   FormHelperText,
   Alert,
 } from '@chakra-ui/react';
-import { BiInfoCircle } from 'react-icons/bi';
+import { BiInfoCircle, BiLinkExternal } from 'react-icons/bi';
 import NavBar from '../../components/NavBar';
 import Footer from '../../components/Footer';
 import Head from 'next/head';
@@ -83,19 +83,14 @@ export default function Download({ release, assets, releasedOn }) {
             ) : null}
           </FormControl>
           {currentPlatform == 3 ? (
-            <Box bg="gray.50" borderRadius="lg" mt={7} p={5} w="full">
-              <Text fontFamily="monospace" fontSize="md">
-                <Text as="span" userSelect="none">
-                  ${' '}
-                </Text>
-                flatpak install flathub one.ablaze.floorp
-                <br />
-                <Text as="span" userSelect="none">
-                  ${' '}
-                </Text>
-                flatpak run one.ablaze.floorp
-              </Text>
-            </Box>
+            <NextLink href="https://ppa.ablaze.one/" passHref>
+              <Button as={Link} mt={5}>
+                Install with Floorp PPA
+                <Box ml={1}>
+                  <BiLinkExternal />
+                </Box>
+              </Button>
+            </NextLink>
           ) : (
             <NextLink href={assets[currentPlatform].url} passHref>
               <Button as={Link} mt={5}>
