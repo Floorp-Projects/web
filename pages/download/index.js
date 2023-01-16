@@ -12,6 +12,8 @@ import {
   Text,
   FormHelperText,
   Alert,
+  ListItem,
+  UnorderedList,
 } from '@chakra-ui/react';
 import NavBar from '../../components/NavBar';
 import Footer from '../../components/Footer';
@@ -87,45 +89,27 @@ export default function Download({ release, assets, releasedOn }) {
                 Install from PPA
               </Heading>
               <Box bg="gray.50" borderRadius="lg" mt={7} p={5} w="full">
-                <Text fontFamily="monospace" fontSize="md">
-                  <Text as="span" userSelect="none">
-                    ${' '}
-                  </Text>
-                  curl -fsSL https://ppa.ablaze.one/KEY.gpg | sudo gpg --dearmor -o
+                <UnorderedList listStyleType={'"$ "'} fontFamily="monospace" fontSize="md">
+                  <ListItem>
+                    curl -fsSL https://ppa.ablaze.one/KEY.gpg | sudo gpg --dearmor -o
+                  </ListItem>
                   /usr/share/keyrings/Floorp.gpg
-                  <br />
-                  <Text as="span" userSelect="none">
-                    ${' '}
-                  </Text>
-                  sudo curl -sS --compressed -o /etc/apt/sources.list.d/Floorp.list
-                  &apos;https://ppa.ablaze.one/Floorp.list&apos;
-                  <br />
-                  <Text as="span" userSelect="none">
-                    ${' '}
-                  </Text>
-                  sudo apt update
-                  <br />
-                  <Text as="span" userSelect="none">
-                    ${' '}
-                  </Text>
-                  sudo apt install floorp flatpak run one.ablaze.floorp
-                </Text>
+                  <ListItem>
+                    sudo curl -sS --compressed -o /etc/apt/sources.list.d/Floorp.list
+                    &apos;https://ppa.ablaze.one/Floorp.list&apos;
+                  </ListItem>
+                  <ListItem>sudo apt update</ListItem>
+                  <ListItem>sudo apt install floorp flatpak run one.ablaze.floorp</ListItem>
+                </UnorderedList>
               </Box>
               <Heading as="h2" fontSize="xl" my={5}>
                 Install from Flathub
               </Heading>
               <Box bg="gray.50" borderRadius="lg" mt={7} p={5} w="full">
-                <Text fontFamily="monospace" fontSize="md">
-                  <Text as="span" userSelect="none">
-                    ${' '}
-                  </Text>
-                  flatpak install flathub one.ablaze.floorp
-                  <br />
-                  <Text as="span" userSelect="none">
-                    ${' '}
-                  </Text>
-                  flatpak run one.ablaze.floorp
-                </Text>
+                <UnorderedList listStyleType={'"$ "'} fontFamily="monospace" fontSize="md">
+                  <ListItem>flatpak install flathub one.ablaze.floorp</ListItem>
+                  <ListItem>flatpak run one.ablaze.floorp</ListItem>
+                </UnorderedList>
               </Box>
             </>
           ) : (
