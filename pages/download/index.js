@@ -69,9 +69,10 @@ export default function Download({ release, assets, releasedOn }) {
             <Select value={currentPlatform} onChange={handlePlatformChange}>
               <option value="0">Windows</option>
               <option value="1">macOS</option>
-              <option value="2">Linux</option>
+              <option value="3">Linux</option>
+              <option value="2">Portable version</option>
             </Select>
-            {currentPlatform != 2 ? (
+            {currentPlatform != 3 ? (
               <FormHelperText>
                 {assets[currentPlatform].fileSize}
                 <CustomDivider />
@@ -81,7 +82,7 @@ export default function Download({ release, assets, releasedOn }) {
               </FormHelperText>
             ) : null}
           </FormControl>
-          {currentPlatform == 2 ? (
+          {currentPlatform == 3 ? (
             <Box bg="gray.50" borderRadius="lg" mt={7} p={5} w="full">
               <Text fontFamily="monospace" fontSize="md">
                 <Text as="span" userSelect="none">
@@ -136,6 +137,15 @@ export default function Download({ release, assets, releasedOn }) {
   );
 }
 
+function getAssetInfo(asset) {
+  const fileSize = asset.size / 1024 / 1024;
+  return {
+    url: asset.browser_download_url,
+    label: asset.name,
+    fileSize: `${fileSize.toFixed(2)} MB`,
+  };
+}
+
 export async function getStaticProps() {
   const octokit = new Octokit();
   const response = await octokit.rest.repos.getRelease({
@@ -144,21 +154,27 @@ export async function getStaticProps() {
     release_id: 'latest',
   });
   const platforms = ['Windows', 'macOS', 'Linux'];
-  const labels = ['Download for Windows 64bit', 'Download for macOS Universal', null];
   const fileNames = ['floorp-stub.installer.exe', 'floorp-macOS-universal.dmg'];
   const date = new Date(response.data.published_at);
   const assets = fileNames.map((fileName, index) => {
     const asset = response.data.assets.find((asset) => asset.name.includes(fileName));
     return {
       platform: platforms[index],
-      label: labels[index],
-      url: asset.browser_download_url,
-      fileSize:
-        asset.size > 1024 * 1024
-          ? `${Math.round(asset.size / 1024 / 1024)}MB`
-          : `${Math.round(asset.size / 1024)}KB`,
+      ...getAssetInfo(asset),
     };
   });
+
+  const portableResponse = await octokit.rest.repos.getRelease({
+    owner: 'Floorp-Projects',
+    repo: 'Floorp-Portable',
+    release_id: 'latest',
+  });
+  assets.push({
+    platform: 'Portable version',
+    ...getAssetInfo(portableResponse.data.assets[0]),
+  });
+
+  console.log(assets);
   return {
     props: {
       release: `Release ${response.data.name}`,
