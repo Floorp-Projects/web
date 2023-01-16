@@ -13,7 +13,6 @@ import {
   FormHelperText,
   Alert,
 } from '@chakra-ui/react';
-import { BiInfoCircle, BiLinkExternal } from 'react-icons/bi';
 import NavBar from '../../components/NavBar';
 import Footer from '../../components/Footer';
 import Head from 'next/head';
@@ -83,14 +82,52 @@ export default function Download({ release, assets, releasedOn }) {
             ) : null}
           </FormControl>
           {currentPlatform == 3 ? (
-            <NextLink href="https://ppa.ablaze.one/" passHref>
-              <Button as={Link} mt={5}>
-                Install with Floorp PPA
-                <Box ml={1}>
-                  <BiLinkExternal />
-                </Box>
-              </Button>
-            </NextLink>
+            <>
+              <Heading as="h2" fontSize="xl" my={5}>
+                Install from PPA
+              </Heading>
+              <Box bg="gray.50" borderRadius="lg" mt={7} p={5} w="full">
+                <Text fontFamily="monospace" fontSize="md">
+                  <Text as="span" userSelect="none">
+                    ${' '}
+                  </Text>
+                  curl -fsSL https://ppa.ablaze.one/KEY.gpg | sudo gpg --dearmor -o
+                  /usr/share/keyrings/Floorp.gpg
+                  <br />
+                  <Text as="span" userSelect="none">
+                    ${' '}
+                  </Text>
+                  sudo curl -sS --compressed -o /etc/apt/sources.list.d/Floorp.list
+                  &apos;https://ppa.ablaze.one/Floorp.list&apos;
+                  <br />
+                  <Text as="span" userSelect="none">
+                    ${' '}
+                  </Text>
+                  sudo apt update
+                  <br />
+                  <Text as="span" userSelect="none">
+                    ${' '}
+                  </Text>
+                  sudo apt install floorp flatpak run one.ablaze.floorp
+                </Text>
+              </Box>
+              <Heading as="h2" fontSize="xl" my={5}>
+                Install from Flathub
+              </Heading>
+              <Box bg="gray.50" borderRadius="lg" mt={7} p={5} w="full">
+                <Text fontFamily="monospace" fontSize="md">
+                  <Text as="span" userSelect="none">
+                    ${' '}
+                  </Text>
+                  flatpak install flathub one.ablaze.floorp
+                  <br />
+                  <Text as="span" userSelect="none">
+                    ${' '}
+                  </Text>
+                  flatpak run one.ablaze.floorp
+                </Text>
+              </Box>
+            </>
           ) : (
             <NextLink href={assets[currentPlatform].url} passHref>
               <Button as={Link} mt={5}>
