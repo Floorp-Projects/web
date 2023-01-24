@@ -12,8 +12,9 @@ import {
   Text,
   FormHelperText,
   Alert,
+  ListItem,
+  UnorderedList,
 } from '@chakra-ui/react';
-import { BiInfoCircle } from 'react-icons/bi';
 import NavBar from '../../components/NavBar';
 import Footer from '../../components/Footer';
 import Head from 'next/head';
@@ -69,9 +70,10 @@ export default function Download({ release, assets, releasedOn }) {
             <Select value={currentPlatform} onChange={handlePlatformChange}>
               <option value="0">Windows</option>
               <option value="1">macOS</option>
-              <option value="2">Linux</option>
+              <option value="3">Linux</option>
+              <option value="2">Portable version</option>
             </Select>
-            {currentPlatform != 2 ? (
+            {currentPlatform != 3 ? (
               <FormHelperText>
                 {assets[currentPlatform].fileSize}
                 <CustomDivider />
@@ -81,20 +83,35 @@ export default function Download({ release, assets, releasedOn }) {
               </FormHelperText>
             ) : null}
           </FormControl>
-          {currentPlatform == 2 ? (
-            <Box bg="gray.50" borderRadius="lg" mt={7} p={5} w="full">
-              <Text fontFamily="monospace" fontSize="md">
-                <Text as="span" userSelect="none">
-                  ${' '}
-                </Text>
-                flatpak install flathub one.ablaze.floorp
-                <br />
-                <Text as="span" userSelect="none">
-                  ${' '}
-                </Text>
-                flatpak run one.ablaze.floorp
-              </Text>
-            </Box>
+          {currentPlatform == 3 ? (
+            <>
+              <Heading as="h2" fontSize="xl" my={5}>
+                Install from PPA
+              </Heading>
+              <Box bg="gray.50" borderRadius="lg" mt={7} p={5} w="full">
+                <UnorderedList listStyleType={'"$ "'} fontFamily="monospace" fontSize="md">
+                  <ListItem>
+                    curl -fsSL https://ppa.ablaze.one/KEY.gpg | sudo gpg --dearmor -o
+                  </ListItem>
+                  /usr/share/keyrings/Floorp.gpg
+                  <ListItem>
+                    sudo curl -sS --compressed -o /etc/apt/sources.list.d/Floorp.list
+                    &apos;https://ppa.ablaze.one/Floorp.list&apos;
+                  </ListItem>
+                  <ListItem>sudo apt update</ListItem>
+                  <ListItem>sudo apt install floorp flatpak run one.ablaze.floorp</ListItem>
+                </UnorderedList>
+              </Box>
+              <Heading as="h2" fontSize="xl" my={5}>
+                Install from Flathub
+              </Heading>
+              <Box bg="gray.50" borderRadius="lg" mt={7} p={5} w="full">
+                <UnorderedList listStyleType={'"$ "'} fontFamily="monospace" fontSize="md">
+                  <ListItem>flatpak install flathub one.ablaze.floorp</ListItem>
+                  <ListItem>flatpak run one.ablaze.floorp</ListItem>
+                </UnorderedList>
+              </Box>
+            </>
           ) : (
             <NextLink href={assets[currentPlatform].url} passHref>
               <Button as={Link} mt={5}>
@@ -136,6 +153,15 @@ export default function Download({ release, assets, releasedOn }) {
   );
 }
 
+function getAssetInfo(asset) {
+  const fileSize = asset.size / 1024 / 1024;
+  return {
+    url: asset.browser_download_url,
+    label: asset.name,
+    fileSize: `${fileSize.toFixed(2)} MB`,
+  };
+}
+
 export async function getStaticProps() {
   const octokit = new Octokit();
   const response = await octokit.rest.repos.getRelease({
@@ -144,21 +170,27 @@ export async function getStaticProps() {
     release_id: 'latest',
   });
   const platforms = ['Windows', 'macOS', 'Linux'];
-  const labels = ['Download for Windows 64bit', 'Download for macOS Universal', null];
   const fileNames = ['floorp-stub.installer.exe', 'floorp-macOS-universal.dmg'];
   const date = new Date(response.data.published_at);
   const assets = fileNames.map((fileName, index) => {
     const asset = response.data.assets.find((asset) => asset.name.includes(fileName));
     return {
       platform: platforms[index],
-      label: labels[index],
-      url: asset.browser_download_url,
-      fileSize:
-        asset.size > 1024 * 1024
-          ? `${Math.round(asset.size / 1024 / 1024)}MB`
-          : `${Math.round(asset.size / 1024)}KB`,
+      ...getAssetInfo(asset),
     };
   });
+
+  const portableResponse = await octokit.rest.repos.getRelease({
+    owner: 'Floorp-Projects',
+    repo: 'Floorp-Portable',
+    release_id: 'latest',
+  });
+  assets.push({
+    platform: 'Portable version',
+    ...getAssetInfo(portableResponse.data.assets[0]),
+  });
+
+  console.log(assets);
   return {
     props: {
       release: `Release ${response.data.name}`,
