@@ -92,8 +92,8 @@ export default function Download({ release, assets, releasedOn }) {
                 <UnorderedList listStyleType={'"$ "'} fontFamily="monospace" fontSize="md">
                   <ListItem>
                     curl -fsSL https://ppa.ablaze.one/KEY.gpg | sudo gpg --dearmor -o
+                    /usr/share/keyrings/Floorp.gpg
                   </ListItem>
-                  /usr/share/keyrings/Floorp.gpg
                   <ListItem>
                     sudo curl -sS --compressed -o /etc/apt/sources.list.d/Floorp.list
                     &apos;https://ppa.ablaze.one/Floorp.list&apos;
