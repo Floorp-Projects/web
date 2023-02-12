@@ -99,7 +99,7 @@ export default function Download({ release, assets, releasedOn }) {
                     &apos;https://ppa.ablaze.one/Floorp.list&apos;
                   </ListItem>
                   <ListItem>sudo apt update</ListItem>
-                  <ListItem>sudo apt install floorp flatpak run one.ablaze.floorp</ListItem>
+                  <ListItem>sudo apt install floorp</ListItem>
                 </UnorderedList>
               </Box>
               <Heading as="h2" fontSize="xl" my={5}>
