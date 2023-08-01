@@ -187,7 +187,7 @@ export async function getStaticProps() {
   });
   assets.push({
     platform: 'Portable version',
-    ...getAssetInfo(portableResponse.data.assets[1]),
+    ...getAssetInfo(portableResponse.data.assets[0]),
   });
 
   console.log(assets);
