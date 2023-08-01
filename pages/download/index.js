@@ -185,9 +185,10 @@ export async function getStaticProps() {
     repo: 'Floorp-Portable',
     release_id: 'latest',
   });
+  let targetAsset = portableResponse.data.assets.find((asset) => asset.name.includes('windows'));
   assets.push({
     platform: 'Portable version',
-    ...getAssetInfo(portableResponse.data.assets[0]),
+    ...getAssetInfo(targetAsset),
   });
 
   console.log(assets);
