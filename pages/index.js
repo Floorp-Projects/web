@@ -21,16 +21,17 @@ import Footer from '../components/Footer';
 import Head from 'next/head';
 import Image from 'next/image';
 import NextLink from 'next/link';
+import { useTranslation } from 'next-i18next';
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 
 export default function Home({ article }) {
+  const { t } = useTranslation('common');
+
   return (
     <Box as="main">
       <Head>
         <title>Floorp</title>
-        <meta
-          name="description"
-          content="Floorp は Firefox ベースで作られており、日本で誕生し、プライバシーに優れた新しいブラウザです。"
-        />
+        <meta name="description" content={t('description')} />
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <NavBar />
@@ -56,8 +57,7 @@ export default function Home({ article }) {
             </Text>
           </Heading>
           <Text color="gray.600" mt={7}>
-            Floorp は Firefox
-            をベースに、ウェブの公開性、匿名性、安全性、機能性のバランスにフォーカスを当てた日本製のウェブブラウザーです。
+            {t('description')}
           </Text>
           <ButtonGroup size="lg" mt={12} mx={{ base: 'auto', lg: 0 }}>
             <NextLink href="download/" passHref>
@@ -201,12 +201,13 @@ export default function Home({ article }) {
   );
 }
 
-export async function getStaticProps() {
+export async function getStaticProps({ locale }) {
   const res = await fetch('https://wpapi.ablaze.one/?home=https://blog.ablaze.one/&categories=45');
   const article = (await res.json()).items[0];
 
   return {
     props: {
+      ...(await serverSideTranslations(locale, ['common'])),
       article,
     },
   };
