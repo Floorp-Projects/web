@@ -25,7 +25,7 @@ import { useTranslation } from 'next-i18next';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 
 export default function Home({ article }) {
-  const { t } = useTranslation('common');
+  const { t } = useTranslation(['common', 'landing-page']);
 
   return (
     <Box as="main">
@@ -77,71 +77,34 @@ export default function Home({ article }) {
         </Flex>
       </Container>
       <Box bg="gray.50">
-        <Container maxW="container.lg" pt={32} pb={20}>
-          <Heading as="h2">特徴</Heading>
+        <Container maxW="container.lg" pt={32} pb={32}>
+          <Heading as="h2">{t('landing-page:feature')}</Heading>
           <Grid gridTemplateColumns={'repeat(auto-fill,minmax(240px,1fr))'} mt={10} gap={10}>
-            <FeatureCard
-              title="強力なトラッカー保護"
-              description="Floorp は既定で強力な追跡遮断機能が含まれており、ウェブに潜む様々な悪意あるトラッキングからユーザーを守ります。更に、指紋採取対策も。"
-              icon={<BiShield size={20} />}
-            />
-            <FeatureCard
-              title="幅広いカスタマイズ"
-              description="Floorp のレイアウトカスタマイズは無制限。タブバーの位置をウインドウの一番下に移動したりタイトルバーを非表示にしたり。あなただけの Floorp を。"
-              icon={<BiBrush size={20} />}
-            />
-            <FeatureCard
-              title="切り替え可能なデザイン"
-              description="Firefox の普通のテーマによるカスタマイズに加え、５つのデザインからブラウザーのインターフェイスを切り替えられます。更に、OS 固有のデザインも。"
-              icon={<BiPaintRoll size={20} />}
-            />
-            <FeatureCard
-              title="定期的なリリース"
-              description="Floorp は Firefox ESR に基づき、４週間に一回の機能更新を行うラピッドリリースを採用するブラウザーです。Firefox より早くアップデートを提供し、セキュリティ問題を迅速に修正しています。"
-              icon={<BiBadgeCheck size={20} />}
-            />
-            <FeatureCard
-              title="情報収集なし"
-              description="Floorp にはユーザーの情報を集める機能は備わっていません。私たちは、全ユーザーの総ダウンロード数とアップデート回数しか知りません！あなたの個人情報を知る必要はありません。"
-              icon={<BiLockAlt size={20} />}
-            />
-            <FeatureCard
-              title="完全なオープンソース"
-              description="Floorp のソースコードは完全公開されており、誰でもソースコードを見たり Floorp を構築することができます。公開するのはブラウザー自体だけではありません。ビルド環境もオープンソースです。"
-              icon={<BiCodeAlt size={20} />}
-            />
+            {[BiShield, BiBrush, BiPaintRoll, BiBadgeCheck, BiLockAlt, BiCodeAlt].map((Icon, i) => (
+              <FeatureCard
+                title={t(`landing-page:features.${i}.title`)}
+                description={t(`landing-page:features.${i}.description`)}
+                icon={<Icon size={20} />}
+                key={i}
+              />
+            ))}
           </Grid>
         </Container>
       </Box>
       <Container maxW="container.lg">
-        <Feature
-          title="両サイドに配置できるサイドバー"
-          description="サイドバーは１つで満足でしょうか？サイドバーでウェブサイトを開きたいと思いませんか？ Floorp にはウェブパネルとブラウザー管理ツールを表示できるサイドバーが組み込まれており、快適なブラウジングが可能です。"
-          buttonLabel="ちょっと見てみる"
-          image="feature1.svg"
-          modalText="サクッと横で見たい！忙しいあなたのためのサイドバーです！ブックマークや履歴から、ウェブサイトまで全てをチェックできます！"
-          modalImage="sidebar.png"
-        />
-        <Feature
-          title="細部までカスタマイズできるレイアウト"
-          description="ツリー型タブを組み込み、垂直タブとして使用、または併用したり。ブックマークバーのカスタマイズなども。痒い所に手が届く、そんなブラウザーです。"
-          buttonLabel="ちょっと見てみる"
-          image="feature2.svg"
-          modalText="こだわりにこだわりたい人のためのカスタムCSSや、基本的なテーマなど、カスタマイズ初心者から玄人までの全ての人に最高のカスタマイズをお届けします！"
-          modalImage="feature2.svg"
-        />
-        <Feature
-          title="ウェブとユーザーの双方を第一に考えました"
-          description="Floorp はユーザーを追跡しません。また、ウェブサイトでの悪意ある追跡のみをブロックします。Floorp を使えば、ウェブサイト側、ユーザー側の双方に利益のあるインターネットを構築できます。"
-          buttonLabel="ちょっと見てみる"
-          image="feature3.svg"
-          modalText="広告で生計を立てるウェブサイト運営者と、プライバシーを守りたいユーザーの双方の意見を取り入れ、有害なトラッカーのみをブロックします。より良いインターネットをFloorpと共に探してみませんか？"
-          modalImage="feature3.svg"
-        />
+        {Array.from({ length: 3 }, (_, i) => (
+          <Feature
+            title={t(`landing-page:columns.${i}.title`)}
+            description={t(`landing-page:columns.${i}.description`)}
+            image={`feature${i + 1}.svg`}
+            // modalText={t(`landing-page:columns.${i}.modalText`)}
+            key={i}
+          />
+        ))}
       </Container>
       <Container maxW="container.lg">
         <Heading fontSize="3xl" mt={20} mb={8}>
-          最新の記事
+          {t('landing-page:latest-article')}
         </Heading>
         <LinkBox>
           <NextLink href={article.link} passHref>
@@ -166,7 +129,7 @@ export default function Home({ article }) {
         </LinkBox>
         <Flex justifyContent="center" mt={5}>
           <NextLink href="https://blog.ablaze.one/category/ablaze/ablaze-project/floorp/" passHref>
-            <Button as={Link}>もっと見る</Button>
+            <Button as={Link}>{t('landing-page:see-more')}</Button>
           </NextLink>
         </Flex>
       </Container>
@@ -182,12 +145,15 @@ export default function Home({ article }) {
         >
           <Heading as="h2" size="lg" fontWeight="black" textAlign="center">
             <Text as="span" color="blackAlpha.500">
-              Create your
+              Create
             </Text>{' '}
-            own &#34;Browser&#34; with Floorp
+            your own &#34;Browser&#34;{' '}
+            <Text as="span" color="blackAlpha.500">
+              with Floorp
+            </Text>
           </Heading>
           <Text color="gray.600" textAlign="center" mt={5}>
-            最新バージョンの Floorp を入手する
+            {t('landing-page:download-floorp')}
           </Text>
           <NextLink href="download" passHref>
             <Button as={Link} colorScheme="blue" mx="auto" mt={10}>
@@ -207,7 +173,7 @@ export async function getStaticProps({ locale }) {
 
   return {
     props: {
-      ...(await serverSideTranslations(locale, ['common'])),
+      ...(await serverSideTranslations(locale, ['common', 'landing-page'])),
       article,
     },
   };

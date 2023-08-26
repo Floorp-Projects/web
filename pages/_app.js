@@ -23,7 +23,7 @@ const theme = extendTheme({
 function App({ Component, pageProps }) {
   useEffect(() => {
     console.log(
-      '%cDeveloped by http://itta.dev',
+      '%cCreated by http://itta.dev',
       'font-size: 1.5em; color: #000; font-style: italic; padding: 20px'
     );
   }, []);
