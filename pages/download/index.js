@@ -21,6 +21,8 @@ import Head from 'next/head';
 import NextLink from 'next/link';
 import { useEffect, useState } from 'react';
 import { Octokit } from '@octokit/rest';
+import { Trans, useTranslation } from 'next-i18next';
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 
 function CustomDivider() {
   return (
@@ -37,6 +39,8 @@ function CustomDivider() {
 
 export default function Download({ release, assets, releasedOn }) {
   const [currentPlatform, setCurrentPlatform] = useState(0);
+  const { t } = useTranslation('download-page');
+
   useEffect(() => {
     const userAgent = navigator.userAgent.toLowerCase();
     if (userAgent.indexOf('windows') !== -1) setCurrentPlatform(0);
@@ -56,14 +60,16 @@ export default function Download({ release, assets, releasedOn }) {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <Container as="header" maxW="container.lg" pt={28} pb={10}>
-        <Alert status="error" p={5} borderRadius="xl" display="block">
-          ダウンロードすることで
-          <Link href="https://docs.ablaze.one/floorp_privacy_policy">プライバシーポリシー</Link>
-          に同意したものとします。
-        </Alert>
-        <Heading as="h1" mt={10}>
+        <Heading as="h1" mb={10}>
           Download
         </Heading>
+        <Alert p={5} borderRadius="xl" display="block">
+          <Trans t={t} i18nKey="download-alert">
+            ダウンロードすることで
+            <Link href="https://docs.ablaze.one/floorp_privacy_policy">プライバシーポリシー</Link>
+            に同意したものとします。
+          </Trans>
+        </Alert>
         <Box maxW="container.sm" mx="auto" py={20}>
           <FormControl>
             <FormLabel>Platform</FormLabel>
@@ -162,7 +168,7 @@ function getAssetInfo(asset) {
   };
 }
 
-export async function getStaticProps() {
+export async function getStaticProps({ locale }) {
   const octokit = new Octokit();
   const response = await octokit.rest.repos.getRelease({
     owner: 'Floorp-Projects',
@@ -190,7 +196,6 @@ export async function getStaticProps() {
     ...getAssetInfo(portableResponse.data.assets[0]),
   });
 
-  console.log(assets);
   return {
     props: {
       release: `Release ${response.data.name}`,
@@ -198,6 +203,7 @@ export async function getStaticProps() {
       releasedOn: `Released on ${date.toLocaleString('en', {
         month: 'long',
       })} ${date.getDate()}, ${date.getFullYear()}`,
+      ...(await serverSideTranslations(locale, ['download-page'])),
     },
   };
 }
