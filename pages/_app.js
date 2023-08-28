@@ -1,5 +1,4 @@
 import { appWithTranslation } from 'next-i18next';
-import nextI18NextConfig from '../next-i18next.config.js';
 import { ChakraProvider, extendTheme } from '@chakra-ui/react';
 import { useEffect } from 'react';
 import './styles.css';
@@ -34,4 +33,4 @@ function App({ Component, pageProps }) {
   );
 }
 
-export default appWithTranslation(App, nextI18NextConfig);
+export default appWithTranslation(App);
