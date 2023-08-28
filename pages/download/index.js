@@ -15,16 +15,12 @@ import {
   ListItem,
   UnorderedList,
 } from '@chakra-ui/react';
-import NavBar from 'components/NavBar';
-import Footer from 'components/Footer';
+import NavBar from '../../components/NavBar';
+import Footer from '../../components/Footer';
 import Head from 'next/head';
 import NextLink from 'next/link';
 import { useEffect, useState } from 'react';
 import { Octokit } from '@octokit/rest';
-import { Trans, useTranslation } from 'next-i18next';
-import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
-import { getStaticPaths } from 'lib/getStatic';
-import { getI18nProps } from '../../../lib/getStatic';
 
 function CustomDivider() {
   return (
@@ -41,8 +37,6 @@ function CustomDivider() {
 
 export default function Download({ release, assets, releasedOn }) {
   const [currentPlatform, setCurrentPlatform] = useState(0);
-  const { t } = useTranslation('download-page');
-
   useEffect(() => {
     const userAgent = navigator.userAgent.toLowerCase();
     if (userAgent.indexOf('windows') !== -1) setCurrentPlatform(0);
@@ -62,24 +56,22 @@ export default function Download({ release, assets, releasedOn }) {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <Container as="header" maxW="container.lg" pt={28} pb={10}>
-        <Heading as="h1" mb={10}>
+        <Alert status="error" p={5} borderRadius="xl" display="block">
+          ダウンロードすることで
+          <Link href="https://docs.ablaze.one/floorp_privacy_policy">プライバシーポリシー</Link>
+          に同意したものとします。
+        </Alert>
+        <Heading as="h1" mt={10}>
           Download
         </Heading>
-        <Alert p={5} borderRadius="xl" display="block">
-          <Trans t={t} i18nKey="download-alert">
-            ダウンロードすることで
-            <Link href="https://docs.ablaze.one/floorp_privacy_policy">プライバシーポリシー</Link>
-            に同意したものとします。
-          </Trans>
-        </Alert>
         <Box maxW="container.sm" mx="auto" py={20}>
           <FormControl>
             <FormLabel>Platform</FormLabel>
             <Select value={currentPlatform} onChange={handlePlatformChange}>
               <option value="0">Windows</option>
               <option value="1">macOS</option>
-              <option value="2">Portable version</option>
               <option value="3">Linux</option>
+              <option value="2">Portable version</option>
             </Select>
             {currentPlatform != 3 ? (
               <FormHelperText>
@@ -170,7 +162,7 @@ function getAssetInfo(asset) {
   };
 }
 
-export async function getStaticProps(ctx) {
+export async function getStaticProps() {
   const octokit = new Octokit();
   const response = await octokit.rest.repos.getRelease({
     owner: 'Floorp-Projects',
@@ -199,6 +191,7 @@ export async function getStaticProps(ctx) {
     ...getAssetInfo(targetAsset),
   });
 
+  console.log(assets);
   return {
     props: {
       release: `Release ${response.data.name}`,
@@ -206,9 +199,6 @@ export async function getStaticProps(ctx) {
       releasedOn: `Released on ${date.toLocaleString('en', {
         month: 'long',
       })} ${date.getDate()}, ${date.getFullYear()}`,
-      ...(await getI18nProps(ctx, ['download-page'])),
     },
   };
 }
-
-export { getStaticPaths };

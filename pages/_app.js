@@ -1,4 +1,3 @@
-import { appWithTranslation } from 'next-i18next';
 import { ChakraProvider, extendTheme } from '@chakra-ui/react';
 import { useEffect } from 'react';
 import './styles.css';
@@ -21,10 +20,7 @@ const theme = extendTheme({
 
 function App({ Component, pageProps }) {
   useEffect(() => {
-    console.log(
-      '%cCreated by http://itta.dev',
-      'font-size: 1.5em; color: #000; font-style: italic; padding: 20px'
-    );
+    console.log('%cつくったひと：http://itta.dev', 'font-size: 1.5em; color: #000;');
   }, []);
   return (
     <ChakraProvider theme={theme}>
@@ -33,4 +29,4 @@ function App({ Component, pageProps }) {
   );
 }
 
-export default appWithTranslation(App);
+export default App;
