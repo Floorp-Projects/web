@@ -30,9 +30,13 @@ function FeatureCard({ title, image, description, buttonLabel, modalText, modalI
         <Heading as="h2" fontSize="xl" fontWeight="bold">
           {title}
         </Heading>
-        <Text color="gray.600" fontSize="sm" lineHeight="" mt={7}>
-          {description}
-        </Text>
+        <Text
+          color="gray.600"
+          fontSize="sm"
+          lineHeight=""
+          mt={7}
+          dangerouslySetInnerHTML={{ __html: description }}
+        ></Text>
         {/* <Button w="full" mt={7} variant="outline" onClick={onOpen}>
           {buttonLabel}
         </Button> */}
