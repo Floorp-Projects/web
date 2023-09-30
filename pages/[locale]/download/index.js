@@ -76,9 +76,10 @@ export default function Download({ release, assets, releasedOn }) {
           <FormControl>
             <FormLabel>Platform</FormLabel>
             <Select value={currentPlatform} onChange={handlePlatformChange}>
-              <option value="0">Windows</option>
+              <option value="0">Windows 64bit</option>
+              <option value="1">Windows 32bit</option>
               <option value="1">macOS</option>
-              <option value="2">Portable version</option>
+              <option value="2">Windows portable version</option>
               <option value="3">Linux</option>
             </Select>
             {currentPlatform != 3 ? (
@@ -177,8 +178,8 @@ export async function getStaticProps(ctx) {
     repo: 'Floorp',
     release_id: 'latest',
   });
-  const platforms = ['Windows', 'macOS', 'Linux'];
-  const fileNames = ['floorp-stub.installer.exe', 'floorp-macOS-universal.dmg'];
+  const platforms = ['Windows 64bit', 'Windows 32bit', 'macOS', 'Linux'];
+  const fileNames = ['floorp-stub.installer.exe', 'floorp-win32.installer.exe', 'floorp-macOS-universal.dmg'];
   const date = new Date(response.data.published_at);
   const assets = fileNames.map((fileName, index) => {
     const asset = response.data.assets.find((asset) => asset.name.includes(fileName));
