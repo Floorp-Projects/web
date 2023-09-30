@@ -46,8 +46,8 @@ export default function Download({ release, assets, releasedOn }) {
   useEffect(() => {
     const userAgent = navigator.userAgent.toLowerCase();
     if (userAgent.indexOf('windows') !== -1) setCurrentPlatform(0);
-    else if (userAgent.indexOf('mac os x') !== -1) setCurrentPlatform(1);
-    else setCurrentPlatform(2);
+    else if (userAgent.indexOf('mac os x') !== -1) setCurrentPlatform(2);
+    else setCurrentPlatform(4);
   }, []);
 
   const handlePlatformChange = (e) => {
@@ -78,11 +78,11 @@ export default function Download({ release, assets, releasedOn }) {
             <Select value={currentPlatform} onChange={handlePlatformChange}>
               <option value="0">Windows 64bit</option>
               <option value="1">Windows 32bit</option>
-              <option value="1">macOS</option>
-              <option value="2">Windows portable version</option>
-              <option value="3">Linux</option>
+              <option value="2">macOS</option>
+              <option value="3">Windows portable version</option>
+              <option value="4">Linux</option>
             </Select>
-            {currentPlatform != 3 ? (
+            {currentPlatform != 4 ? (
               <FormHelperText>
                 {assets[currentPlatform].fileSize}
                 <CustomDivider />
@@ -92,7 +92,7 @@ export default function Download({ release, assets, releasedOn }) {
               </FormHelperText>
             ) : null}
           </FormControl>
-          {currentPlatform == 3 ? (
+          {currentPlatform == 4 ? (
             <>
               <Heading as="h2" fontSize="xl" my={5}>
                 Install from PPA
