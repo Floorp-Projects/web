@@ -54,6 +54,58 @@ export default function Download({ release, assets, releasedOn }) {
     setCurrentPlatform(e.target.value);
   };
 
+  // Floorp Daylight has so many build. Have to move to GitHub Releases.
+  const daylightBuild = (
+    <>
+    <Heading as="h2" fontSize="xl" my={5}>
+      Download from GitHub Releases
+    </Heading>
+
+    <Alert p={5} borderRadius="xl" display="block">
+          <Trans t={t} i18nKey="daylight-alert">
+            Floorp Daylight is a beta version of Floorp. It is not recommended to use it for production. Please use it at your own risk.
+          </Trans>
+     </Alert>
+
+    <NextLink href={"https://github.com/Floorp-Projects/Floorp/releases/tag/beta"} passHref>
+      <Button as={Link} mt={5}>
+        Go to GitHub Releases
+      </Button>
+    </NextLink>
+    </>
+  )
+
+  const linux = (
+    <>
+      <Heading as="h2" fontSize="xl" my={5}>
+        Install from PPA
+      </Heading>
+      <Box bg="gray.50" borderRadius="lg" mt={7} p={5} w="full">
+        <UnorderedList listStyleType={'"$ "'} fontFamily="monospace" fontSize="md">
+          <ListItem>
+            curl -fsSL https://ppa.ablaze.one/KEY.gpg | sudo gpg --dearmor -o
+            /usr/share/keyrings/Floorp.gpg
+          </ListItem>
+          <ListItem>
+            sudo curl -sS --compressed -o /etc/apt/sources.list.d/Floorp.list
+            &apos;https://ppa.ablaze.one/Floorp.list&apos;
+          </ListItem>
+          <ListItem>sudo apt update</ListItem>
+          <ListItem>sudo apt install floorp</ListItem>
+        </UnorderedList>
+      </Box>
+      <Heading as="h2" fontSize="xl" my={5}>
+        Install from Flathub
+      </Heading>
+      <Box bg="gray.50" borderRadius="lg" mt={7} p={5} w="full">
+        <UnorderedList listStyleType={'"$ "'} fontFamily="monospace" fontSize="md">
+          <ListItem>flatpak install flathub one.ablaze.floorp</ListItem>
+          <ListItem>flatpak run one.ablaze.floorp</ListItem>
+        </UnorderedList>
+      </Box>
+    </>
+  )
+
   return (
     <Box as="main">
       <NavBar />
@@ -81,8 +133,9 @@ export default function Download({ release, assets, releasedOn }) {
               <option value="2">macOS</option>
               <option value="3">Windows portable version</option>
               <option value="4">Linux</option>
+              <option value="5">Daylight (beta)</option>
             </Select>
-            {currentPlatform != 4 ? (
+            {currentPlatform != 4 && currentPlatform != 5 ? (
               <FormHelperText>
                 {assets[currentPlatform].fileSize}
                 <CustomDivider />
@@ -92,42 +145,17 @@ export default function Download({ release, assets, releasedOn }) {
               </FormHelperText>
             ) : null}
           </FormControl>
-          {currentPlatform == 4 ? (
-            <>
-              <Heading as="h2" fontSize="xl" my={5}>
-                Install from PPA
-              </Heading>
-              <Box bg="gray.50" borderRadius="lg" mt={7} p={5} w="full">
-                <UnorderedList listStyleType={'"$ "'} fontFamily="monospace" fontSize="md">
-                  <ListItem>
-                    curl -fsSL https://ppa.ablaze.one/KEY.gpg | sudo gpg --dearmor -o
-                    /usr/share/keyrings/Floorp.gpg
-                  </ListItem>
-                  <ListItem>
-                    sudo curl -sS --compressed -o /etc/apt/sources.list.d/Floorp.list
-                    &apos;https://ppa.ablaze.one/Floorp.list&apos;
-                  </ListItem>
-                  <ListItem>sudo apt update</ListItem>
-                  <ListItem>sudo apt install floorp</ListItem>
-                </UnorderedList>
-              </Box>
-              <Heading as="h2" fontSize="xl" my={5}>
-                Install from Flathub
-              </Heading>
-              <Box bg="gray.50" borderRadius="lg" mt={7} p={5} w="full">
-                <UnorderedList listStyleType={'"$ "'} fontFamily="monospace" fontSize="md">
-                  <ListItem>flatpak install flathub one.ablaze.floorp</ListItem>
-                  <ListItem>flatpak run one.ablaze.floorp</ListItem>
-                </UnorderedList>
-              </Box>
-            </>
-          ) : (
-            <NextLink href={assets[currentPlatform].url} passHref>
-              <Button as={Link} mt={5}>
-                {assets[currentPlatform].label}
+
+          { currentPlatform == 4 ? linux : "" }
+          { currentPlatform == 5 ? daylightBuild : "" }
+          { currentPlatform != 4 && currentPlatform != 5 ? (
+          <NextLink href={assets[currentPlatform].url} passHref>
+            <Button as={Link} mt={5}>
+              {assets[currentPlatform].label}
               </Button>
-            </NextLink>
-          )}
+              </NextLink>
+            ) : "" }
+
           <Text color="gray.500" textAlign="center" my={12}>
             OR
           </Text>
