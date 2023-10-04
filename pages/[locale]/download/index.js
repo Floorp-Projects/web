@@ -46,8 +46,8 @@ export default function Download({ release, assets, releasedOn }) {
   useEffect(() => {
     const userAgent = navigator.userAgent.toLowerCase();
     if (userAgent.indexOf('windows') !== -1) setCurrentPlatform(0);
-    else if (userAgent.indexOf('mac os x') !== -1) setCurrentPlatform(2);
-    else setCurrentPlatform(4);
+    else if (userAgent.indexOf('mac os x') !== -1) setCurrentPlatform(3);
+    else setCurrentPlatform(5);
   }, []);
 
   const handlePlatformChange = (e) => {
@@ -128,14 +128,15 @@ export default function Download({ release, assets, releasedOn }) {
           <FormControl>
             <FormLabel>Platform</FormLabel>
             <Select value={currentPlatform} onChange={handlePlatformChange}>
-              <option value="0">Windows 64bit</option>
-              <option value="1">Windows 32bit</option>
-              <option value="2">macOS</option>
-              <option value="3">Windows portable version</option>
-              <option value="4">Linux</option>
-              <option value="5">Daylight (beta)</option>
+              <option value="0"><Trans t={t} i18nKey="windows64bit-online-installer"/></option>
+              <option value="1"><Trans t={t} i18nKey="windows64bit-offline-installer"/></option>
+              <option value="2">Windows 32bit</option>
+              <option value="3">macOS</option>
+              <option value="4">Windows portable version</option>
+              <option value="5">Linux</option>
+              <option value="6">Daylight (beta)</option>
             </Select>
-            {currentPlatform != 4 && currentPlatform != 5 ? (
+            {currentPlatform != 5 && currentPlatform != 6 ? (
               <FormHelperText>
                 {assets[currentPlatform].fileSize}
                 <CustomDivider />
@@ -146,9 +147,9 @@ export default function Download({ release, assets, releasedOn }) {
             ) : null}
           </FormControl>
 
-          { currentPlatform == 4 ? linux : "" }
-          { currentPlatform == 5 ? daylightBuild : "" }
-          { currentPlatform != 4 && currentPlatform != 5 ? (
+          { currentPlatform == 5 ? linux : "" }
+          { currentPlatform == 6 ? daylightBuild : "" }
+          { currentPlatform != 5 && currentPlatform != 6 ? (
           <NextLink href={assets[currentPlatform].url} passHref>
             <Button as={Link} mt={5}>
               {assets[currentPlatform].label}
@@ -206,8 +207,8 @@ export async function getStaticProps(ctx) {
     repo: 'Floorp',
     release_id: 'latest',
   });
-  const platforms = ['Windows 64bit', 'Windows 32bit', 'macOS', 'Linux'];
-  const fileNames = ['floorp-stub.installer.exe', 'floorp-win32.installer.exe', 'floorp-macOS-universal.dmg'];
+  const platforms = ['Windows 64bit', 'Windows 32bit', 'Windows 64bit Offline', 'macOS', 'Linux'];
+  const fileNames = ['floorp-stub.installer.exe', 'floorp-win64.installer.exe', 'floorp-win32.installer.exe', 'floorp-macOS-universal.dmg'];
   const date = new Date(response.data.published_at);
   const assets = fileNames.map((fileName, index) => {
     const asset = response.data.assets.find((asset) => asset.name.includes(fileName));
