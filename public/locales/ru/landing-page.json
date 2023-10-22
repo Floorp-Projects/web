@@ -1,46 +1,46 @@
 {
-  "feature": "Features",
+  "feature": "Особенности",
   "features": [
     {
-      "title": "Strong Tracking Protection",
-      "description": "Floorp includes a strong tracking blocker by default, protecting users from a variety of malicious tracking lurking on the web. In addition, there is fingerprinting protection."
+      "title": "Эффективная защита от отслеживания",
+      "description": "Floorp по умолчанию включает мощный блокировщик трекеров, который защищает пользователей от различных вредоносных скриптов, подстерегающих их в сети. Кроме того, в нём предусмотрена защита от фингерпринтинга."
     },
     {
-      "title": "Flexible Layout",
-      "description": "Floorp's layout customization is unlimited. Move the tab bar to the bottom of the window, hide the title bar, and more. Create your own Floorp."
+      "title": "Настраиваемый интерфейс",
+      "description": "Возможности настройки дизайна Floorp неограниченны. Вы можете перемещать панель вкладок в нижнюю часть окна, скрывать строку заголовка и многое другое. Создайте свой собственный Floorp."
     },
     {
-      "title": "Switchable Design",
-      "description": "In addition to the usual Firefox heme customization, allow switch between five different designs for Floorp interface and OS specific design."
+      "title": "Гибкий дизайн",
+      "description": "Помимо настройки темы по умолчанию, вы можете переключаться между пятью вариантами интерфейса и оформлениями под конкретную операционную систему..."
     },
     {
-      "title": "Regular Updates",
-      "description": "Floorp is based on Firefox ESR. Floorp will be updated every 4 weeks, and security updates will be provided before Firefox release."
+      "title": "Регулярные обновления",
+      "description": "Floorp основан на ветке ESR Firefox. Обновления Floorp выпускаются каждые 4 недели, а обновления безопасности предоставляются до выпуска Firefox."
     },
     {
-      "title": "No User Tracking",
-      "description": "We don't get personal information from users. We don't track users. We don't sell user data. We don't have any relationship with any advertising company."
+      "title": "Отсутствие отслеживания",
+      "description": "Мы не собираем и не продаем информацию о наших пользователях. Мы не имеем никаких отношений ни с одной рекламной компанией."
     },
     {
-      "title": "Completely Open Source",
-      "description": "The source code for Floorp is fully public, allowing anyone to view the source code and build Floorp. It is not only the browser itself that is open to the public. The build environment is also open source."
+      "title": "Открытый исходный код",
+      "description": "Исходный код браузера Floorp полностью открыт, что позволяет любому пользователю изучать его. Но это не все - среда сборки также является открытой. Это означает, что каждый может не только изучить код браузера, но и процесс его сборки."
     }
   ],
   "columns": [
     {
-      "title": "Dual Sidebar",
-      "description": "Are you satisfied with only one sidebar? Want to open your website in the sidebar? Floorp has a built-in sidebar that can display a webpanel and browser management tools for a comfortable browsing experience. <br>A sidebar for busy people! Check everything from bookmarks and history to websites!"
+      "title": "Двойная боковая панель",
+      "description": "Недостаточно одной боковой панели? Хотите открыть свой веб-сайт в боковой панели? Floorp имеет встроенную боковую панель, на которой могут отображаться сайты и инструменты управления браузером <br>Боковая панель для занятых людей! Проверьте все: от закладок и истории до веб-сайтов!"
     },
     {
-      "title": "Flexible Toolbar & Tab Bar",
-      "description": "Tree Style Tabs and use it as vertical tabs or in combination. Customize your bookmarks bar and more. It is such a browser that you can reach the itch. <br>We deliver the best customization for everyone from customization beginners to experts, such as custom CSS for those who want to be particular and basic themes!"
+      "title": "Гибкая панель инструментов и вкладок",
+      "description": "Floorp поддерживает как Tree Style Tabs, так и свою собственную реализацию. Вы можете использовать оба варианта для отображения вкладок в вертикальном положении. <br>Мы предлагаем оптимальные возможности кастомизации для всех - от новичков до экспертов, такие как пользовательские CSS для тех, кто хочет выделиться"
     },
     {
-      "title": "Think about the USER & the WEB",
-      "description": "Floorp does not track users and only blocks malicious tracking on websites. With Floorp you can build an internet that benefits both websites and users.<br> Blocking only harmful trackers by listening to the opinions of both website owners who make a living from advertising and users who want to protect their privacy, why not use Floorp in finding a better internet?"
+      "title": "Забота о пользователе и цифровой среде",
+      "description": "Floorp не отслеживает пользователей и блокирует вредоносные скрипты на веб-сайтах. Благодаря Floorp вы можете создать интернет, выгодный как для сайтов, так и для пользователей. С помощью Floorp вы можете создать лучшую цифровую среду, блокируя только вредоносные трекеры и учитывая мнения владельцев веб-сайтов и пользователей, которые ценят свою конфиденциальность."
     }
   ],
-  "latest-article": "Latest article",
-  "see-more": "See more",
-  "download-floorp": "Get latest version of Floorp Browser"
+  "latest-article": "Последняя публикация",
+  "see-more": "Развернуть",
+  "download-floorp": "Загрузить последнюю версию Floorp"
 }
