@@ -46,13 +46,65 @@ export default function Download({ release, assets, releasedOn }) {
   useEffect(() => {
     const userAgent = navigator.userAgent.toLowerCase();
     if (userAgent.indexOf('windows') !== -1) setCurrentPlatform(0);
-    else if (userAgent.indexOf('mac os x') !== -1) setCurrentPlatform(1);
-    else setCurrentPlatform(2);
+    else if (userAgent.indexOf('mac os x') !== -1) setCurrentPlatform(3);
+    else setCurrentPlatform(5);
   }, []);
 
   const handlePlatformChange = (e) => {
     setCurrentPlatform(e.target.value);
   };
+
+  // Floorp Daylight has so many build. Have to move to GitHub Releases.
+  const daylightBuild = (
+    <>
+    <Heading as="h2" fontSize="xl" my={5}>
+      Download from GitHub Releases
+    </Heading>
+
+    <Alert p={5} borderRadius="xl" display="block">
+          <Trans t={t} i18nKey="daylight-alert">
+            Floorp Daylight is a beta version of Floorp. It is not recommended to use it for production. Please use it at your own risk.
+          </Trans>
+     </Alert>
+
+    <NextLink href={"https://github.com/Floorp-Projects/Floorp/releases/tag/beta"} passHref>
+      <Button as={Link} mt={5}>
+        Go to GitHub Releases
+      </Button>
+    </NextLink>
+    </>
+  )
+
+  const linux = (
+    <>
+      <Heading as="h2" fontSize="xl" my={5}>
+        Install from PPA
+      </Heading>
+      <Box bg="gray.50" borderRadius="lg" mt={7} p={5} w="full">
+        <UnorderedList listStyleType={'"$ "'} fontFamily="monospace" fontSize="md">
+          <ListItem>
+            curl -fsSL https://ppa.ablaze.one/KEY.gpg | sudo gpg --dearmor -o
+            /usr/share/keyrings/Floorp.gpg
+          </ListItem>
+          <ListItem>
+            sudo curl -sS --compressed -o /etc/apt/sources.list.d/Floorp.list
+            &apos;https://ppa.ablaze.one/Floorp.list&apos;
+          </ListItem>
+          <ListItem>sudo apt update</ListItem>
+          <ListItem>sudo apt install floorp</ListItem>
+        </UnorderedList>
+      </Box>
+      <Heading as="h2" fontSize="xl" my={5}>
+        Install from Flathub
+      </Heading>
+      <Box bg="gray.50" borderRadius="lg" mt={7} p={5} w="full">
+        <UnorderedList listStyleType={'"$ "'} fontFamily="monospace" fontSize="md">
+          <ListItem>flatpak install flathub one.ablaze.floorp</ListItem>
+          <ListItem>flatpak run one.ablaze.floorp</ListItem>
+        </UnorderedList>
+      </Box>
+    </>
+  )
 
   return (
     <Box as="main">
@@ -76,12 +128,15 @@ export default function Download({ release, assets, releasedOn }) {
           <FormControl>
             <FormLabel>Platform</FormLabel>
             <Select value={currentPlatform} onChange={handlePlatformChange}>
-              <option value="0">Windows</option>
-              <option value="1">macOS</option>
-              <option value="2">Portable version</option>
-              <option value="3">Linux</option>
+              <option value="0"><Trans t={t} i18nKey="windows64bit-online-installer"/></option>
+              <option value="1"><Trans t={t} i18nKey="windows64bit-offline-installer"/></option>
+              <option value="2">Windows 32bit</option>
+              <option value="3">macOS</option>
+              <option value="4">Windows portable version</option>
+              <option value="5">Linux</option>
+              <option value="6">Daylight (beta)</option>
             </Select>
-            {currentPlatform != 3 ? (
+            {currentPlatform != 5 && currentPlatform != 6 ? (
               <FormHelperText>
                 {assets[currentPlatform].fileSize}
                 <CustomDivider />
@@ -91,42 +146,17 @@ export default function Download({ release, assets, releasedOn }) {
               </FormHelperText>
             ) : null}
           </FormControl>
-          {currentPlatform == 3 ? (
-            <>
-              <Heading as="h2" fontSize="xl" my={5}>
-                Install from PPA
-              </Heading>
-              <Box bg="gray.50" borderRadius="lg" mt={7} p={5} w="full">
-                <UnorderedList listStyleType={'"$ "'} fontFamily="monospace" fontSize="md">
-                  <ListItem>
-                    curl -fsSL https://ppa.ablaze.one/KEY.gpg | sudo gpg --dearmor -o
-                    /usr/share/keyrings/Floorp.gpg
-                  </ListItem>
-                  <ListItem>
-                    sudo curl -sS --compressed -o /etc/apt/sources.list.d/Floorp.list
-                    &apos;https://ppa.ablaze.one/Floorp.list&apos;
-                  </ListItem>
-                  <ListItem>sudo apt update</ListItem>
-                  <ListItem>sudo apt install floorp</ListItem>
-                </UnorderedList>
-              </Box>
-              <Heading as="h2" fontSize="xl" my={5}>
-                Install from Flathub
-              </Heading>
-              <Box bg="gray.50" borderRadius="lg" mt={7} p={5} w="full">
-                <UnorderedList listStyleType={'"$ "'} fontFamily="monospace" fontSize="md">
-                  <ListItem>flatpak install flathub one.ablaze.floorp</ListItem>
-                  <ListItem>flatpak run one.ablaze.floorp</ListItem>
-                </UnorderedList>
-              </Box>
-            </>
-          ) : (
-            <NextLink href={assets[currentPlatform].url} passHref>
-              <Button as={Link} mt={5}>
-                {assets[currentPlatform].label}
+
+          { currentPlatform == 5 ? linux : "" }
+          { currentPlatform == 6 ? daylightBuild : "" }
+          { currentPlatform != 5 && currentPlatform != 6 ? (
+          <NextLink href={assets[currentPlatform].url} passHref>
+            <Button as={Link} mt={5}>
+              {assets[currentPlatform].label}
               </Button>
-            </NextLink>
-          )}
+              </NextLink>
+            ) : "" }
+
           <Text color="gray.500" textAlign="center" my={12}>
             OR
           </Text>
@@ -177,8 +207,8 @@ export async function getStaticProps(ctx) {
     repo: 'Floorp',
     release_id: 'latest',
   });
-  const platforms = ['Windows', 'macOS', 'Linux'];
-  const fileNames = ['floorp-stub.installer.exe', 'floorp-macOS-universal.dmg'];
+  const platforms = ['Windows 64bit', 'Windows 32bit', 'Windows 64bit Offline', 'macOS', 'Linux'];
+  const fileNames = ['floorp-stub.installer.exe', 'floorp-win64.installer.exe', 'floorp-win32.installer.exe', 'floorp-macOS-universal.dmg'];
   const date = new Date(response.data.published_at);
   const assets = fileNames.map((fileName, index) => {
     const asset = response.data.assets.find((asset) => asset.name.includes(fileName));
