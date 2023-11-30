@@ -3,7 +3,7 @@
   "features": [
     {
       "title": "Strong Tracking Protection",
-      "description": "Floorp includes a strong tracking blocker by default, protecting users from a variety of malicious tracking lurking on the web. In addition, there is fingerprinting protection."
+      "description": "By default, Floorp includes a robust tracking blocker, protecting users from a variety of malicious trackers lurking on the web. Additionally, it provides fingerprinting protection."
     },
     {
       "title": "Flexible Layout",
@@ -11,32 +11,32 @@
     },
     {
       "title": "Switchable Design",
-      "description": "In addition to the usual Firefox theme customization, it allows. switch between five different designs for Floorp interface and OS specific design."
+      "description": "In addition to the usual Firefox theme customization, Floorp allows you to switch between five different interface designs, including OS-specific themes."
     },
     {
       "title": "Regular Updates",
-      "description": "Floorp is based on Firefox ESR. Floorp will be updated every 4 weeks, and security updates will be provided before Firefox release."
+      "description": "Floorp is based on Firefox ESR. Floorp will be updated every 4 weeks, with security updates provided before each Firefox release."
     },
     {
       "title": "No User Tracking",
-      "description": "We don't get personal information from users. We don't track users. We don't sell user data. We don't have any relationship with any advertising company."
+      "description": "We don't collect personal information from users. We don't track users. We don't sell user data. We have no affiliation with any advertising companies."
     },
     {
       "title": "Completely Open Source",
-      "description": "The source code for Floorp is fully public, allowing anyone to view the source code and build Floorp. It is not only the browser itself that is open to the public. The build environment is also open source."
+      "description": "The source code for Floorp is fully public, allowing anyone to view it and build Floorp. Not only is the browser itself open to the public, but the build environment is also open source."
     }
   ],
   "columns": [
     {
       "title": "Dual Sidebar",
-      "description": "Are you satisfied with only one sidebar? Want to open your website in the sidebar? Floorp has a built-in sidebar that can display a webpanel and browser management tools for a comfortable browsing experience. <br>A sidebar for busy people! Check everything from bookmarks and history to websites!"
+      "description": "Are you satisfied with just one sidebar? Want to open your website in the sidebar? Floorp features a built-in sidebar that can display a web panel and browser management tools for a comfortable browsing experience. <br>A sidebar for busy people! Check everything from bookmarks and history to websites!"
     },
     {
       "title": "Flexible Toolbar & Tab Bar",
       "description": "Tree Style Tabs and use it as vertical tabs or in combination. Customize your bookmarks bar and more. It is such a browser that you can reach the itch. <br>We deliver the best customization for everyone from customization beginners to experts, such as custom CSS for those who want to be particular and basic themes!"
     },
     {
-      "title": "Think about the USER & the WEB",
+      "title": "Think about the USER and the WEB",
       "description": "Floorp does not track users and only blocks malicious tracking on websites. With Floorp you can build an internet that benefits both websites and users.<br> Blocking only harmful trackers by listening to the opinions of both website owners who make a living from advertising and users who want to protect their privacy, why not use Floorp in finding a better internet?"
     }
   ],
