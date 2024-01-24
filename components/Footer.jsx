@@ -12,8 +12,10 @@ import {
 import { FaDiscord, FaGithub, FaTwitter } from 'react-icons/fa';
 import Image from 'next/image';
 import NextLink from 'next/link';
+import { useBuiltYear } from 'hooks/useBuiltYear';
 
 function Footer() {
+  const buildyear = useBuiltYear();
   return (
     <Box as="footer" bg="gray.50" borderTopColor="gray.200" borderTopWidth={1}>
       <Container maxW="container.lg">
@@ -40,7 +42,7 @@ function Footer() {
                 isExternal
               />
             </ButtonGroup>
-            <Text color="gray.500">© 2022 Ablaze</Text>
+            <Text color="gray.500">© {buildyear} Ablaze</Text>
           </HStack>
         </VStack>
         <Divider mx={5} w="unset" />
