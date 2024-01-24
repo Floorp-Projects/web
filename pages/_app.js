@@ -1,6 +1,7 @@
 import { appWithTranslation } from 'next-i18next';
 import { ChakraProvider, extendTheme } from '@chakra-ui/react';
 import { useEffect } from 'react';
+import BuiltYearProvider from 'hooks/useBuiltYear';
 import './styles.css';
 
 const theme = extendTheme({
@@ -19,7 +20,7 @@ const theme = extendTheme({
   },
 });
 
-function App({ Component, pageProps }) {
+function App({ Component, builtYear, pageProps }) {
   useEffect(() => {
     console.log(
       '%cCreated by http://itta.dev',
@@ -28,9 +29,19 @@ function App({ Component, pageProps }) {
   }, []);
   return (
     <ChakraProvider theme={theme}>
-      <Component {...pageProps} />
+      <BuiltYearProvider value={builtYear}>
+        <Component {...pageProps} />
+      </BuiltYearProvider>
     </ChakraProvider>
   );
+}
+
+export async function getStaticProps(context) {
+  return {
+    props: {
+      builtYear: new Date().getFullYear(),
+    },
+  };
 }
 
 export default appWithTranslation(App);
