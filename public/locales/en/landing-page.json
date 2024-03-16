@@ -22,8 +22,8 @@
       "description": "We don't collect personal information from users. We don't track users. We don't sell user data. We have no affiliation with any advertising companies."
     },
     {
-      "title": "Completely Open Source",
-      "description": "The source code for Floorp is fully public, allowing anyone to view it and build Floorp. Not only is the browser itself open to the public, but the build environment is also open source."
+      "title": "Powered by Open Source",
+      "description": "The source code for Floorp is mostly public, allowing anyone to view it and contribute to Floorp. Not only is the browser itself open to the public, but the build environment is also open source."
     }
   ],
   "columns": [
