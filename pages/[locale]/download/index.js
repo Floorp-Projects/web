@@ -177,10 +177,10 @@ export default function Download({ release, assets, releasedOn }) {
                 Documentation
               </Heading>
               <Link
-                href="https://docs.floorp.app"
+                href="https://docs.floorp.app/en/building"
                 isExternal
               >
-                https://docs.floorp.app
+                https://docs.floorp.app/en/building
               </Link>
             </Box>
           </Stack>
