@@ -168,8 +168,8 @@ export default function Download({ release, assets, releasedOn }) {
               <Heading as="h3" fontSize="xl" my={2}>
                 Source Code
               </Heading>
-              <Link href="https://github.com/floorp-projects/floorp" isExternal>
-                https://github.com/floorp-projects/floorp
+              <Link href="https://github.com/Floorp-Projects/Floorp" isExternal>
+                  https://github.com/Floorp-Projects/Floorp
               </Link>
             </Box>
             <Box>
@@ -177,10 +177,10 @@ export default function Download({ release, assets, releasedOn }) {
                 Documentation
               </Heading>
               <Link
-                href="https://github.com/Floorp-Projects/Floorp/blob/ESR102/.github/workflow.md"
+                href="https://docs.floorp.app"
                 isExternal
               >
-                https://github.com/Floorp-Projects/Floorp/blob/ESR102/.github/workflow.md
+                https://docs.floorp.app
               </Link>
             </Box>
           </Stack>
