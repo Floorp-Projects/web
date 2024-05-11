@@ -33,7 +33,7 @@ export default function Home({ article }) {
       <Head>
         <title>Floorp</title>
         <meta name="description" content={t('description')} />
-        <link rel="icon" href="/favicon.ico" />
+        <link rel="icon" href="/app/%5Blang%5D/favicon.ico" />
       </Head>
       <NavBar />
       <Container
