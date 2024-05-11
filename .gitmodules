@@ -1,0 +1,3 @@
+[submodule "public/locales"]
+	path = public/locales
+	url = https://github.com/Floorp-Projects/web-translate.git
