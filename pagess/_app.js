@@ -4,22 +4,6 @@ import { useEffect } from 'react';
 import BuiltYearProvider from 'hooks/useBuiltYear';
 import './styles.css';
 
-const theme = extendTheme({
-  components: {
-    Link: {
-      baseStyle: {
-        color: 'blue.500',
-      },
-    },
-    Button: {
-      baseStyle: {
-        color: 'black',
-        textDecoration: 'none!important',
-      },
-    },
-  },
-});
-
 function App({ Component, builtYear, pageProps }) {
   useEffect(() => {
     console.log(
