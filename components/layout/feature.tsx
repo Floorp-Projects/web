@@ -12,6 +12,7 @@ type FeatureProps = {
   };
   rightClasses?: string;
   leftClasses?: string;
+  key?: string;
 }
 
 
@@ -22,17 +23,21 @@ export default function Feature({
                                   rightClasses,
                                   leftClasses,
                                   description,
-                                  link
+                                  link,
+                                  key
                                 }: FeatureProps) {
   const left = leftToRight ? "order-1" : "order-2";
   const right = leftToRight ? "order-2" : "order-1";
   return (
-    <div className={cn(
+    <div
+      className={cn(
       "p-4",
       "max-w-4xl relative gap-8 items-center justify-center",
       `sm:grid grid-cols-1 sm:grid-cols-2`,
       'mb-8'
-    )}>
+    )}
+      key={key ? key : header}
+    >
       <div className={
         cn('flex flex-col gap-2 order-${left} sm:col-span-1 col-span-2', left, leftClasses)
       }>
