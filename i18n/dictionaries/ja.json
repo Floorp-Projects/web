@@ -1,85 +1,86 @@
 {
   "components": {
     "languageSelect": "言語を選択",
-    "inReview": "In Review",
-    "waitingForContributions": "Not translated"
+    "inReview": "レビュー中",
+    "waitingForContributions": "貢献を待っています"
   },
   "common": {
-    "description": "Floorp is built on Firefox and was built in Japan and is a new browser with excellent privacy & flexibility."
+    "description": "FloorpはFirefoxをベースに日本で作られた、プライバシーと柔軟性に優れた新しいブラウザです。"
   },
   "metadata": {
     "title": "Floorp Browser"
   },
   "downloadPage": {
-    "downloadAlert": "If you download Floorp you agree to the <1>Privacy Policy</1>.",
-    "daylightAlert": "Floorp Daylight is a beta version of Floorp. Maybe it will not work properly.",
-    "windows64bitOnlineInstaller": "Windows 64bit Online Installer",
-    "windows64bitOfflineInstaller": "Windows 64bit Offline Installer"
+    "downloadAlert": "Floorpをダウンロードすると、<1>プライバシーポリシー</1>に同意したものとみなされます。",
+    "daylightAlert": "Floorp DaylightはFloorpのベータ版です。正常に動作しないかもしれません。",
+    "windows64bitOnlineInstaller": "Windows 64bit オンラインインストーラ",
+    "windows64bitOfflineInstaller": "Windows 64bit オフラインインストーラ"
   },
   "landingPage": {
     "hero": "<1>Floorpによる</1>\n無制限の\nカスタマイズ性",
     "heroCard": {
-      "title": "Floorp Browser",
-      "description": "Floorp is a new browser based on Firefox that was built in Japan. It is a browser that focuses on privacy and flexibility.",
-      "download": "Download Floorp",
-      "sourceCode": "View Source Code"
+      "title": "Floorp ブラウザ",
+      "description": "Floorpは日本で作られたFirefoxをベースにした新しいブラウザです。プライバシーと柔軟性に焦点を当てたブラウザです。",
+      "download": "Floorpをダウンロード",
+      "sourceCode": "ソースコードを見る"
     },
-    "feature": "Features",
+    "feature": "特徴",
     "features": [
       {
         "key": "privacy",
-        "title": "Strong Tracking Protection",
-        "description": "By default, Floorp includes a robust tracking blocker, protecting users from a variety of malicious trackers lurking on the web. Additionally, it provides fingerprinting protection."
+        "title": "強力なトラッキング保護",
+        "description": "Floorpは、デフォルトで強力なトラッキングブロッカーを搭載しており、Web上に潜むさまざまな悪質なトラッカーからユーザーを保護します。さらに、フィンガープリント保護も提供します。"
       },
       {
         "key": "flexible",
         "title": "Flexible Layout",
-        "description": "Floorp's layout customization is unlimited. Move the tab bar to the bottom of the window, hide the title bar, and more. Create your own Floorp."
+        "title": "柔軟なレイアウト",
+        "description": "Floorpのレイアウトカスタマイズは無限大です。タブバーをウィンドウの下に移動したり、タイトルバーを非表示にしたり、さまざまなカスタマイズが可能です。あなただけのFloorpを作成しましょう。"
       },
       {
         "key": "switchable",
-        "title": "Switchable Design",
-        "description": "In addition to the usual Firefox theme customization, Floorp allows you to switch between five different interface designs, including OS-specific themes."
+        "title": "切り替え可能なデザイン",
+        "description": "通常のFirefoxテーマカスタマイズに加えて、FloorpはOS固有のテーマを含む5つの異なるインターフェースデザインを切り替えることができます。"
       },
       {
         "key": "sidebar",
-        "title": "Regular Updates",
-        "description": "Floorp is based on Firefox ESR. Floorp will be updated every 4 weeks, with security updates provided before each Firefox release."
+        "title": "定期的な更新",
+        "description": "FloorpはFirefox ESRをベースにしています。Floorpは4週間ごとに更新され、各Firefoxリリース前にセキュリティ更新が提供されます。"
       },
       {
         "key": "noTracking",
-        "title": "No User Tracking",
-        "description": "We don't collect personal information from users. We don't track users. We don't sell user data. We have no affiliation with any advertising companies."
+        "title": "ユーザートラッキングなし",
+        "description": "Floorpはユーザーから個人情報を収集しません。ユーザーを追跡しません。ユーザーデータを販売しません。広告会社との提携はありません。"
       },
       {
         "key": "openSource",
-        "title": "Powered by Open Source",
-        "description": "The source code for Floorp is mostly public, allowing anyone to view it and contribute to Floorp. Not only is the browser itself open to the public, but the build environment is also open source."
+        "title": "オープンソースで動作",
+        "description": "Floorpのソースコードはほとんどが公開されており、誰でも閲覧してFloorpに貢献することができます。ブラウザ自体だけでなく、ビルド環境もオープンソースです。"
       }
     ],
     "columns": [
       {
         "key": "dualSidebar",
-        "title": "Dual Sidebar",
-        "description": "Are you satisfied with just one sidebar? Want to open your website in the sidebar? Floorp features a built-in sidebar that can display a web panel and browser management tools for a comfortable browsing experience. \nA sidebar for busy people! Check everything from bookmarks and history to websites!"
+        "title": "デュアルサイドバー",
+        "description": "1つのサイドバーに満足していますか？ウェブサイトをサイドバーで開きたいですか？Floorpには、ウェブパネルやブラウザ管理ツールを表示できる組み込みサイドバーがあり、快適なブラウジング体験を提供します。\n忙しい人のためのサイドバー！ブックマークや履歴、ウェブサイトまで、すべてをチェック！"
       },
       {
         "key": "flexibleToolbar",
-        "title": "Flexible Toolbar & Tab Bar",
-        "description": "Tree Style Tabs and use it as vertical tabs or in combination. Customize your bookmarks bar and more. It is such a browser that you can reach the itch. \n\nWe deliver the best customization for everyone from customization beginners to experts, such as custom CSS for those who want to be particular and basic themes!"
+        "title": "柔軟なツールバーとタブバー",
+        "description": "Tree Style Tabsを使って縦タブにしたり、組み合わせたりしてください。ブックマークバーなどをカスタマイズしてください。あなたの欲望に応えることができるブラウザです。\n\nカスタマイズ初心者からエキスパートまで、誰もが最高のカスタマイズを提供します。細かいことをしたい人や基本的なテーマを求める人のためのカスタムCSSなど！"
       },
       {
         "key": "privacyProtection",
-        "title": "Think about the USER and the WEB",
-        "description": "Floorp does not track users and only blocks malicious tracking on websites. With Floorp you can build an internet that benefits both websites and users.\n\nBlocking only harmful trackers by listening to the opinions of both website owners who make a living from advertising and users who want to protect their privacy, why not use Floorp in finding a better internet?"
+        "title": "ユーザーとウェブについて考える",
+        "description": "Floorpはユーザーを追跡せず、ウェブサイトでの悪質なトラッキングのみをブロックします。Floorpを使えば、ウェブサイトとユーザーの両方に利益をもたらすインターネットを構築することができます。\n\n広告で生計を立てているウェブサイトの所有者と、プライバシーを保護したいユーザーの意見を聞いて、有害なトラッカーのみをブロックすることで、より良いインターネットを見つけるためにFloorpを使ってみませんか？"
       }
     ],
-    "latestArticle": "Latest article",
+    "latestArticle": "最新の記事",
     "article": {
-      "readMore": "Read more",
-      "postedBy": "Posted by",
-      "postedOn": "Date: "
+      "readMore": "もっと読む",
+      "postedBy": "投稿者:",
+      "postedOn": "投稿日: "
     },
-    "downloadFloorp": "Get latest version of Floorp Browser"
+    "downloadFloorp": "Floorpブラウザの最新バージョンを入手"
   }
 }
