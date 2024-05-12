@@ -7,15 +7,23 @@ import Logo from "@/public/logo.svg";
 import {ThemeSwitch} from "@/components/theme-switch";
 import {cn} from "@/lib/utils";
 import LanguageSelect from "@/components/language-select";
+import DevAlert from "@/components/layout/dev-alert";
+import {Locale} from "@/i18n/i18n.config";
+import {getDictionary} from "@/i18n/dictionaries";
 
 type HeaderAndSideNavProps = {
-  selectTitle: string;
-  lang: string;
+  lang: Locale;
 }
 
-export default function HeaderAndSideNav({selectTitle, lang}: HeaderAndSideNavProps) {
+const env = process.env.ENV;
+
+export default async function HeaderAndSideNav({lang}: HeaderAndSideNavProps) {
+  const dict = await getDictionary(lang);
+  const devModeBadge = env === "development" ? (
+    <DevAlert />
+  ) : null;
   return (
-    <header className="top-0 z-0 flex h-16 items-center gap-4 border-b bg-background px-4 md:px-6">
+    <header className="top-0 z-0 flex justify-between h-16 items-center gap-4 border-b bg-background px-4 md:px-6">
       <nav
         className="hidden flex-col gap-6 text-lg font-medium md:flex md:flex-row md:items-center md:gap-5 md:text-sm lg:gap-6">
         <Link
@@ -58,8 +66,13 @@ export default function HeaderAndSideNav({selectTitle, lang}: HeaderAndSideNavPr
           </nav>
         </SheetContent>
       </Sheet>
-      <div className="flex w-full gap-4 justify-end md:gap-2 lg:gap-4">
-        <LanguageSelect res={{dropdownTitle: selectTitle}} />
+      {devModeBadge}
+      <div className="flex gap-4 md:gap-2 lg:gap-4">
+        <LanguageSelect
+          languageSelect={dict.components.languageSelect}
+          inReview={dict.components.inReview}
+          waitingForContributions={dict.components.waitingForContributions}
+        />
         <ThemeSwitch />
         <Link href={`/${lang}/download`}
               className={cn(
