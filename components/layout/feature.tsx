@@ -50,7 +50,7 @@ export default function Feature({
           height={500}
           src={image}
           alt={header}
-          className={`rounded-lg h-60 w-60`}
+          className={`rounded-lg h-60 w-60 mt-4`}
         />
       </div>
     </div>

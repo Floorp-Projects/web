@@ -46,12 +46,12 @@ export default function Article(props: ArticleProps) {
         <Card>
           <CardHeader className={'text-2xl font-bold'}>{title}</CardHeader>
           <CardContent>
-            <div className="grid grid-cols-3">
+            <div className="flex flex-col-reverse md:grid md:grid-cols-3">
               <div className="col-span-2">
                 {description}
                 {readMoreContent}
               </div>
-              <div className={"flex justify-center items-center col-span-1"}>
+              <div className={"flex justify-center items-center col-span-1 mb-4"}>
                 <Image src={image} alt={title} width={200} height={200}/>
               </div>
             </div>
