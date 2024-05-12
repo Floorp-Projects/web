@@ -1,9 +1,13 @@
-const withExportImages = require('next-export-optimize-images');
 
-const nextConfig = withExportImages({
-  reactStrictMode: true,
-  swcMinify: true,
-  trailingSlash: true,
-});
+const nextConfig = {
+  images: {
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 'images.unsplash.com'
+      }
+    ]
+  }
+};
 
 module.exports = nextConfig;
