@@ -49,7 +49,6 @@ function _replaceLineBreaks(translation: string): React.ReactNode {
   return React.createElement(React.Fragment, {key: "fragment"}, elements);
 }
 
-
 /**
  * Formats a translation string with the given values.
  * {{name}} will be replaced with the value of values.name
