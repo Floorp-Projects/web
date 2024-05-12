@@ -1,6 +1,8 @@
 {
   "components": {
-    "languageSelect": "言語を選択"
+    "languageSelect": "言語を選択",
+    "inReview": "In Review",
+    "waitingForContributions": "Not translated"
   },
   "common": {
     "description": "Floorp is built on Firefox and was built in Japan and is a new browser with excellent privacy & flexibility."
