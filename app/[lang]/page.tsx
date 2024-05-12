@@ -9,6 +9,8 @@ import Feature2 from "@/public/feature2.svg";
 import Feature3 from "@/public/feature3.svg";
 import Feature from "@/components/layout/feature";
 import {formatTranslation as f} from "@/i18n/utils";
+import Article, {ArticleResponse} from "@/components/layout/articles/article";
+import ArticleList from "@/components/layout/articles/article-list";
 
 type HomeProps = {
   params: { lang: Locale }
@@ -39,15 +41,32 @@ const getHeroProps = async (lang: Locale) => {
   }
 }
 
-export default async function Home({params: {lang}}: HomeProps) {
+const getFirstTwoArticles = async (top: number = 2) => {
   const res = await fetch('https://wpapi.ablaze.one/?home=https://blog.ablaze.one/&categories=45');
-  const article = (await res.json()).items[0];
+  const articles = (await res.json()).items;
+  let result: ArticleResponse[] = [];
+  for (let i = 0; i < Math.min(articles.length, top); i++) {
+    const article = articles[i] as ArticleResponse;
+    result.push({
+      title: article.title,
+      date: article.date,
+      description: article.description,
+      author: article.author,
+      image: article.image,
+      link: article.link
+    });
+  }
+  return result;
+}
+
+export default async function Home({params: {lang}}: HomeProps) {
   const dict = await getDictionary(lang);
   const heroProps = await getHeroProps(lang);
+  const articles = await getFirstTwoArticles(4);
   return (
-    <>
+    <main className='w-full py-24'>
       <div className="flex min-h-screen w-full flex-col">
-        <div className="w-full flex flex-col gap-4 mt-24 lg:grid lg:grid-cols-2 md:gap-4 md:px-4">
+        <div className="w-full flex flex-col gap-4 lg:grid lg:grid-cols-2 md:gap-4 md:px-4">
           <MainHero translation={dict.landingPage.hero}/>
           <MainHeroCard {...heroProps}/>
           <div className='col-span-2 flex flex-col gap-4 items-center mt-10'>
@@ -83,10 +102,14 @@ export default async function Home({params: {lang}}: HomeProps) {
               <h2 className="text-4xl font-bold text-neutral-900 dark:text-neutral-100">
                 {dict.landingPage.latestArticle}
               </h2>
+              <ArticleList articles={articles} fadeOutAfter={3} seeMore={{
+                link: "https://blog.ablaze.one/category/ablaze/ablaze-project/floorp/",
+                text: dict.landingPage.article.readMore
+              }} />
             </div>
           </div>
         </div>
       </div>
-    </>
+    </main>
   );
 }
