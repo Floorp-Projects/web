@@ -1,10 +1,10 @@
-import type { Metadata } from "next";
+import type {Metadata} from "next";
 import "./globals.css";
 import {getDictionary} from "@/i18n/dictionaries";
 import {Locale} from "@/i18n/i18n.config";
 import React from "react";
-import { Inter as FontSans } from "next/font/google"
-import {cn} from "@/lib/utils";
+import {Inter as FontSans} from "next/font/google"
+import {ThemeProvider} from "@/components/theme-provider";
 
 type MetadataProps = {
   params: { lang: Locale }
@@ -14,7 +14,7 @@ type RootLayoutProps = {
   children: React.ReactNode
 }
 
-export async function generateMetadata({ params: { lang } }: MetadataProps): Promise<Metadata> {
+export async function generateMetadata({params: {lang}}: MetadataProps): Promise<Metadata> {
   const dict = await getDictionary(lang)
   return {
     title: dict.metadata.title,
@@ -24,15 +24,21 @@ export async function generateMetadata({ params: { lang } }: MetadataProps): Pro
 
 const fontSans = FontSans({
   subsets: ["latin"],
-  variable: "--font-sans",
 })
 
 export default function RootLayout({children}: RootLayoutProps) {
-  const bodyClasses = cn(fontSans.variable)
+  const bodyClasses = fontSans.className
 
   return (
-    <html lang="en">
-      <body className={bodyClasses}>{children}</body>
+    <html lang="en" suppressHydrationWarning>
+    <body className={bodyClasses}>
+    <ThemeProvider
+      attribute={"class"}
+      defaultTheme={'system'}
+      enableSystem>
+      {children}
+    </ThemeProvider>
+    </body>
     </html>
   );
 }
