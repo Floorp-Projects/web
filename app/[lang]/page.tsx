@@ -1,15 +1,14 @@
 import {getDictionary} from "@/i18n/dictionaries";
 import {Locale} from "@/i18n/i18n.config";
 import {MainHero} from "@/components/layout/main-hero";
-import HeaderAndSideNav from "@/components/layout/header-and-side-nav";
 import MainHeroCard from "@/components/layout/hero-card";
-import {Skeleton} from "@/components/ui/skeleton";
 import {BiBadgeCheck, BiBrush, BiCodeAlt, BiLockAlt, BiPaintRoll, BiShield} from 'react-icons/bi';
-import {BentoGrid, HeaderGridItem, ThreeColBentoGrid} from "@/components/ui/bento-grid";
+import {HeaderGridItem, ThreeColBentoGrid} from "@/components/ui/bento-grid";
 import Feature1 from "@/public/feature1.svg";
 import Feature2 from "@/public/feature2.svg";
 import Feature3 from "@/public/feature3.svg";
 import Feature from "@/components/layout/feature";
+import {formatTranslation as f} from "@/i18n/utils";
 
 type HomeProps = {
   params: { lang: Locale }
@@ -48,7 +47,6 @@ export default async function Home({params: {lang}}: HomeProps) {
   return (
     <>
       <div className="flex min-h-screen w-full flex-col">
-        <HeaderAndSideNav/>
         <div className="w-full flex flex-col gap-4 mt-24 lg:grid lg:grid-cols-2 md:gap-4 md:px-4">
           <MainHero translation={dict.landingPage.hero}/>
           <MainHeroCard {...heroProps}/>
@@ -73,8 +71,9 @@ export default async function Home({params: {lang}}: HomeProps) {
               <Feature
                 image={columnImageMap[item.key]}
                 header={item.title}
-                description={item.description}
+                description={f(item.description)}
                 leftToRight={i % 2 === 0}
+                key={item.key}
               />
             ))
             }
