@@ -10,7 +10,7 @@ type MainHeroProps = {
 export function MainHero({translation}: MainHeroProps) {
   const formatted = rC(translation, {key: "1", type: Highlight, rest: {className: "text-black dark:text-white"}});
   return (
-    <HeroHighlight>
+    <HeroHighlight className={'z-20'}>
       <motion.h1
         initial={{
           opacity: 0,
@@ -24,7 +24,7 @@ export function MainHero({translation}: MainHeroProps) {
           duration: 0.5,
           ease: [0.4, 0.0, 0.2, 1],
         }}
-        className="text-2xl px-4 md:text-4xl lg:text-7xl font-bold text-neutral-700 dark:text-white max-w-4xl leading-relaxed lg:leading-snug text-left mx-auto "
+        className="px-4 text-2xl sm:text-4xl md:text-5xl lg:text-7xl font-bold text-neutral-700 dark:text-white max-w-4xl leading-relaxed lg:leading-snug text-left mx-auto "
       >
         {formatted}
       </motion.h1>
