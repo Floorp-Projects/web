@@ -73,7 +73,7 @@ export default async function Home({params: {lang}}: HomeProps) {
                 header={item.title}
                 description={f(item.description)}
                 leftToRight={i % 2 === 0}
-                key={item.key}
+                key={i}
               />
             ))
             }
