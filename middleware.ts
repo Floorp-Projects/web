@@ -1,5 +1,5 @@
 import type { NextRequest } from 'next/server'
-import { NextFetchEvent, NextResponse } from 'next/server'
+import { NextResponse } from 'next/server'
 import { i18n } from './i18n/i18n.config'
 import { match as matchLocale } from '@formatjs/intl-localematcher'
 //@ts-ignore
@@ -19,40 +19,26 @@ function getLocale(request: NextRequest): string | undefined {
   return matchLocale(languages, locales, i18n.defaultLocale)
 }
 
-type Environment = "production" | "development" | "other";
 
-export function middleware(request: NextRequest, ev: NextFetchEvent) {
-  const pathname = request.nextUrl.pathname;
-  return;
-  if (pathname.startsWith('')) {
-    if (
-      [
-        '/manifest.json',
-        '/favicon.ico',
-        '/toc.html',
-        '/privacy.html'
-      ].includes(pathname)
-    ) {
-      return;
-    }
-  }
+let locales = ['en', 'ja']
 
-  const pathnameIsMissingLocale = i18n.locales.every(
-    (locale) => !pathname.startsWith(`/${locale}/`) && pathname !== `/${locale}`
+export function middleware(request: NextRequest) {
+  const { pathname } = request.nextUrl
+  const pathnameHasLocale = locales.some(
+    (locale) => pathname.startsWith(`/${locale}/`) || pathname === `/${locale}`
   )
 
-  if (pathnameIsMissingLocale) {
-    const locale = 'en';
+  if (pathnameHasLocale) return
 
-    return NextResponse.redirect(
-      new URL(
-        `/${locale}${pathname.startsWith('/') ? '' : '/'}${pathname}`,
-        request.url
-      )
-    )
-  }
+  const locale = getLocale(request)
+  request.nextUrl.pathname = `/${locale}${pathname}`
+  return NextResponse.redirect(request.nextUrl)
 }
 
 export const config = {
-  matcher: ['/((?!api|_next/static|_next/image|images|image|_next|favicon.ico).*)']
+  matcher: [
+    '/((?!_next).*)',
+    // Optional: only run on root (/) URL
+    // '/'
+  ],
 }
