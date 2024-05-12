@@ -57,7 +57,8 @@ function _replaceLineBreaks(translation: string): React.ReactNode {
  * @param values
  */
 export function formatTranslation(translation: string, values: Record<string, string> = {}) {
-  return _formatTranslation(translation, values);
+  let formattedStr = _formatTranslation(translation, values);
+  return _replaceLineBreaks(formattedStr);
 }
 
 /**
