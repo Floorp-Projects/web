@@ -41,7 +41,7 @@ export default async function RootLayout({ params: { lang }, children }: RootLay
       defaultTheme={'system'}
       enableSystem>
       <>
-        <HeaderAndSideNav selectTitle={dict.components.languageSelect} lang={lang} />
+        <HeaderAndSideNav lang={lang} />
         {children}
         <Footer />
       </>
