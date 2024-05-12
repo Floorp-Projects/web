@@ -75,7 +75,11 @@
       }
     ],
     "latestArticle": "Latest article",
-    "seeMore": "See more",
+    "article": {
+      "readMore": "Read more",
+      "postedBy": "Posted by",
+      "postedOn": "Date: "
+    },
     "downloadFloorp": "Get latest version of Floorp Browser"
   }
 }
