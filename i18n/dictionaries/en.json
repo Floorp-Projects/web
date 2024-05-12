@@ -1,4 +1,7 @@
 {
+  "components": {
+    "languageSelect": "Language"
+  },
   "common": {
     "description": "Floorp is built on Firefox and was built in Japan and is a new browser with excellent privacy & flexibility."
   },

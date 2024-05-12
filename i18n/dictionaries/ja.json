@@ -1,4 +1,7 @@
 {
+  "components": {
+    "languageSelect": "言語を選択"
+  },
   "common": {
     "description": "Floorp is built on Firefox and was built in Japan and is a new browser with excellent privacy & flexibility."
   },
@@ -12,7 +15,7 @@
     "windows64bitOfflineInstaller": "Windows 64bit Offline Installer"
   },
   "landingPage": {
-    "hero": "Unlimited\ncustomizability\n<1>with Floorp</1>",
+    "hero": "<1>Floorpによる</1>\n無制限の\nカスタマイズ性",
     "heroCard": {
       "title": "Floorp Browser",
       "description": "Floorp is a new browser based on Firefox that was built in Japan. It is a browser that focuses on privacy and flexibility.",
@@ -56,17 +59,17 @@
       {
         "key": "dualSidebar",
         "title": "Dual Sidebar",
-        "description": "Are you satisfied with just one sidebar? Want to open your website in the sidebar? Floorp features a built-in sidebar that can display a web panel and browser management tools for a comfortable browsing experience. <br>A sidebar for busy people! Check everything from bookmarks and history to websites!"
+        "description": "Are you satisfied with just one sidebar? Want to open your website in the sidebar? Floorp features a built-in sidebar that can display a web panel and browser management tools for a comfortable browsing experience. \nA sidebar for busy people! Check everything from bookmarks and history to websites!"
       },
       {
         "key": "flexibleToolbar",
         "title": "Flexible Toolbar & Tab Bar",
-        "description": "Tree Style Tabs and use it as vertical tabs or in combination. Customize your bookmarks bar and more. It is such a browser that you can reach the itch. <br>We deliver the best customization for everyone from customization beginners to experts, such as custom CSS for those who want to be particular and basic themes!"
+        "description": "Tree Style Tabs and use it as vertical tabs or in combination. Customize your bookmarks bar and more. It is such a browser that you can reach the itch. \n\nWe deliver the best customization for everyone from customization beginners to experts, such as custom CSS for those who want to be particular and basic themes!"
       },
       {
         "key": "privacyProtection",
         "title": "Think about the USER and the WEB",
-        "description": "Floorp does not track users and only blocks malicious tracking on websites. With Floorp you can build an internet that benefits both websites and users.<br> Blocking only harmful trackers by listening to the opinions of both website owners who make a living from advertising and users who want to protect their privacy, why not use Floorp in finding a better internet?"
+        "description": "Floorp does not track users and only blocks malicious tracking on websites. With Floorp you can build an internet that benefits both websites and users.\n\nBlocking only harmful trackers by listening to the opinions of both website owners who make a living from advertising and users who want to protect their privacy, why not use Floorp in finding a better internet?"
       }
     ],
     "latestArticle": "Latest article",
