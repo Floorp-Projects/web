@@ -1,13 +1,7 @@
 import React from "react";
 
 
-/**
- * Formats a translation string with the given values.
- * {{name}} will be replaced with the value of values.name
- * @param translation
- * @param values
- */
-export function formatTranslation(translation: string, values: Record<string, string>) {
+function _formatTranslation(translation: string, values: Record<string, string> = {}) {
   for (const key in values) {
     translation = translation.replace(`{{${key}}}`, values[key]);
   }
@@ -28,7 +22,8 @@ function _replaceComponent(translation: string, component: TranslationComponent)
   if (!innerText) {
     return translation;
   }
-  const textOnly = innerText.replace(new RegExp(`<${key}>|<\/${key}>`, "g"), "");
+  let textOnly = innerText.replace(new RegExp(`<${key}>|<\/${key}>`, "g"), "");
+  textOnly = _formatTranslation(textOnly);
   const Type = component.type;
   let element = typeof Type === "string" ?
     React.createElement(Type, {key, ...component.rest}, textOnly) :
@@ -38,6 +33,32 @@ function _replaceComponent(translation: string, component: TranslationComponent)
   return [parts[0], element, parts[1]];
 }
 
+function _replaceLineBreaks(translation: string): React.ReactNode {
+  let elements: any[] = [];
+  if (translation === "" || translation === null) {
+    return null;
+  }
+  const parts = translation.split("\n");
+  for (let i = 0; i < parts.length; i++) {
+    elements.push(parts[i]);
+    if (i < parts.length - 1) {
+      elements.push(React.createElement("br", {key: `br-${i}`}));
+    }
+  }
+
+  return React.createElement(React.Fragment, {key: "fragment"}, elements);
+}
+
+
+/**
+ * Formats a translation string with the given values.
+ * {{name}} will be replaced with the value of values.name
+ * @param translation
+ * @param values
+ */
+export function formatTranslation(translation: string, values: Record<string, string> = {}) {
+  return _formatTranslation(translation, values);
+}
 
 /**
  * Replaces a component in a translation string with the given component.
@@ -46,7 +67,10 @@ function _replaceComponent(translation: string, component: TranslationComponent)
  */
 export function replaceComponent(translation: string, component: TranslationComponent) {
   const parts = _replaceComponent(translation, component);
-  return React.createElement(React.Fragment, {key: "fragment"}, parts[0], parts[1], parts[2]);
+  const leftText = _replaceLineBreaks(parts[0] as string);
+  const rightText = _replaceLineBreaks(parts[2] as string);
+  let elements = [leftText, parts[1], rightText];
+  return React.createElement(React.Fragment, {key: "fragment"}, elements);
 }
 
 /**
@@ -59,7 +83,7 @@ export function replaceComponents(translation: string, components: TranslationCo
   for (const component of components) {
     if (elements.length > 0) {
       if (typeof elements[0] === "string") {
-        const text = elements[0] as string;
+        let text = elements[0] as string;
         const parts = _replaceComponent(text, component);
         if (parts instanceof Array) {
           elements[0] = [parts[0], parts[1], parts[2]];
@@ -69,7 +93,7 @@ export function replaceComponents(translation: string, components: TranslationCo
       }
 
       if (elements[elements.length - 1] === "string") {
-        const text = elements[2] as string;
+        let text = elements[2] as string;
         const parts = _replaceComponent(text, component);
         if (parts instanceof Array) {
           elements[2] = [parts[0], parts[1], parts[2]];
