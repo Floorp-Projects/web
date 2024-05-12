@@ -7,6 +7,12 @@ const nextConfig = {
         hostname: 'images.unsplash.com'
       }
     ]
+  },
+  env: {
+    REVIEWED_TRANSLATIONS: process.env.REVIEWED_TRANSLATIONS,
+    IN_REVIEW_TRANSLATIONS: process.env.IN_REVIEW_TRANSLATIONS,
+    NOT_STARTED_TRANSLATIONS: process.env.NOT_STARTED_TRANSLATIONS,
+    ENV: process.env.ENV,
   }
 };
 
