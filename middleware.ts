@@ -21,7 +21,7 @@ function getLocale(request: NextRequest): string | undefined {
 }
 
 let locales = ['en', 'ja']
-const excludedPaths = ['api', '_next/static', '_next/image', '/favicon.ico', '/manifest.json']
+const excludedPaths = ['api', '_next/static', '_next/image', '/favicon.ico', '/manifest.json', '/_next/webpack-hmr']
 
 export function middleware(request: NextRequest) {
   let {pathname} = request.nextUrl
