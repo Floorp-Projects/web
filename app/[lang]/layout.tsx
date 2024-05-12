@@ -17,8 +17,8 @@ type RootLayoutProps = {
 export async function generateMetadata({ params: { lang } }: MetadataProps): Promise<Metadata> {
   const dict = await getDictionary(lang)
   return {
-    title: dict.landingPage.metadata.title,
-    description: dict.landingPage.metadata.description
+    title: dict.metadata.title,
+    description: dict.common.description,
   }
 }
 
