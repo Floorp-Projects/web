@@ -1,0 +1,61 @@
+{
+  "common": {
+    "description": "Floorp is built on Firefox and was built in Japan and is a new browser with excellent privacy & flexibility."
+  },
+  "downloadPage": {
+    "downloadAlert": "If you download Floorp you agree to the <1>Privacy Policy</1>.",
+    "daylightAlert": "Floorp Daylight is a beta version of Floorp. Maybe it will not work properly.",
+    "windows64bitOnlineInstaller": "Windows 64bit Online Installer",
+    "windows64bitOfflineInstaller": "Windows 64bit Offline Installer"
+  },
+  "landingPage": {
+    "metadata": {
+      "title": "Floorp Browser - A <2>new</2> browser with <1>excellent</1> privacy & flexibility",
+      "description": "Floorp is built on Firefox and was built in Japan and is a new browser with excellent privacy & flexibility."
+    },
+    "feature": "Features",
+    "features": [
+      {
+        "title": "Strong Tracking Protection",
+        "description": "By default, Floorp includes a robust tracking blocker, protecting users from a variety of malicious trackers lurking on the web. Additionally, it provides fingerprinting protection."
+      },
+      {
+        "title": "Flexible Layout",
+        "description": "Floorp's layout customization is unlimited. Move the tab bar to the bottom of the window, hide the title bar, and more. Create your own Floorp."
+      },
+      {
+        "title": "Switchable Design",
+        "description": "In addition to the usual Firefox theme customization, Floorp allows you to switch between five different interface designs, including OS-specific themes."
+      },
+      {
+        "title": "Regular Updates",
+        "description": "Floorp is based on Firefox ESR. Floorp will be updated every 4 weeks, with security updates provided before each Firefox release."
+      },
+      {
+        "title": "No User Tracking",
+        "description": "We don't collect personal information from users. We don't track users. We don't sell user data. We have no affiliation with any advertising companies."
+      },
+      {
+        "title": "Powered by Open Source",
+        "description": "The source code for Floorp is mostly public, allowing anyone to view it and contribute to Floorp. Not only is the browser itself open to the public, but the build environment is also open source."
+      }
+    ],
+    "columns": [
+      {
+        "title": "Dual Sidebar",
+        "description": "Are you satisfied with just one sidebar? Want to open your website in the sidebar? Floorp features a built-in sidebar that can display a web panel and browser management tools for a comfortable browsing experience. <br>A sidebar for busy people! Check everything from bookmarks and history to websites!"
+      },
+      {
+        "title": "Flexible Toolbar & Tab Bar",
+        "description": "Tree Style Tabs and use it as vertical tabs or in combination. Customize your bookmarks bar and more. It is such a browser that you can reach the itch. <br>We deliver the best customization for everyone from customization beginners to experts, such as custom CSS for those who want to be particular and basic themes!"
+      },
+      {
+        "title": "Think about the USER and the WEB",
+        "description": "Floorp does not track users and only blocks malicious tracking on websites. With Floorp you can build an internet that benefits both websites and users.<br> Blocking only harmful trackers by listening to the opinions of both website owners who make a living from advertising and users who want to protect their privacy, why not use Floorp in finding a better internet?"
+      }
+    ],
+    "latestArticle": "Latest article",
+    "seeMore": "See more",
+    "downloadFloorp": "Get latest version of Floorp Browser"
+  }
+}
