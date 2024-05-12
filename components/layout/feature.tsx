@@ -1,10 +1,11 @@
 import Image from "next/image";
 import {cn} from "@/lib/utils";
+import React from "react";
 
 type FeatureProps = {
   image: any;
   header: string;
-  description: string;
+  description: string | React.ReactNode;
   leftToRight?: boolean;
   link?: {
     href: string;
@@ -12,7 +13,6 @@ type FeatureProps = {
   };
   rightClasses?: string;
   leftClasses?: string;
-  key?: string;
 }
 
 
@@ -24,7 +24,6 @@ export default function Feature({
                                   leftClasses,
                                   description,
                                   link,
-                                  key
                                 }: FeatureProps) {
   const left = leftToRight ? "order-1" : "order-2";
   const right = leftToRight ? "order-2" : "order-1";
@@ -36,7 +35,6 @@ export default function Feature({
       `sm:grid grid-cols-1 sm:grid-cols-2`,
       'mb-8'
     )}
-      key={key ? key : header}
     >
       <div className={
         cn('flex flex-col gap-2 order-${left} sm:col-span-1 col-span-2', left, leftClasses)
