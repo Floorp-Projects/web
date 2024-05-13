@@ -45,7 +45,7 @@ export default async function HeaderAndSideNav({lang}: HeaderAndSideNavProps) {
           <Button
             variant="outline"
             className="shrink-0 md:hidden"
-            paddingH="none"
+            paddingH="sm"
           >
             <RiMenuUnfoldLine className="h-5 w-5"/>
             <span className="sr-only">Toggle navigation menu</span>
