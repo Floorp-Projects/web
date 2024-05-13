@@ -29,8 +29,12 @@
     "description": "Thank you for downloading Floorp. Please select the version you want to download.",
     "downloadAlert": "Floorpをダウンロードすると、<1>プライバシーポリシー</1>に同意したものとみなされます。",
     "daylightAlert": "Floorp DaylightはFloorpのベータ版です。正常に動作しないかもしれません。",
-    "windows64bitOnlineInstaller": "Windows 64bit オンラインインストーラ",
-    "windows64bitOfflineInstaller": "Windows 64bit オフラインインストーラ"
+    "dropdownLocale": {
+      "notFound": "Not found",
+      "notSelected": "Select a platform",
+      "placeholder": "Select a platform...",
+      "label": "Your platform"
+    }
   },
   "landingPage": {
     "hero": "<1>Floorpによる</1>\n無制限の\nカスタマイズ性",
@@ -41,6 +45,44 @@
       "sourceCode": "ソースコードを見る"
     },
     "feature": "特徴",
+    "previewParallax": {
+      "title": "Floorp ブラウザ",
+      "description": "Floorpは日本で作られたFirefoxをベースにした新しいブラウザです。プライバシーと柔軟性に焦点を当てたブラウザです。",
+      "images": [
+        {
+          "title": "Moonbeam",
+          "key": "moonbeam"
+        },
+        {
+          "title": "Cursor",
+          "key": "cursor"
+        },
+        {
+          "title": "Rogue",
+          "key": "rogue"
+        },
+        {
+          "title": "Editorially",
+          "key": "editorially"
+        },
+        {
+          "title": "Editrix AI",
+          "key": "editrix"
+        },
+        {
+          "key": "ablaze",
+          "title": "Ablaze"
+        },
+        {
+          "key": "ablazeProfile",
+          "title": "Ablaze Profile"
+        },
+        {
+          "key": "genbun",
+          "title": "Genbun"
+        }
+      ]
+    },
     "features": [
       {
         "key": "privacy",
