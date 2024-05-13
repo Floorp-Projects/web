@@ -9,7 +9,7 @@ import LogoDark from "@/public/logo-dark.png";
 
 export default function Footer() {
   return (
-    <footer className="bottom-0 flex h-48 w-full items-center flex-col gap-4 border-t bg-background">
+    <footer className="bottom-0 flex h-[20vh] w-full items-center flex-col gap-4 border-t bg-background">
       <div className="flex w-full pt-4 max-w-4xl gap-4 justify-between items-center">
         <div className={'flex gap-4 items-start justify-end flex-col'}>
           <ThemedImage
