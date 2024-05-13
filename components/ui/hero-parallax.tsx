@@ -1,6 +1,6 @@
 "use client";
 
-import React from "react";
+import React, {Suspense} from "react";
 import {
   motion,
   useScroll,
@@ -10,6 +10,7 @@ import {
 } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
+import {Skeleton} from "@/components/ui/skeleton";
 
 export type ParallaxProduct = {
   title: string;
@@ -65,7 +66,7 @@ export const HeroParallax = ({title, description, products}: HeroParallaxProps) 
       ref={ref}
       className={`${height} py-40 overflow-hidden  antialiased relative flex flex-col self-auto [perspective:1000px] [transform-style:preserve-3d]`}
     >
-      <Header description={description} title={title} />
+      <Header description={description} title={title}/>
       <motion.div
         style={{
           rotateX,
@@ -156,7 +157,9 @@ export const ProductCard = ({product, translate}: ProductCardProps) => {
       href={product.link}
       className="block group-hover/product:shadow-2xl "
     >
-      {image}
+      <Suspense fallback={<Skeleton className="h-[125px] w-[250px] rounded-xl"/>}>
+        {image}
+      </Suspense>
     </Link>
   }
 
@@ -172,6 +175,7 @@ export const ProductCard = ({product, translate}: ProductCardProps) => {
       className="group/product h-96 w-[30rem] relative flex-shrink-0"
     >
       {getComponent()}
+
       <div
         className="absolute inset-0 h-full w-full opacity-0 group-hover/product:opacity-80 bg-black pointer-events-none"></div>
       <h2 className="absolute bottom-4 left-4 opacity-0 group-hover/product:opacity-100 text-white">

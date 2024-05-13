@@ -7,9 +7,9 @@ import {HeaderGridItem, ThreeColBentoGrid} from "@/components/ui/bento-grid";
 import {ArticleResponse} from "@/components/layout/articles/article";
 import ArticleList from "@/components/layout/articles/article-list";
 import {PreviewParallax} from "@/components/layout/landing/preview-parallax";
-import {FeatureScroll} from "@/components/layout/landing/feature-scroll";
 import FeatureColumns from "@/components/layout/landing/feature-columns";
-import {ComboboxDemo} from "@/components/ui/combobox";
+import {Suspense} from "react";
+import {Skeleton} from "@/components/ui/skeleton";
 
 type HomeProps = {
   params: { lang: Locale }
@@ -60,8 +60,12 @@ export default async function Home({params: {lang}}: HomeProps) {
     <main className='w-full py-24'>
       <div className="flex min-h-screen w-full flex-col">
         <div className="w-full flex flex-col gap-4 lg:grid lg:grid-cols-2 md:gap-4 md:px-4">
-          <MainHero translation={dict.landingPage.hero}/>
-          <MainHeroCard {...heroProps}/>
+          <Suspense fallback={<Skeleton className="h-[125px] w-[250px] rounded-xl"/>}>
+            <MainHero translation={dict.landingPage.hero}/>
+          </Suspense>
+          <Suspense fallback={<Skeleton className="h-[125px] w-[250px] rounded-xl"/>}>
+            <MainHeroCard {...heroProps}/>
+          </Suspense>
           <div className='col-span-2 flex flex-col gap-4 items-center mt-10'>
             <h2 className="text-4xl font-bold text-neutral-900 dark:text-neutral-100">
               {dict.landingPage.feature}
