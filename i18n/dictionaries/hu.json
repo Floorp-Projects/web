@@ -2,7 +2,20 @@
   "components": {
     "languageSelect": "Language",
     "inReview": "In Review",
-    "waitingForContributions": "Not translated"
+    "waitingForContributions": "Not translated",
+    "starUs": "Star us on GitHub",
+    "header": {
+      "links": {
+        "download": "Download",
+        "changelog": "Changelog"
+      }
+    },
+    "alerts": {
+      "warning": "Warning",
+      "error": "Error",
+      "success": "Success",
+      "info": "Info"
+    }
   },
   "common": {
     "description": "Floorp is built on Firefox and was built in Japan and is a new browser with excellent privacy & flexibility."
@@ -11,6 +24,8 @@
     "title": "Floorp Browser"
   },
   "downloadPage": {
+    "download": "Download Floorp",
+    "description": "Thank you for downloading Floorp. Please select the version you want to download.",
     "downloadAlert": "If you download Floorp you agree to the <1>Privacy Policy</1>.",
     "daylightAlert": "Floorp Daylight is a beta version of Floorp. Maybe it will not work properly.",
     "windows64bitOnlineInstaller": "Windows 64bit Online Installer",
