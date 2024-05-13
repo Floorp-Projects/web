@@ -1,4 +1,4 @@
-import { getDictionary } from "@/i18n/dictionaries";
+import {getDictionary} from "@/i18n/dictionaries";
 import {Locale} from "@/i18n/i18n.config";
 import FAlert from "@/components/alert";
 import PlatformSelect from "@/components/layout/download/platform-select";
@@ -20,7 +20,7 @@ export default async function Download({params: {lang}}: DownloadProps) {
             description={dict.downloadPage.downloadAlert}
             lang={lang}
           />
-          <PlatformSelect />
+          <PlatformSelect locale={dict.downloadPage.dropdownLocale}/>
         </div>
       </div>
     </main>

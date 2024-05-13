@@ -4,13 +4,12 @@ import {MainHero} from "@/components/layout/main-hero";
 import MainHeroCard from "@/components/layout/hero-card";
 import {BiBadgeCheck, BiBrush, BiCodeAlt, BiLockAlt, BiPaintRoll, BiShield} from 'react-icons/bi';
 import {HeaderGridItem, ThreeColBentoGrid} from "@/components/ui/bento-grid";
-import Feature1 from "@/public/feature1.svg";
-import Feature2 from "@/public/feature2.svg";
-import Feature3 from "@/public/feature3.svg";
-import Feature from "@/components/layout/feature";
-import {formatTranslation as f} from "@/i18n/utils";
-import Article, {ArticleResponse} from "@/components/layout/articles/article";
+import {ArticleResponse} from "@/components/layout/articles/article";
 import ArticleList from "@/components/layout/articles/article-list";
+import {PreviewParallax} from "@/components/layout/landing/preview-parallax";
+import {FeatureScroll} from "@/components/layout/landing/feature-scroll";
+import FeatureColumns from "@/components/layout/landing/feature-columns";
+import {ComboboxDemo} from "@/components/ui/combobox";
 
 type HomeProps = {
   params: { lang: Locale }
@@ -23,12 +22,6 @@ const iconMap = {
   "sidebar": <BiPaintRoll/>,
   "noTracking": <BiShield/>,
   "openSource": <BiCodeAlt/>
-} as Record<string, any>;
-
-const columnImageMap = {
-  "dualSidebar": Feature1,
-  "flexibleToolbar": Feature2,
-  "privacyProtection": Feature3
 } as Record<string, any>;
 
 const getHeroProps = async (lang: Locale) => {
@@ -86,16 +79,10 @@ export default async function Home({params: {lang}}: HomeProps) {
                 />
               ))}
             </ThreeColBentoGrid>
-            {dict.landingPage.columns.map((item, i) => (
-              <Feature
-                image={columnImageMap[item.key]}
-                header={item.title}
-                description={f(item.description)}
-                leftToRight={i % 2 === 0}
-                key={i}
-              />
-            ))
-            }
+            <FeatureColumns lang={lang}/>
+          </div>
+          <div className={'w-full col-span-2 flex flex-col gap-4 items-center'}>
+            <PreviewParallax lang={lang}/>
           </div>
           <div className={'w-full col-span-2 flex flex-col gap-4 items-center'}>
             <div className={'flex flex-col gap-4 max-w-4xl w-full'}>
@@ -105,7 +92,7 @@ export default async function Home({params: {lang}}: HomeProps) {
               <ArticleList articles={articles} fadeOutAfter={3} seeMore={{
                 link: "https://blog.ablaze.one/category/ablaze/ablaze-project/floorp/",
                 text: dict.landingPage.article.readMore
-              }} />
+              }}/>
             </div>
           </div>
         </div>
