@@ -24,6 +24,45 @@ export enum Platform {
   Unknown = 'Unknown'
 }
 
+export const convertOptionToPlatform = (option: string): Platform => {
+  switch (option) {
+    case "windows32":
+      return Platform.Windows32;
+    case "windows64":
+      return Platform.Windows64;
+    case "linux":
+      return Platform.Linux;
+    case "macos":
+      return Platform.MacOS;
+    case "android":
+      return Platform.Android;
+    case "ios":
+      return Platform.IOS;
+    default:
+      return Platform.Unknown;
+  }
+}
+
+export const convertPlatformToOption = (platform: Platform): string => {
+  switch (platform) {
+    case Platform.Windows32:
+      return "windows32";
+    case Platform.Windows64:
+      return "windows64";
+    case Platform.Linux:
+      return "linux";
+    case Platform.MacOS:
+      return "macos";
+    case Platform.Android:
+      return "android";
+    case Platform.IOS:
+      return "ios";
+    default:
+      return "unknown";
+  }
+}
+
+
 export function getPlatform(ua: string): Platform {
   ua = ua.toLowerCase()
   if (ua.indexOf('linux') !== -1) {
