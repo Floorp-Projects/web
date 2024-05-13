@@ -1,15 +1,16 @@
 import Link from "next/link";
-import {Menu} from "lucide-react";
+import {RiMenuUnfoldLine} from "@remixicon/react"
 import {Sheet, SheetContent, SheetTrigger} from "@/components/ui/sheet";
 import {Button, buttonVariants} from "@/components/ui/button";
-import Image from "next/image";
-import Logo from "@/public/logo.svg";
+import Logo from "@/public/logo.png";
+import LogoDark from "@/public/logo-dark.png";
 import {ThemeSwitch} from "@/components/theme-switch";
 import {cn} from "@/lib/utils";
 import LanguageSelect from "@/components/language-select";
 import DevAlert from "@/components/layout/dev-alert";
 import {Locale} from "@/i18n/i18n.config";
 import {getDictionary} from "@/i18n/dictionaries";
+import ThemedImage from "@/components/themed-image";
 
 type HeaderAndSideNavProps = {
   lang: Locale;
@@ -30,18 +31,23 @@ export default async function HeaderAndSideNav({lang}: HeaderAndSideNavProps) {
           href={`/${lang}`}
           className="flex items-center gap-2 text-lg font-semibold md:text-base"
         >
-          <Image src={Logo} alt="logo" width={100} height={50} />
-          <span className="sr-only">Acme Inc</span>
+          <ThemedImage
+            darkImage={LogoDark}
+            lightImage={Logo}
+            alt={"logo"}
+            rest={{width: 100, height: 50}}
+          />
+          <span className="sr-only">Floorp</span>
         </Link>
       </nav>
       <Sheet>
         <SheetTrigger asChild>
           <Button
             variant="outline"
-            size="icon"
             className="shrink-0 md:hidden"
+            paddingH="none"
           >
-            <Menu className="h-5 w-5"/>
+            <RiMenuUnfoldLine className="h-5 w-5"/>
             <span className="sr-only">Toggle navigation menu</span>
           </Button>
         </SheetTrigger>
@@ -51,17 +57,22 @@ export default async function HeaderAndSideNav({lang}: HeaderAndSideNavProps) {
               href={`/${lang}`}
               className="flex items-center gap-2 text-lg font-semibold"
             >
-              <Image src={Logo} alt="logo" width={100} height={50} />
-              <span className="sr-only">Acme Inc</span>
+              <ThemedImage
+                darkImage={LogoDark}
+                lightImage={Logo}
+                alt={"logo"}
+                rest={{width: 100, height: 50}}
+              />
+              <span className="sr-only">Floorp</span>
             </Link>
             <Link
-              href="#"
+              href="/"
               className="text-muted-foreground hover:text-foreground"
             >
-              Star us
+              {dict.components.starUs}
             </Link>
-            <Link href="#" className="hover:text-foreground">
-              Download
+            <Link href={`/${lang}/download`} className="text-muted-foreground hover:text-foreground">
+              {dict.components.header.links.download}
             </Link>
           </nav>
         </SheetContent>
@@ -78,7 +89,7 @@ export default async function HeaderAndSideNav({lang}: HeaderAndSideNavProps) {
               className={cn(
                 buttonVariants({variant: "default"})
               )}
-        >Download</Link>
+        >{dict.components.header.links.download}</Link>
       </div>
     </header>
   )

@@ -24,7 +24,7 @@ export function MainHero({translation}: MainHeroProps) {
           duration: 0.5,
           ease: [0.4, 0.0, 0.2, 1],
         }}
-        className="px-4 text-2xl sm:text-4xl md:text-5xl lg:text-7xl font-bold text-neutral-700 dark:text-white max-w-4xl leading-relaxed lg:leading-snug text-left mx-auto "
+        className="px-4 text-4xl sm:text-4xl md:text-5xl lg:text-7xl font-bold text-neutral-700 dark:text-white max-w-4xl leading-relaxed lg:leading-snug text-left mx-auto "
       >
         {formatted}
       </motion.h1>
