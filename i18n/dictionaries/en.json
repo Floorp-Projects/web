@@ -29,8 +29,12 @@
     "description": "Thank you for downloading Floorp. Please select the version you want to download.",
     "downloadAlert": "If you download Floorp you agree to the <1>Privacy Policy</1>.",
     "daylightAlert": "Floorp Daylight is a beta version of Floorp. Maybe it will not work properly.",
-    "windows64bitOnlineInstaller": "Windows 64bit Online Installer",
-    "windows64bitOfflineInstaller": "Windows 64bit Offline Installer"
+    "dropdownLocale": {
+      "notFound": "Not found",
+      "notSelected": "Select a platform",
+      "placeholder": "Select a platform...",
+      "label": "Your platform"
+    }
   },
   "landingPage": {
     "hero": "Unlimited\ncustomizability\n<1>with Floorp</1>",
@@ -41,6 +45,44 @@
       "sourceCode": "View Source Code"
     },
     "feature": "Features",
+    "previewParallax": {
+      "title": "Floorp Browser",
+      "description": "Floorp is a new browser based on Firefox that was built in Japan. It is a browser that focuses on privacy and flexibility.",
+      "images": [
+        {
+          "title": "Moonbeam",
+          "key": "moonbeam"
+        },
+        {
+          "title": "Cursor",
+          "key": "cursor"
+        },
+        {
+          "title": "Rogue",
+          "key": "rogue"
+        },
+        {
+          "title": "Editorially",
+          "key": "editorially"
+        },
+        {
+          "title": "Editrix AI",
+          "key": "editrix"
+        },
+        {
+          "key": "ablaze",
+          "title": "Ablaze"
+        },
+        {
+          "key": "ablazeProfile",
+          "title": "Ablaze Profile"
+        },
+        {
+          "key": "genbun",
+          "title": "Genbun"
+        }
+      ]
+    },
     "features": [
       {
         "key": "privacy",
