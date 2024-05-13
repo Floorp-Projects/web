@@ -3,8 +3,6 @@ import {getDictionary} from "@/i18n/dictionaries";
 import {Locale} from "@/i18n/i18n.config";
 import {RiInformationLine, RiErrorWarningLine, RiAlarmWarningLine, RiLightbulbFlashLine} from "@remixicon/react";
 import {replaceComponent as r} from "@/i18n/utils";
-import Link from "next/link";
-import {buttonVariants} from "@/components/ui/button";
 import {getLink} from "@/i18n/common-components";
 import {cn} from "@/lib/utils";
 
@@ -68,7 +66,9 @@ export default async function FAlert({lang, description, severity = "info"}: Inf
       getColor(severity),
       "my-4"
     )}>
-      {getIcon(severity)}
+      <div className='absolute right-4 top-4'>
+        {getIcon(severity)}
+      </div>
       <AlertTitle>{getTitle(severity)}</AlertTitle>
       <AlertDescription>
         {r(description, getLink("https://docs.ablaze.one/floorp_privacy_policy"))}
