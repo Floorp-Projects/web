@@ -19,9 +19,11 @@ import {
   PopoverContent,
   PopoverTrigger,
 } from "@/components/ui/popover"
+import {useEffect} from "react";
 
-export type ComboboxItem = {
-  value: string
+export type ComboboxItem<T> = {
+  value: T
+  valueString: string
   label: string
 }
 
@@ -32,18 +34,39 @@ export type ComboboxLocale = {
   label: string;
 }
 
-type ComboboxProps = {
-  items: ComboboxItem[];
-  selected: ComboboxItem | null;
+type ComboboxProps<T> = {
+  items: ComboboxItem<T>[];
+  initialValue: T | null;
   locale: ComboboxLocale;
+  onChange?: (value: T) => void;
 }
 
+function getItem<T>(value: T | null, items: ComboboxItem<T>[]): ComboboxItem<T> | null {
+  if (!value) {
+    return null
+  }
 
-export function Combobox({items, selected, locale}: ComboboxProps) {
+  return items.find((item) => item.value === value) || null
+}
+
+export function Combobox<T>({items, initialValue, locale, onChange}: ComboboxProps<T>) {
   const [open, setOpen] = React.useState(false)
-  const [selectedStatus, setSelectedStatus] = React.useState<ComboboxItem | null>(
-    selected || null
+  const [selected, setSelected] = React.useState<ComboboxItem<T> | null>(
+    getItem(initialValue, items)
   )
+
+  useEffect(() => {
+    setSelected(getItem(initialValue, items))
+  }, [initialValue])
+
+  const handleSelect = (value: string) => {
+    const _selected = items.find((priority) => priority.valueString === value)
+    setSelected(_selected || null)
+    setOpen(false)
+    if (onChange && _selected) {
+      onChange(_selected.value)
+    }
+  }
 
   return (
     <div className="flex items-center space-x-4">
@@ -53,11 +76,11 @@ export function Combobox({items, selected, locale}: ComboboxProps) {
           <Button
             variant="outline"
             size="sm"
-            className="w-[150px] justify-start"
+            className="min-w-48 justify-between"
           >
-            {selectedStatus ? (
+            {selected ? (
               <>
-                {selectedStatus.label}
+                {selected.label}
               </>
             ) : (
               <>{locale.notSelected}</>
@@ -71,17 +94,11 @@ export function Combobox({items, selected, locale}: ComboboxProps) {
             <CommandList>
               <CommandEmpty>{locale.notFound}</CommandEmpty>
               <CommandGroup>
-                {items.map((item) => (
+                {items.map((item, i) => (
                   <CommandItem
-                    key={item.value}
-                    value={item.value}
-                    onSelect={(value) => {
-                      setSelectedStatus(
-                        items.find((priority) => priority.value === value) ||
-                        null
-                      )
-                      setOpen(false)
-                    }}
+                    key={i}
+                    value={item.valueString}
+                    onSelect={(value) => handleSelect(value)}
                   >
                     <span>{item.label}</span>
                   </CommandItem>
