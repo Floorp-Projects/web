@@ -208,7 +208,7 @@ export async function getStaticProps(ctx) {
     release_id: 'latest',
   });
   const platforms = ['Windows 64bit', 'Windows 32bit', 'Windows 64bit Offline', 'macOS', 'Linux'];
-  const fileNames = ['floorp-stub.installer.exe', 'floorp-win64.installer.exe', 'floorp-win32.installer.exe', 'floorp-macOS-universal.dmg'];
+  const fileNames = ['floorp-stub.installer.exe', 'floorp-win64.installer.exe', 'floorp-windows32.installer.exe', 'floorp-macOS-universal.dmg'];
   const date = new Date(response.data.published_at);
   const assets = fileNames.map((fileName, index) => {
     const asset = response.data.assets.find((asset) => asset.name.includes(fileName));

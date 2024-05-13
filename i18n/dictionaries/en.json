@@ -33,7 +33,8 @@
       "notFound": "Not found",
       "notSelected": "Select a platform",
       "placeholder": "Select a platform...",
-      "label": "Your platform"
+      "label": "Your platform",
+      "detect": "Detect"
     }
   },
   "landingPage": {
