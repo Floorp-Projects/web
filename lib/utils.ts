@@ -5,6 +5,15 @@ export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs))
 }
 
+export const platformOptions = {
+  "windows32": "Windows32",
+  "windows64": "Windows64",
+  "linux": "Linux",
+  "macos": "MacOS",
+  "android": "Android",
+  "ios": "IOS",
+} as Record<string, string>;
+
 export enum Platform {
   Linux = 'Linux',
   Windows32 = 'Windows32',

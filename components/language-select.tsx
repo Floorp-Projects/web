@@ -15,6 +15,7 @@ import {
 } from './ui/dropdown-menu';
 import {Button} from './ui/button';
 import {isNotStarted, isReviewed} from "@/i18n/validators";
+import {LanguagesIcon} from "lucide-react";
 
 export interface LanguageSelectProps {
   languageSelect: string;
@@ -55,12 +56,12 @@ export default function LanguageSelect({languageSelect, inReview, waitingForCont
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
-        <Button variant="outline">{languageSelect}</Button>
+        <Button variant="outline" paddingH={'sm'}><LanguagesIcon className={'h-5 w-5'} /></Button>
       </DropdownMenuTrigger>
       <DropdownMenuContent className="w-56">
         <DropdownMenuLabel>{languageSelect}</DropdownMenuLabel>
         <DropdownMenuSeparator/>
-        {i18n.locales.map((locale) => {
+        {i18n.locales.filter(locale => Object.keys(dict).includes(locale)).map(locale => {
           return (
             <DropdownMenuItem key={locale} disabled={!isReviewed(locale)} asChild>
               <Link href={redirectedPathName(locale)}>
