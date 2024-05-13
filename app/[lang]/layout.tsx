@@ -7,6 +7,7 @@ import {Inter as FontSans} from "next/font/google"
 import {ThemeProvider} from "@/components/theme-provider";
 import HeaderAndSideNav from "@/components/layout/header-and-side-nav";
 import Footer from "@/components/layout/footer";
+import {cn} from "@/lib/utils";
 
 type MetadataProps = {
   params: { lang: Locale }
@@ -35,7 +36,10 @@ export default async function RootLayout({ params: { lang }, children }: RootLay
 
   return (
     <html lang="en" suppressHydrationWarning>
-    <body className={bodyClasses}>
+    <body className={cn(
+      bodyClasses,
+      "overflow-x-hidden"
+    )}>
     <ThemeProvider
       attribute={"class"}
       defaultTheme={'system'}
