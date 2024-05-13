@@ -21,7 +21,6 @@ export enum Platform {
   MacOS = 'MacOS',
   Android = 'Android',
   IOS = 'IOS',
-  Unknown = 'Unknown'
 }
 
 export const convertOptionToPlatform = (option: string): Platform => {
@@ -39,7 +38,7 @@ export const convertOptionToPlatform = (option: string): Platform => {
     case "ios":
       return Platform.IOS;
     default:
-      return Platform.Unknown;
+      return Platform.Linux;
   }
 }
 
@@ -58,7 +57,7 @@ export const convertPlatformToOption = (platform: Platform): string => {
     case Platform.IOS:
       return "ios";
     default:
-      return "unknown";
+      return "linux";
   }
 }
 
@@ -84,5 +83,5 @@ export function getPlatform(ua: string): Platform {
     return Platform.IOS
   }
 
-  return Platform.Unknown
+  return Platform.Linux
 }
