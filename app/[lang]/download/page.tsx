@@ -1,6 +1,7 @@
 import { getDictionary } from "@/i18n/dictionaries";
 import {Locale} from "@/i18n/i18n.config";
-import InfoAlert from "@/components/layout/info-alert";
+import FAlert from "@/components/alert";
+import PlatformSelect from "@/components/layout/download/platform-select";
 
 type DownloadProps = {
   params: { lang: Locale }
@@ -14,10 +15,12 @@ export default async function Download({params: {lang}}: DownloadProps) {
         <div className="flex flex-col max-w-4xl">
           <h1 className="text-4xl font-bold">{dict.downloadPage.download}</h1>
           <p>{dict.downloadPage.description}</p>
-          <InfoAlert
-            title={dict.components.alerts.info}
+          <FAlert
+            severity="info"
             description={dict.downloadPage.downloadAlert}
+            lang={lang}
           />
+          <PlatformSelect />
         </div>
       </div>
     </main>

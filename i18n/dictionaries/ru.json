@@ -14,7 +14,8 @@
       "warning": "Warning",
       "error": "Error",
       "success": "Success",
-      "info": "Info"
+      "info": "Info",
+      "dyk": "Did you know?"
     }
   },
   "common": {
