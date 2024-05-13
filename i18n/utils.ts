@@ -1,11 +1,24 @@
 import React from "react";
 
 
+/**
+ * Formats a translation string with the given values.
+ * {{name}} will be replaced with the value of values.name
+ * @param translation
+ * @param values
+ */
 function _formatTranslation(translation: string, values: Record<string, string> = {}) {
   for (const key in values) {
     translation = translation.replace(`{{${key}}}`, values[key]);
   }
   return translation;
+}
+
+/**
+ * Generates a random key for a component.
+ */
+function _randomKey(): string {
+  return Math.random().toString(36).substring(7);
 }
 
 
@@ -46,7 +59,7 @@ function _replaceLineBreaks(translation: string): React.ReactNode {
     }
   }
 
-  return React.createElement(React.Fragment, {key: "fragment"}, elements);
+  return React.createElement(React.Fragment, {key: _randomKey()}, elements);
 }
 
 /**
@@ -70,7 +83,7 @@ export function replaceComponent(translation: string, component: TranslationComp
   const leftText = _replaceLineBreaks(parts[0] as string);
   const rightText = _replaceLineBreaks(parts[2] as string);
   let elements = [leftText, parts[1], rightText];
-  return React.createElement(React.Fragment, {key: "fragment"}, elements);
+  return React.createElement(React.Fragment, {key: component.key}, elements);
 }
 
 /**
