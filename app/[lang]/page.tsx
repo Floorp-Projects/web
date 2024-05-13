@@ -59,7 +59,7 @@ export default async function Home({params: {lang}}: HomeProps) {
   return (
     <main className='w-full py-24'>
       <div className="flex min-h-screen w-full flex-col">
-        <div className="w-full flex flex-col gap-4 lg:grid lg:grid-cols-2 md:gap-4 md:px-4">
+        <div className="w-full flex flex-col gap-4 lg:grid lg:grid-cols-2 md:gap-4 md:px-4 overflow-hidden">
           <Suspense fallback={<Skeleton className="h-[125px] w-[250px] rounded-xl"/>}>
             <MainHero translation={dict.landingPage.hero}/>
           </Suspense>

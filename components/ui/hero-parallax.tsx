@@ -64,7 +64,7 @@ export const HeroParallax = ({title, description, products}: HeroParallaxProps) 
   return (
     <div
       ref={ref}
-      className={`${height} py-40 overflow-hidden  antialiased relative flex flex-col self-auto [perspective:1000px] [transform-style:preserve-3d]`}
+      className={`${height} py-40 overflow-hidden antialiased relative flex flex-col self-auto [perspective:1000px] [transform-style:preserve-3d]`}
     >
       <Header description={description} title={title}/>
       <motion.div
@@ -143,7 +143,7 @@ export const ProductCard = ({product, translate}: ProductCardProps) => {
       src={product.thumbnail}
       height="600"
       width="600"
-      className="object-cover object-left-top absolute h-full w-full inset-0"
+      className="object-cover object-left-top absolute inset-0 w-full h-full rounded-xl"
       alt={product.title}
     />
   );
@@ -172,10 +172,9 @@ export const ProductCard = ({product, translate}: ProductCardProps) => {
         y: -20,
       }}
       key={product.title}
-      className="group/product h-96 w-[30rem] relative flex-shrink-0"
+      className="group/product h-52 w-64 relative flex-shrink-0 lg:h-96 lg:w-[30rem]"
     >
       {getComponent()}
-
       <div
         className="absolute inset-0 h-full w-full opacity-0 group-hover/product:opacity-80 bg-black pointer-events-none"></div>
       <h2 className="absolute bottom-4 left-4 opacity-0 group-hover/product:opacity-100 text-white">
