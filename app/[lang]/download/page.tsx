@@ -1,28 +1,21 @@
-import {getDictionary} from "@/i18n/dictionaries";
+"use client";
+
+import {useEffect} from "react";
+import {convertPlatformToOption, getPlatform} from "@/lib/utils";
+import { useRouter } from "next/navigation";
 import {Locale} from "@/i18n/i18n.config";
-import FAlert from "@/components/alert";
-import PlatformSelect from "@/components/layout/download/platform-select";
 
-type DownloadProps = {
-  params: { lang: Locale }
-};
+type DownloadPageProps = {
+  params: { lang: Locale };
+}
 
-export default async function Download({params: {lang}}: DownloadProps) {
-  const dict = await getDictionary(lang);
-  return (
-    <main className='w-full py-24'>
-      <div className="flex min-h-screen w-full flex-col items-center">
-        <div className="flex flex-col max-w-4xl">
-          <h1 className="text-4xl font-bold">{dict.downloadPage.download}</h1>
-          <p>{dict.downloadPage.description}</p>
-          <FAlert
-            severity="info"
-            description={dict.downloadPage.downloadAlert}
-            lang={lang}
-          />
-          <PlatformSelect locale={dict.downloadPage.dropdownLocale}/>
-        </div>
-      </div>
-    </main>
-  );
+export default function DownloadPage({params: {lang}}: DownloadPageProps) {
+  const router = useRouter();
+  useEffect(() => {
+      const ua = navigator.userAgent;
+      const _p = getPlatform(ua);
+      router.push( `/${lang}/download/${convertPlatformToOption(_p)}`);
+  }, [])
+
+  return <></>
 }
