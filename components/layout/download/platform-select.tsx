@@ -1,17 +1,15 @@
 "use client";
 
-
-import {useCallback, useEffect, useState} from "react";
+import {useEffect, useState} from "react";
 import {
   Platform,
   getPlatform,
-  platformOptions,
   convertOptionToPlatform,
   convertPlatformToOption,
   cn
 } from "@/lib/utils";
 import {Combobox, ComboboxItem, ComboboxLocale} from "@/components/ui/combobox";
-import {usePathname, useRouter, useSearchParams} from "next/navigation";
+import {usePathname, useRouter} from "next/navigation";
 import {Locale} from "@/i18n/i18n.config";
 import {Button} from "@/components/ui/button";
 
