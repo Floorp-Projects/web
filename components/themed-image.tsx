@@ -7,10 +7,11 @@ type ThemedImageProps = {
   // TODO: Fix the type of darkImage and lightImage to be StaticImageData
   lightImage: React.ReactNode | any;
   alt: string;
+  className?: string;
   rest?: object;
 }
 
-export default function ThemedImage({darkImage, lightImage, alt, rest}: ThemedImageProps) {
+export default function ThemedImage({darkImage, lightImage, alt, rest, className}: ThemedImageProps) {
   const getDark = () =>{
     if (React.isValidElement(darkImage)) {
       return darkImage;
@@ -24,7 +25,7 @@ export default function ThemedImage({darkImage, lightImage, alt, rest}: ThemedIm
       return lightImage;
     }
 
-    return <Image src={lightImage} alt={alt} {...rest} />;
+    return <Image src={lightImage} alt={alt} className={className} {...rest} />;
   }
   return (
     <>

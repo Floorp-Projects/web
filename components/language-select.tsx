@@ -1,6 +1,6 @@
 'use client'
 
-import {usePathname} from 'next/navigation'
+import {usePathname, useSearchParams} from 'next/navigation'
 import Link from 'next/link'
 import {i18n} from '@/i18n/i18n.config';
 import {
@@ -26,11 +26,15 @@ export interface LanguageSelectProps {
 export default function LanguageSelect({languageSelect, inReview, waitingForContributions}: LanguageSelectProps) {
 
   const pathName = usePathname()
+  const searchParams = useSearchParams();
+
   const redirectedPathName = (locale: string) => {
     if (!pathName) return '/'
     const segments = pathName.split('/')
     segments[1] = locale
-    return segments.join('/')
+    const url = segments.join('/');
+    const params = new URLSearchParams(searchParams.toString())
+    return `${url}?${params.toString()}`
   }
 
   const dict = {
