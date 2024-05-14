@@ -43,6 +43,7 @@ const buttonVariants = cva(
         sm: "h-9 rounded-md",
         lg: "h-11 rounded-md",
         icon: "h-10 w-10",
+        auto: "h-auto w-auto",
         none: "",
       },
     },
