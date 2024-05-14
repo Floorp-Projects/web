@@ -1,5 +1,5 @@
 import Link from "next/link";
-import {RiMenuUnfoldLine} from "@remixicon/react"
+import {RiDiscordFill, RiGithubFill, RiMenuUnfoldLine, RiStarLine, RiTwitterXFill} from "@remixicon/react"
 import {Sheet, SheetContent, SheetTrigger} from "@/components/ui/sheet";
 import {Button, buttonVariants} from "@/components/ui/button";
 import Logo from "@/public/logo.png";
@@ -11,6 +11,8 @@ import DevAlert from "@/components/layout/dev-alert";
 import {Locale} from "@/i18n/i18n.config";
 import {getDictionary} from "@/i18n/dictionaries";
 import ThemedImage from "@/components/themed-image";
+import {FaDiscord, FaGithub, FaTwitter} from "react-icons/fa";
+import {FaX} from "react-icons/fa6";
 
 type HeaderAndSideNavProps = {
   lang: Locale;
@@ -18,10 +20,12 @@ type HeaderAndSideNavProps = {
 
 const env = process.env.ENV;
 
+const linkClasses = "text-muted-foreground hover:text-foreground flex flex-row gap-2 items-center";
+
 export default async function HeaderAndSideNav({lang}: HeaderAndSideNavProps) {
   const dict = await getDictionary(lang);
   const devModeBadge = env === "development" ? (
-    <DevAlert />
+    <DevAlert/>
   ) : null;
   return (
     <header className="top-0 z-0 flex justify-between h-16 items-center gap-4 border-b bg-background px-4 md:px-6">
@@ -66,25 +70,45 @@ export default async function HeaderAndSideNav({lang}: HeaderAndSideNavProps) {
               <span className="sr-only">Floorp</span>
             </Link>
             <Link
-              href="/"
-              className="text-muted-foreground hover:text-foreground"
+              href="https://github.com/Floorp-Projects/Floorp"
+              className={linkClasses}
             >
-              {dict.components.starUs}
+              {dict.components.starUs} <RiStarLine className="h-5 w-5" color="yellow"/>
             </Link>
             <Link href={`/${lang}/download`} className="text-muted-foreground hover:text-foreground">
               {dict.components.header.links.download}
+            </Link>
+            <Link href="https://github.com/floorp-Projects/floorp/" className={linkClasses}>
+              <RiGithubFill className="h-5 w-5"/> GitHub
+            </Link>
+            <Link href="https://aka.ablaze.one/discord" className={linkClasses}>
+              <RiDiscordFill className="h-5 w-5"/> Discord
+            </Link>
+            <Link href="https://twitter.com/Floorp_Browser" className={linkClasses}>
+              <RiTwitterXFill className="h-5 w-5"/>
             </Link>
           </nav>
         </SheetContent>
       </Sheet>
       {devModeBadge}
-      <div className="flex gap-4 md:gap-2 lg:gap-4">
+      <div className="flex collapse sm:visible gap-4 md:gap-2 lg:gap-4">
+        <div className={'flex gap-2 flex-row'}>
+          <Link href="https://aka.ablaze.one/discord" className={buttonVariants({variant: 'ghost'})}>
+            <FaDiscord/>
+          </Link>
+          <Link href="https://twitter.com/Floorp_Browser" className={buttonVariants({variant: 'ghost'})}>
+            <FaTwitter/>
+          </Link>
+          <Link href="https://github.com/floorp-Projects/floorp/" className={buttonVariants({variant: 'ghost'})}>
+            <FaGithub/>
+          </Link>
+        </div>
         <LanguageSelect
           languageSelect={dict.components.languageSelect}
           inReview={dict.components.inReview}
           waitingForContributions={dict.components.waitingForContributions}
         />
-        <ThemeSwitch />
+        <ThemeSwitch/>
         <Link href={`/${lang}/download`}
               className={cn(
                 buttonVariants({variant: "default"})
