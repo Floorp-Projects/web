@@ -69,8 +69,8 @@ export function Combobox<T>({items, initialValue, locale, onChange}: ComboboxPro
   }
 
   return (
-    <div className="flex items-center space-x-4">
-      <p className="text-sm text-muted-foreground">{locale.label}</p>
+    <div className="flex flex-col sm:flex-row items-start sm:items-center gap-2">
+      <p className="text-sm text-muted-foreground ml-4 sm:ml-0">{locale.label}</p>
       <Popover open={open} onOpenChange={setOpen}>
         <PopoverTrigger asChild>
           <Button
