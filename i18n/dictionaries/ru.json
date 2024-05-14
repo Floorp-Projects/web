@@ -4,10 +4,13 @@
     "inReview": "In Review",
     "waitingForContributions": "Not translated",
     "starUs": "Star us on GitHub",
+    "loading": "Loading...",
     "header": {
       "links": {
         "download": "Download",
-        "changelog": "Changelog"
+        "changelog": "Changelog",
+        "discord": "Discord",
+        "github": "GitHub"
       }
     },
     "alerts": {
