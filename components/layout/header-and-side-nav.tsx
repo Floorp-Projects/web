@@ -111,8 +111,7 @@ export default async function HeaderAndSideNav({lang}: HeaderAndSideNavProps) {
         <ThemeSwitch/>
         <Link href={`/${lang}/download`}
               className={cn(
-                buttonVariants({variant: "default"}),
-                "collapse sm:visible"
+                buttonVariants({variant: "default"})
               )}
         >{dict.components.header.links.download}</Link>
       </div>
