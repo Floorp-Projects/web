@@ -16,9 +16,9 @@ const hoverCardContentVariants = cva(
       size: {
         default: "w-64",
         sm: "w-48",
-        lg: "w-80",
-        xl: "w-96",
-        xxl: "w-112",
+        lg: "w=72 sm:w-80",
+        xl: "w-72 sm:w-96",
+        xxl: "w-72 sm:w-[34rem]",
       },
     },
     defaultVariants: {

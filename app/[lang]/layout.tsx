@@ -8,6 +8,7 @@ import {ThemeProvider} from "@/components/theme-provider";
 import HeaderAndSideNav from "@/components/layout/header-and-side-nav";
 import Footer from "@/components/layout/footer";
 import {cn} from "@/lib/utils";
+import DevAlert from "@/components/layout/dev-alert";
 
 type MetadataProps = {
   params: { lang: Locale }
@@ -32,8 +33,6 @@ const fontSans = FontSans({
 
 export default async function RootLayout({ params: { lang }, children }: RootLayoutProps) {
   const bodyClasses = fontSans.className
-  const  dict = await getDictionary(lang)
-
   return (
     <html lang="en" suppressHydrationWarning>
     <body className={cn(
@@ -46,7 +45,10 @@ export default async function RootLayout({ params: { lang }, children }: RootLay
       enableSystem>
       <>
         <HeaderAndSideNav lang={lang} />
-        {children}
+        <div className="relative">
+          <DevAlert />
+          {children}
+        </div>
         <Footer />
       </>
     </ThemeProvider>
