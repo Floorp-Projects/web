@@ -4,10 +4,13 @@
     "inReview": "レビュー中",
     "waitingForContributions": "貢献を待っています",
     "starUs": "GitHubでStarをつける",
+    "loading": "読み込み中",
     "header": {
       "links": {
         "download": "ダウンロード",
-        "changelog": "変更履歴"
+        "changelog": "変更履歴",
+        "discord": "Discord",
+        "github": "GitHub"
       }
     },
     "alerts": {
