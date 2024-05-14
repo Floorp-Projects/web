@@ -15,14 +15,9 @@ import {Button} from "@/components/ui/button";
 
 const platforms: ComboboxItem<Platform>[] = [
   {
-    value: Platform.Windows64,
-    label: "Windows 64-bit",
-    valueString: convertPlatformToOption(Platform.Windows64),
-  },
-  {
-    value: Platform.Windows32,
-    label: "Windows 32-bit",
-    valueString: convertPlatformToOption(Platform.Windows32),
+    value: Platform.Windows,
+    label: "Windows",
+    valueString: convertPlatformToOption(Platform.Windows)
   },
   {
     value: Platform.MacOS,
@@ -50,7 +45,7 @@ export default function PlatformSelect({locale, lang, className}: PlatformSelect
   const router = useRouter()
   const pathname = usePathname()
   const lastSegment = pathname.split('/').pop();
-  const initPlatform = lastSegment ? convertOptionToPlatform(lastSegment) : Platform.Windows64;
+  const initPlatform = lastSegment ? convertOptionToPlatform(lastSegment) : Platform.Windows;
   const [platform, setPlatform] = useState(initPlatform);
   const [isDetecting, setIsDetecting] = useState(false);
 
@@ -86,7 +81,7 @@ export default function PlatformSelect({locale, lang, className}: PlatformSelect
   return (
     <div className={cn(
       className,
-      "flex flex-row gap-4"
+      "flex flex-row gap-4 items-end"
     )}>
       <Combobox items={platforms} initialValue={platform} locale={locale} onChange={onSelectionChange}/>
       <Button variant={'outline'} onClick={() => setIsDetecting(true)}>
