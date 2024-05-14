@@ -54,36 +54,8 @@
       "description": "Floorpは日本で作られたFirefoxをベースにした新しいブラウザです。プライバシーと柔軟性に焦点を当てたブラウザです。",
       "images": [
         {
-          "title": "Moonbeam",
-          "key": "moonbeam"
-        },
-        {
-          "title": "Cursor",
-          "key": "cursor"
-        },
-        {
-          "title": "Rogue",
-          "key": "rogue"
-        },
-        {
-          "title": "Editorially",
-          "key": "editorially"
-        },
-        {
-          "title": "Editrix AI",
-          "key": "editrix"
-        },
-        {
-          "key": "ablaze",
-          "title": "Ablaze"
-        },
-        {
-          "key": "ablazeProfile",
-          "title": "Ablaze Profile"
-        },
-        {
-          "key": "genbun",
-          "title": "Genbun"
+          "title": "Floorp Browser",
+          "key": "floorp1"
         }
       ]
     },
