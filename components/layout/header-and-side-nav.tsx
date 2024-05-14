@@ -91,8 +91,8 @@ export default async function HeaderAndSideNav({lang}: HeaderAndSideNavProps) {
         </SheetContent>
       </Sheet>
       {devModeBadge}
-      <div className="flex collapse sm:visible gap-4 md:gap-2 lg:gap-4">
-        <div className={'flex gap-2 flex-row'}>
+      <div className="flex gap-4 md:gap-2 lg:gap-4">
+        <div className={'flex gap-2 flex-row collapse sm:visible'}>
           <Link href="https://aka.ablaze.one/discord" className={buttonVariants({variant: 'ghost'})}>
             <FaDiscord/>
           </Link>
@@ -111,7 +111,8 @@ export default async function HeaderAndSideNav({lang}: HeaderAndSideNavProps) {
         <ThemeSwitch/>
         <Link href={`/${lang}/download`}
               className={cn(
-                buttonVariants({variant: "default"})
+                buttonVariants({variant: "default"}),
+                "collapse sm:visible"
               )}
         >{dict.components.header.links.download}</Link>
       </div>
