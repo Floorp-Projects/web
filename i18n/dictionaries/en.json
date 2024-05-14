@@ -54,36 +54,8 @@
       "description": "Floorp is a new browser based on Firefox that was built in Japan. It is a browser that focuses on privacy and flexibility.",
       "images": [
         {
-          "title": "Moonbeam",
-          "key": "moonbeam"
-        },
-        {
-          "title": "Cursor",
-          "key": "cursor"
-        },
-        {
-          "title": "Rogue",
-          "key": "rogue"
-        },
-        {
-          "title": "Editorially",
-          "key": "editorially"
-        },
-        {
-          "title": "Editrix AI",
-          "key": "editrix"
-        },
-        {
-          "key": "ablaze",
-          "title": "Ablaze"
-        },
-        {
-          "key": "ablazeProfile",
-          "title": "Ablaze Profile"
-        },
-        {
-          "key": "genbun",
-          "title": "Genbun"
+          "title": "Floorp Browser",
+          "key": "floorp1"
         }
       ]
     },
