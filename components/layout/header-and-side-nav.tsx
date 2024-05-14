@@ -7,26 +7,19 @@ import LogoDark from "@/public/logo-dark.png";
 import {ThemeSwitch} from "@/components/theme-switch";
 import {cn} from "@/lib/utils";
 import LanguageSelect from "@/components/language-select";
-import DevAlert from "@/components/layout/dev-alert";
 import {Locale} from "@/i18n/i18n.config";
 import {getDictionary} from "@/i18n/dictionaries";
 import ThemedImage from "@/components/themed-image";
 import {FaDiscord, FaGithub, FaTwitter} from "react-icons/fa";
-import {FaX} from "react-icons/fa6";
 
 type HeaderAndSideNavProps = {
   lang: Locale;
 }
 
-const env = process.env.ENV;
-
 const linkClasses = "text-muted-foreground hover:text-foreground flex flex-row gap-2 items-center";
 
 export default async function HeaderAndSideNav({lang}: HeaderAndSideNavProps) {
   const dict = await getDictionary(lang);
-  const devModeBadge = env === "development" ? (
-    <DevAlert/>
-  ) : null;
   return (
     <header className="top-0 z-0 flex justify-between h-16 items-center gap-4 border-b bg-background px-4 md:px-6">
       <nav
@@ -90,7 +83,6 @@ export default async function HeaderAndSideNav({lang}: HeaderAndSideNavProps) {
           </nav>
         </SheetContent>
       </Sheet>
-      {devModeBadge}
       <div className="flex gap-4 md:gap-2 lg:gap-4">
         <div className={'flex gap-2 flex-row collapse sm:visible'}>
           <Link href="https://aka.ablaze.one/discord" className={buttonVariants({variant: 'ghost'})}>
