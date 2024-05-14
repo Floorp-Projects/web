@@ -37,17 +37,6 @@ export enum Platform {
   IOS = 'IOS',
 }
 
-export type AssetInfo = {
-  url: string;
-  label: string;
-  fileSize: string;
-};
-
-export type PlatformDownload = {
-  type: Platform;
-  assets: AssetInfo[];
-}
-
 export const convertOptionToPlatform = (option: string): Platform => {
   switch (option) {
     case "windows":
