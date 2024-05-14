@@ -1,14 +1,14 @@
+"use server";
+
 import {Alert, AlertDescription, AlertTitle} from "@/components/ui/alert";
 import {getDictionary} from "@/i18n/dictionaries";
 import {Locale} from "@/i18n/i18n.config";
 import {RiInformationLine, RiErrorWarningLine, RiAlarmWarningLine, RiLightbulbFlashLine} from "@remixicon/react";
-import {replaceComponent as r} from "@/i18n/utils";
-import {getLink} from "@/i18n/common-components";
 import {cn} from "@/lib/utils";
 
 type InfoAlertProps = {
   lang: Locale;
-  description: string;
+  description: string | React.ReactNode;
   severity?: "info" | "warning" | "error" | "success" | "dyk";
 };
 
@@ -41,7 +41,7 @@ export default async function FAlert({lang, description, severity = "info"}: Inf
       case "success":
         return <RiLightbulbFlashLine className="text-green-500 h-5 w-5"/>;
       case "dyk":
-        return <RiLightbulbFlashLine className="text-purple-700 h-5 w-5 bg-blue"/>;
+        return <RiLightbulbFlashLine className="text-purple-700 h-5 w-5 bg-blue bg-y"/>;
     }
   }
 
@@ -50,7 +50,7 @@ export default async function FAlert({lang, description, severity = "info"}: Inf
       case "info":
         return "bg-blue-100 text-blue-800 border-blue-500 dark:bg-background dark:text-blue-300";
       case "warning":
-        return "bg-yellow-100 text-yellow-800 border-yellow-500 dark:bg-yellow-500 dark:text-white";
+        return "bg-yellow-100 text-yellow-800 border-yellow-500 dark:text-white dark:bg-background dark:text-yellow-500";
       case "error":
         return "bg-red-100 text-red-800 border-red-500 dark:bg-red-500 dark:text-white";
       case "success":
@@ -71,7 +71,7 @@ export default async function FAlert({lang, description, severity = "info"}: Inf
       </div>
       <AlertTitle>{getTitle(severity)}</AlertTitle>
       <AlertDescription>
-        {r(description, getLink("https://docs.ablaze.one/floorp_privacy_policy"))}
+        {description}
       </AlertDescription>
     </Alert>
   )

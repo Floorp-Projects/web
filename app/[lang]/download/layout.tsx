@@ -2,11 +2,13 @@ import {getDictionary} from "@/i18n/dictionaries";
 import {Locale} from "@/i18n/i18n.config";
 import FAlert from "@/components/alert";
 import PlatformSelect from "@/components/layout/download/platform-select";
+import {replaceComponent as r} from "@/i18n/utils"
 import React from "react";
+import {getLink} from "@/i18n/common-components";
 
 type DownloadProps = {
-  params: { lang: Locale }
-  children: React.ReactNode
+  params: { lang: Locale };
+  children: React.ReactNode;
 };
 
 export default async function Download({params: {lang}, children}: DownloadProps) {
@@ -19,13 +21,8 @@ export default async function Download({params: {lang}, children}: DownloadProps
           <p>{dict.downloadPage.description}</p>
           <FAlert
             severity="info"
-            description={dict.downloadPage.downloadAlert}
+            description={r(dict.downloadPage.downloadAlert, getLink("https://docs.ablaze.one/floorp_privacy_policy/"))}
             lang={lang}
-          />
-          <PlatformSelect
-            locale={{...dict.downloadPage.dropdownLocale, detect: dict.downloadPage.dropdownLocale.detect}}
-            lang={lang}
-            className={'mt-4'}
           />
           <section className="mt-8">
             {children}

@@ -31,14 +31,19 @@
     "download": "Download Floorp",
     "description": "Thank you for downloading Floorp. Please select the version you want to download.",
     "downloadAlert": "If you download Floorp you agree to the <1>Privacy Policy</1>.",
-    "daylightAlert": "Floorp Daylight is a beta version of Floorp. Maybe it will not work properly.",
     "dropdownLocale": {
       "notFound": "Not found",
       "notSelected": "Select a platform",
       "placeholder": "Select a platform...",
       "label": "Your platform",
       "detect": "Detect"
-    }
+    },
+    "daylight": {
+      "label": "Download Floorp Daylight",
+      "description": "Floorp Daylight is a beta version of Floorp. It may not work properly.",
+      "alert": "Really, are you sure you want to download Floorp Daylight? It may not work properly."
+    },
+    "noReleaseFound": "No release found. Check back later."
   },
   "landingPage": {
     "hero": "Unlimited\ncustomizability\n<1>with Floorp</1>",
