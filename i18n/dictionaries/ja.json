@@ -31,12 +31,19 @@
     "download": "Floorpをダウンロード",
     "description": "Floorpをダウンロードしていただきありがとうございます。ダウンロードしたいバージョンを選択してください。",
     "downloadAlert": "Floorpをダウンロードすると、<1>プライバシーポリシー</1>に同意したものとみなされます。",
+    "releaseDate": "{{date}}にリリース",
     "dropdownLocale": {
       "notFound": "見つかりません",
       "notSelected": "プラットフォームを選択",
       "placeholder": "プラットフォームを選択...",
       "label": "あなたのプラットフォーム",
       "detect": "検出"
+    },
+    "assetsTable": {
+      "fileName": "ファイル名",
+      "fileSize": "サイズ",
+      "architecture": "アーキテクチャ",
+      "caption": "Floorpのダウンロード可能なリストです。"
     },
     "daylight": {
       "label": "Floorp Daylightをダウンロード",
