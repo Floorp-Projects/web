@@ -29,9 +29,10 @@
   },
   "downloadPage": {
     "download": "Download Floorp",
-    "description": "Thank you for downloading Floorp. Please select the version you want to download.",
+    "description": "Please select the version you want to download.",
     "downloadAlert": "If you download Floorp you agree to the <1>Privacy Policy</1>.",
     "releaseDate": "Released on {{date}}",
+    "downloadHashes": "Download Hashes",
     "dropdownLocale": {
       "notFound": "Not found",
       "notSelected": "Select a platform",
