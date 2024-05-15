@@ -8,8 +8,9 @@ type RawAsset = {
 }
 
 export type AssetInfo = {
+  name: string;
   url: string;
-  label: string;
+  fileName: string;
   fileSize: string;
 };
 
@@ -25,11 +26,38 @@ export type Release = {
   downloads: Record<Platform, AssetInfo[]>;
 }
 
+const getReadableName = (name: string): string => {
+  if(name.includes('aarch64')) {
+    return 'Linux ARM';
+  }
+  if(name.includes('x86_64') && name.includes('linux')) {
+    return 'Linux x86/x64';
+  }
+  if (name.includes('stub') && name.includes('exe')) {
+    return 'Windows 64bit Online Installer';
+  }
+  if (name.includes('exe') && name.includes('win32')){
+    return 'Windows 32-bit';
+  }
+  if (name.includes('exe') && name.includes('win64')){
+    return 'Windows 64-bit';
+  }
+  if (name.includes('portable') && name.includes('zip') && name.includes('win')){
+    return 'Windows Portable';
+  }
+  if (name.includes('dmg')) {
+    return 'MacOS';
+  }
+
+  return name;
+}
+
 function getAssetInfo(asset: RawAsset): AssetInfo {
   const fileSize = asset.size / 1024 / 1024;
   return {
     url: asset.browser_download_url,
-    label: asset.name,
+    fileName: asset.name,
+    name: "Floorp " + getReadableName(asset.name),
     fileSize: `${fileSize.toFixed(2)} MB`,
   };
 }
@@ -54,6 +82,7 @@ export async function getRelease(): Promise<Release | null> {
   });
 
   if (!response.data.assets || response.data.published_at === null) {
+    console.error('Failed to fetch release data');
     return null;
   }
   const date = new Date(response.data.published_at);

@@ -10,7 +10,6 @@ import {
 } from "@/lib/utils";
 import {ComboboxLocale} from "@/components/ui/combobox";
 import {usePathname, useRouter, useSearchParams} from "next/navigation";
-import {Locale} from "@/i18n/i18n.config";
 import {Button} from "@/components/ui/button";
 import {CheckboxWithDescription} from "@/components/layout/checkbox-descreption";
 import {Tabs, TabsContent, TabsList, TabsTrigger} from "@/components/ui/tabs";
@@ -80,6 +79,16 @@ export default function PlatformSelect({locale, platforms, className, alert, che
   }, [isDetecting])
 
   useEffect(() => {
+    if (searchParams.get('platform')) {
+      return;
+    }
+
+    const ua = navigator.userAgent;
+    const _p = getPlatform(ua);
+    setPlatform(_p);
+  }, []);
+
+  useEffect(() => {
     if (!platform) {
       return;
     }
@@ -91,6 +100,20 @@ export default function PlatformSelect({locale, platforms, className, alert, che
   const onTabChange = (value: Platform) => {
     setPlatform(value);
   }
+
+  // TODO: Not used yet, but will be used after the daylight release is merged with the rest.
+  const daylightCheckbox = (
+    <>
+      <CheckboxWithDescription
+        id={'daylight'}
+        onChange={e => onCheckboxChange(e)}
+        {...checkbox}
+        initialChecked={searchParams.get('daylight') === 'true'}
+        className={"mt-4"}
+      />
+      {alert}
+    </>
+  );
 
   return (
     <div className={cn(
@@ -111,14 +134,7 @@ export default function PlatformSelect({locale, platforms, className, alert, che
               <TabsTrigger key={value} value={value}>{label}</TabsTrigger>
             ))}
           </TabsList>
-          <CheckboxWithDescription
-            id={'daylight'}
-            onChange={e => onCheckboxChange(e)}
-            {...checkbox}
-            initialChecked={searchParams.get('daylight') === 'true'}
-            className={"mt-4"}
-          />
-          {alert}
+          {/* TODO: Add the checkbox here after the daylight release is merged with the rest. */}
           {
             platforms.map(({value, content}) => (
               <TabsContent key={value} value={value}>

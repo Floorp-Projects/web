@@ -31,12 +31,19 @@
     "download": "Download Floorp",
     "description": "Thank you for downloading Floorp. Please select the version you want to download.",
     "downloadAlert": "If you download Floorp you agree to the <1>Privacy Policy</1>.",
+    "releaseDate": "Released on {{date}}",
     "dropdownLocale": {
       "notFound": "Not found",
       "notSelected": "Select a platform",
       "placeholder": "Select a platform...",
       "label": "Your platform",
       "detect": "Detect"
+    },
+    "assetsTable": {
+      "fileName": "File Name",
+      "fileSize": "File Size",
+      "architecture": "Architecture",
+      "caption": "A list of available downloads for Floorp."
     },
     "daylight": {
       "label": "Download Floorp Daylight",
