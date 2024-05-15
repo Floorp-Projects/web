@@ -3,13 +3,14 @@ import FAlert from "@/components/alert";
 import {getDictionary} from "@/i18n/dictionaries";
 import PlatformSelect, {PlatformOption} from "@/components/layout/download/platform-select";
 import React from "react";
-import {AssetInfo, getRelease} from "@/lib/gh-utils";
+import {AssetInfo, getRelease, getTags} from "@/lib/gh-utils";
 import {cn, convertOptionToPlatform, Platform, platformOptions} from "@/lib/utils";
 import {AssetsTable} from "@/components/layout/download/assets-table";
 import {formatTranslation as f} from "@/i18n/utils"
 import Link from "next/link";
 import {buttonVariants} from "@/components/ui/button";
-import { Separator } from "@/components/ui/separator";
+import {Separator} from "@/components/ui/separator";
+import {ScrollArea} from "@/components/ui/scroll-area";
 
 type DownloadPageProps = {
   params: { lang: Locale };
@@ -19,11 +20,11 @@ type DownloadPageProps = {
   };
 }
 
-
 export default async function DownloadPage({params: {lang}, searchParams}: DownloadPageProps) {
   const dict = await getDictionary(lang);
   const isDaylight = searchParams.daylight === 'true';
   const release = await getRelease();
+  const tags = await getTags();
   const date = release?.publishedAt.toLocaleDateString(lang, {
     year: 'numeric',
     month: 'long',
@@ -41,7 +42,7 @@ export default async function DownloadPage({params: {lang}, searchParams}: Downl
           <p className={'text-sm text-muted-foreground'}>
             {f(dict.downloadPage.releaseDate, {date})}
           </p>
-          <Separator orientation="vertical" />
+          <Separator orientation="vertical"/>
           <Link
             href={`https://github.com/Floorp-Projects/Floorp/releases/tag/${release.version}`}
             target={'_blank'}
@@ -80,7 +81,7 @@ export default async function DownloadPage({params: {lang}, searchParams}: Downl
   }
 
   return (
-    <div className="flex flex-col items-start">
+    <div className="flex flex-col sm:flex-row items-center sm:items-start gap-4">
       <PlatformSelect
         locale={{...dict.downloadPage.dropdownLocale, detect: dict.downloadPage.dropdownLocale.detect}}
         checkbox={dict.downloadPage.daylight}
@@ -89,6 +90,28 @@ export default async function DownloadPage({params: {lang}, searchParams}: Downl
           <FAlert lang={lang} description={dict.downloadPage.daylight.alert} severity={'warning'}/> : null}
         platforms={getPlatformOptions()}
       />
+      <ScrollArea className="h-72 w-48 rounded-md relative pt-10 border">
+        <div className="p-4">
+          <h4 className="mb-4 text-sm font-medium absolute top-4 leading-none">Tags</h4>
+          <Separator className="absolute top-10 left-0"/>
+          {tags.map((tag, i) => (
+            <>
+              <div key={tag} className="text-sm">
+                <Link
+                  href={`https://github.com/Floorp-Projects/Floorp/releases/tag/${tag}`}
+                  target={'_blank'}
+                  className={cn(
+                    buttonVariants({variant: 'link', paddingV: 'none', paddingH: 'none', size: 'auto'}),
+                  )}
+                >
+                  {tag}{i === 0 ? " - " + dict.downloadPage.latest : ''}
+                </Link>
+              </div>
+              <Separator className="my-2"/>
+            </>
+          ))}
+        </div>
+      </ScrollArea>
     </div>
   )
 }
