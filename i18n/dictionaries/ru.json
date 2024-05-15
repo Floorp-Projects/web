@@ -40,6 +40,7 @@
       "detect": "Detect"
     },
     "latest": "Latest",
+    "versions": "Versions",
     "daylight": {
       "label": "Download Floorp Daylight",
       "description": "Floorp Daylight is a beta version of Floorp. It may not work properly.",

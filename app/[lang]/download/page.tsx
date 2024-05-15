@@ -92,7 +92,7 @@ export default async function DownloadPage({params: {lang}, searchParams}: Downl
       />
       <ScrollArea className="h-72 w-48 rounded-md relative pt-10 border">
         <div className="p-4">
-          <h4 className="mb-4 text-sm font-medium absolute top-4 leading-none">Tags</h4>
+          <h4 className="mb-4 text-sm font-medium absolute top-4 leading-none">{dict.downloadPage.versions}</h4>
           <Separator className="absolute top-10 left-0"/>
           {tags.map((tag, i) => (
             <>

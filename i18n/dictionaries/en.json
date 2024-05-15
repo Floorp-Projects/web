@@ -40,6 +40,7 @@
       "detect": "Detect"
     },
     "latest": "Latest",
+    "versions": "Versions",
     "assetsTable": {
       "fileName": "File Name",
       "fileSize": "File Size",

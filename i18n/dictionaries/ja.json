@@ -40,6 +40,7 @@
       "detect": "検出"
     },
     "latest": "最新",
+    "versions": "バージョン",
     "assetsTable": {
       "fileName": "ファイル名",
       "fileSize": "サイズ",
