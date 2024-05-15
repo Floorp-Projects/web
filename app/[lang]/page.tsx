@@ -57,9 +57,9 @@ export default async function Home({params: {lang}}: HomeProps) {
   const heroProps = await getHeroProps(lang);
   const articles = await getFirstTwoArticles(4);
   return (
-    <main className='w-full py-24'>
-      <div className="flex min-h-screen w-full flex-col">
-        <div className="w-full flex flex-col gap-4 lg:grid lg:grid-cols-2 md:gap-4 md:px-4 overflow-hidden">
+    <main className='w-full flex flex-col py-24'>
+      <div className="flex min-h-screen w-full items-center flex-col">
+        <div className="w-full flex flex-col gap-4 px-4 overflow-hidden max-w-4xl">
           <Suspense fallback={<Skeleton className="h-[125px] w-[250px] rounded-xl"/>}>
             <MainHero translation={dict.landingPage.hero}/>
           </Suspense>
@@ -71,7 +71,7 @@ export default async function Home({params: {lang}}: HomeProps) {
               {dict.landingPage.feature}
             </h2>
             <ThreeColBentoGrid
-              className="max-w-4xl px-4 sm:px-0 mx-auto mb-24"
+              className="max-w-4xl mx-auto mb-24"
               height='12'
             >
               {dict.landingPage.features.map((item, i) => (
@@ -85,7 +85,7 @@ export default async function Home({params: {lang}}: HomeProps) {
             </ThreeColBentoGrid>
             <FeatureColumns lang={lang}/>
           </div>
-          <div className={'w-full col-span-2 flex flex-col px-4 sm:px-0 gap-4 items-center'}>
+          <div className={'w-full col-span-2 flex flex-col gap-4 items-center'}>
             <div className={'flex flex-col gap-4 max-w-4xl w-full'}>
               <h2 className="text-4xl font-bold text-neutral-900 dark:text-neutral-100">
                 {dict.landingPage.latestArticle}
