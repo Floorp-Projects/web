@@ -29,9 +29,10 @@
   },
   "downloadPage": {
     "download": "Floorpをダウンロード",
-    "description": "Floorpをダウンロードしていただきありがとうございます。ダウンロードしたいバージョンを選択してください。",
+    "description": "ダウンロードしたいバージョンを選択してください。",
     "downloadAlert": "Floorpをダウンロードすると、<1>プライバシーポリシー</1>に同意したものとみなされます。",
     "releaseDate": "{{date}}にリリース",
+    "downloadHashes": "ハッシュをダウンロード",
     "dropdownLocale": {
       "notFound": "見つかりません",
       "notSelected": "プラットフォームを選択",
