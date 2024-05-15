@@ -2,7 +2,7 @@
 
 import {usePathname, useSearchParams} from 'next/navigation'
 import Link from 'next/link'
-import {i18n} from '@/i18n/i18n.config';
+import {i18n, isNotStarted, isReviewed, langDict} from '@/i18n/i18n.config';
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -14,7 +14,6 @@ import {
   DropdownMenuTrigger
 } from './ui/dropdown-menu';
 import {Button} from './ui/button';
-import {isNotStarted, isReviewed} from "@/i18n/validators";
 import {LanguagesIcon} from "lucide-react";
 
 export interface LanguageSelectProps {
@@ -37,23 +36,16 @@ export default function LanguageSelect({languageSelect, inReview, waitingForCont
     return `${url}?${params.toString()}`
   }
 
-  const dict = {
-    en: "English",
-    ja: "日本語",
-    ru: "Русский",
-    hu: "Magyar",
-  } as Record<string, string>;
-
   const extendLocaleIfNecessary = (locale: string) => {
     if (isNotStarted(locale)) {
-      return `${dict[locale]} (${waitingForContributions})`
+      return `${langDict[locale]} (${waitingForContributions})`
     }
 
     if (!isReviewed(locale)) {
-      return `${dict[locale]} (${inReview})`
+      return `${langDict[locale]} (${inReview})`
     }
 
-    return dict[locale]
+    return langDict[locale]
   }
 
 
@@ -65,7 +57,7 @@ export default function LanguageSelect({languageSelect, inReview, waitingForCont
       <DropdownMenuContent className="w-56">
         <DropdownMenuLabel>{languageSelect}</DropdownMenuLabel>
         <DropdownMenuSeparator/>
-        {i18n.locales.filter(locale => Object.keys(dict).includes(locale)).map(locale => {
+        {i18n.locales.filter(locale => Object.keys(langDict).includes(locale)).map(locale => {
           return (
             <DropdownMenuItem key={locale} disabled={!isReviewed(locale)} asChild>
               <Link href={redirectedPathName(locale)}>
