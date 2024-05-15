@@ -1,9 +1,8 @@
 import Link from "next/link";
 import Image from "next/image";
 import Logo from "@/public/logo.png";
-import {Button, buttonVariants} from "@/components/ui/button";
-import {FaDiscord, FaGithub, FaTwitter} from 'react-icons/fa';
-import ALogo from '@/public/ablaze-logo.svg';
+import ALogoDark from '@/public/a-logo-onlight.png';
+import ALogoLight from '@/public/a-logo-ondark.png';
 import ThemedImage from "@/components/themed-image";
 import LogoDark from "@/public/logo-dark.png";
 
@@ -22,7 +21,12 @@ export default function Footer() {
           href={'https://ablaze.one'}
           className='mx-6 md:mx-0'
         >
-          <Image src={ALogo} alt="ablaze" width={100} height={30}/>
+          <ThemedImage
+            darkImage={ALogoLight}
+            lightImage={ALogoDark}
+            alt={"ablaze"}
+            rest={{width: 100, height: 30}}
+          />
         </Link>
         <p className={'text-center text-sm text-neutral-600 dark:text-gray-50'}>
           &copy;{new Date().getFullYear()} Floorp Browser
