@@ -13,5 +13,3 @@ And them the `getDictionary(Locale)` function is responsible for returning the d
 
 To add a new language, you need to create a new .json file in the `./i18n/dictionaries` folder.
 The file should have the same keys as the other files.
-
-Then you go to the 
