@@ -30,7 +30,6 @@ export default function Feature({
   return (
     <div
       className={cn(
-      "p-4",
       "max-w-4xl relative gap-8 items-center justify-center",
       `sm:grid grid-cols-1 sm:grid-cols-2`,
       'mb-8'
