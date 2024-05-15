@@ -1,10 +1,9 @@
 import type {NextRequest} from 'next/server'
 import {NextResponse} from 'next/server'
-import {i18n} from './i18n/i18n.config'
+import {defaultLocale, i18n, isReviewed, locales} from './i18n/i18n.config'
 import {match as matchLocale} from '@formatjs/intl-localematcher'
 //@ts-ignore
 import Negotiator from 'negotiator'
-import {isReviewed} from "@/i18n/validators";
 
 function combinePath(request: NextRequest, path: string): boolean {
   return request.nextUrl.pathname.startsWith(`/${getLocale(request)}/${path}`)
@@ -20,7 +19,6 @@ function getLocale(request: NextRequest): string | undefined {
   return matchLocale(languages, locales, i18n.defaultLocale)
 }
 
-let locales = ['en', 'ja']
 const excludedPaths = ['api', '_next/static', '_next/image', '/favicon.ico', '/manifest.json', '/_next/webpack-hmr']
 
 export function middleware(request: NextRequest) {
@@ -39,7 +37,7 @@ export function middleware(request: NextRequest) {
     if (!isReviewed(selectedLocale || '')) {
       console.log(`Locale ${selectedLocale} is not reviewed, redirecting to en`)
       pathname = pathname.replace(`/${selectedLocale}`, '')
-      locale = 'en'
+      locale = defaultLocale
     } else {
       return
     }
@@ -48,7 +46,7 @@ export function middleware(request: NextRequest) {
   if (!isReviewed(locale || '')) {
     console.log(`Locale ${locale} is not reviewed, redirecting to en`)
     pathname = pathname.replace(`/${locale}`, '')
-    locale = 'en'
+    locale = defaultLocale
   }
 
   console.log(`Redirecting to ${locale} and ${pathname}`)
