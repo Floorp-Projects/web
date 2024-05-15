@@ -126,14 +126,18 @@ export default function PlatformSelect({locale, platforms, className, alert, che
           defaultValue={convertPlatformToOption(initPlatform)}
           onValueChange={e => onTabChange(convertOptionToPlatform(e))}
         >
-          <Button className={'mr-2'} variant={'outline'} onClick={() => setIsDetecting(true)}>
-            {locale.detect}
-          </Button>
-          <TabsList>
-            {platforms.map(({value, label}) => (
-              <TabsTrigger key={value} value={value}>{label}</TabsTrigger>
-            ))}
-          </TabsList>
+          <div className='flex flex-row gap-4 justify-center sm:justify-start'>
+            <Button variant={'outline'} onClick={() => setIsDetecting(true)}>
+              {locale.detect}
+            </Button>
+            <TabsList
+              className={''}
+            >
+              {platforms.map(({value, label}) => (
+                <TabsTrigger key={value} value={value}>{label}</TabsTrigger>
+              ))}
+            </TabsList>
+          </div>
           {/* TODO: Add the checkbox here after the daylight release is merged with the rest. */}
           {
             platforms.map(({value, content}) => (

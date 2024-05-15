@@ -28,7 +28,6 @@ type AssetsTableProps = {
 export function AssetsTable({items, locale}: AssetsTableProps) {
   return (
     <Table>
-      <TableCaption>{locale.caption}</TableCaption>
       <TableHeader>
         <TableRow>
           <TableHead>{locale.architecture}</TableHead>
