@@ -39,6 +39,7 @@
       "label": "Your platform",
       "detect": "Detect"
     },
+    "latest": "Latest",
     "assetsTable": {
       "fileName": "File Name",
       "fileSize": "File Size",

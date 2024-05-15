@@ -119,3 +119,12 @@ export async function getRelease(): Promise<Release | null> {
   }
 }
 
+export async function getTags(): Promise<string[]> {
+  const octokit = new Octokit();
+  const response = await octokit.rest.repos.listTags({
+    owner: 'Floorp-Projects',
+    repo: 'Floorp',
+  });
+  return response.data.map((tag) => tag.name);
+}
+
