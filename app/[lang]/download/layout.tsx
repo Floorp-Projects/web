@@ -22,8 +22,7 @@ export default async function Download({params: {lang}, children}: DownloadProps
     <main className='w-full py-24'>
       <div className="flex min-h-screen w-full flex-col items-center">
         <div className="flex flex-col max-w-4xl p-4 lg:w-[56rem]">
-          <h1 className="text-4xl font-bold">{dict.downloadPage.download}</h1>
-          <p>{dict.downloadPage.description}</p>
+          <h1 className="text-4xl mb-8 font-bold">{dict.downloadPage.download}</h1>
           <FAlert
             severity="info"
             description={r(dict.downloadPage.downloadAlert, getLink("https://docs.ablaze.one/floorp_privacy_policy/"))}

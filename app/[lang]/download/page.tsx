@@ -38,20 +38,31 @@ export default async function DownloadPage({params: {lang}, searchParams}: Downl
 
     return (
       <div className={'mt-8'}>
-        <div className={'flex h-5 items-center gap-4 ml-4 mb-2'}>
-          <p className={'text-sm text-muted-foreground'}>
-            {f(dict.downloadPage.releaseDate, {date})}
-          </p>
-          <Separator orientation="vertical"/>
-          <Link
-            href={`https://github.com/Floorp-Projects/Floorp/releases/tag/${release.version}`}
-            target={'_blank'}
-            className={cn(
-              buttonVariants({variant: 'link', paddingV: 'none', paddingH: 'none', size: 'auto'}),
-            )}
-          >
-            {release.version}
-          </Link>
+        <div className={'flex items-center gap-4 ml-4 mb-2'}>
+          <div className={'flex flex-col sm:flex-row gap-2 justify-center sm:justify-between w-full'}>
+            <p className={'text-sm text-muted-foreground text-center sm:text-left'}>
+              {f(dict.downloadPage.releaseDate, {date})}
+            </p>
+            <Separator orientation="vertical" className={'h-5 hidden sm:block'}/>
+            <Link
+              href={`https://github.com/Floorp-Projects/Floorp/releases/tag/${release.version}`}
+              target={'_blank'}
+              className={cn(
+                buttonVariants({variant: 'link', paddingV: 'none', paddingH: 'none', size: 'auto'}),
+              )}
+            >
+              {release.version}
+            </Link>
+            <Separator orientation="vertical" className={'h-5 hidden sm:block'}/>
+            <Link
+              href={release.hashes}
+              className={cn(
+                buttonVariants({variant: 'link', paddingV: 'none', paddingH: 'none', size: 'auto'}),
+              )}
+            >
+              {dict.downloadPage.downloadHashes}
+            </Link>
+          </div>
         </div>
         <AssetsTable items={items} locale={dict.downloadPage.assetsTable}/>
       </div>

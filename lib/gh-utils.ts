@@ -24,6 +24,7 @@ export type Release = {
   name: string;
   publishedAt: Date;
   downloads: Record<Platform, AssetInfo[]>;
+  hashes: string;
 }
 
 const getReadableName = (name: string): string => {
@@ -86,9 +87,16 @@ export async function getRelease(): Promise<Release | null> {
     return null;
   }
   const date = new Date(response.data.published_at);
+
+  let hashes = '';
   const assets: Record<string, AssetInfo[]> = {}
   for (let i = 0; i < response.data.assets.length; i++) {
     const asset = response.data.assets[i];
+
+    if (asset.name === "hashes.txt") {
+      hashes = asset.browser_download_url;
+    }
+
     if (asset.name.includes('.mar') || asset.name.includes('.txt')) {
       continue;
     }
@@ -116,6 +124,7 @@ export async function getRelease(): Promise<Release | null> {
     name: response.data.name || response.data.tag_name,
     publishedAt: date,
     downloads: assets,
+    hashes
   }
 }
 
