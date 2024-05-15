@@ -39,6 +39,7 @@
       "label": "あなたのプラットフォーム",
       "detect": "検出"
     },
+    "latest": "最新",
     "assetsTable": {
       "fileName": "ファイル名",
       "fileSize": "サイズ",
