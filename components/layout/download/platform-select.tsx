@@ -118,13 +118,14 @@ export default function PlatformSelect({locale, platforms, className, alert, che
   return (
     <div className={cn(
       className,
-      "flex flex-col gap-4"
+      "flex flex-col gap-4 h-full w-full"
     )}>
-      <div className='flex flex-row gap-4'>
+      <div className='flex w-full h-full flex-col gap-4'>
         <Tabs
           value={convertPlatformToOption(platform)}
           defaultValue={convertPlatformToOption(initPlatform)}
           onValueChange={e => onTabChange(convertOptionToPlatform(e))}
+          className={'flex flex-col gap-4 justify-between h-full'}
         >
           <div className='flex flex-row gap-4 justify-center sm:justify-start'>
             <Button variant={'outline'} onClick={() => setIsDetecting(true)}>
@@ -139,13 +140,13 @@ export default function PlatformSelect({locale, platforms, className, alert, che
             </TabsList>
           </div>
           {/* TODO: Add the checkbox here after the daylight release is merged with the rest. */}
-          {
-            platforms.map(({value, content}) => (
-              <TabsContent key={value} value={value}>
-                {content}
-              </TabsContent>
-            ))
-          }
+            {
+              platforms.map(({value, content}) => (
+                <TabsContent key={value} value={value}>
+                  {content}
+                </TabsContent>
+              ))
+            }
         </Tabs>
       </div>
     </div>
