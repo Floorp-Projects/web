@@ -8,7 +8,6 @@ import {
   convertPlatformToOption,
   cn
 } from "@/lib/utils";
-import {ComboboxLocale} from "@/components/ui/combobox";
 import {usePathname, useRouter, useSearchParams} from "next/navigation";
 import {Button} from "@/components/ui/button";
 import {CheckboxWithDescription} from "@/components/layout/checkbox-descreption";
@@ -16,7 +15,7 @@ import {Tabs, TabsContent, TabsList, TabsTrigger} from "@/components/ui/tabs";
 
 type PlatformSelectLocale = {
   detect: string;
-} & ComboboxLocale;
+};
 
 export type PlatformOption = {
   value: Platform | string;

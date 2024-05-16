@@ -17,7 +17,6 @@ export type AssetsTableLocale = {
   architecture: string;
   fileName: string;
   fileSize: string;
-  caption: string;
 }
 
 type AssetsTableProps = {
