@@ -26,24 +26,16 @@ If you want to add a new language or improve other translation read about its us
 
 ## Getting Started
 
-## Set up yarn and install packages
+First install the dependencies:
 
 ```bash
-npm install -g yarn
-
-# Enable corepack
-corepack enable
-
-# Install packages
-yarn install
+npm install
 ```
 
 ## Running the development server
 
 ```bash
 npm run dev
-# or
-yarn dev
 ```
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
