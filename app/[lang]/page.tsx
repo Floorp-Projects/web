@@ -1,7 +1,7 @@
 import {getDictionary} from "@/i18n/dictionaries";
 import {Locale} from "@/i18n/i18n.config";
-import {MainHero} from "@/components/layout/main-hero";
-import MainHeroCard from "@/components/layout/hero-card";
+import {MainHero} from "@/components/layout/landing/main-hero";
+import MainHeroCard from "@/components/layout/landing/hero-card";
 import {BiBadgeCheck, BiBrush, BiCodeAlt, BiLockAlt, BiPaintRoll, BiShield} from 'react-icons/bi';
 import {HeaderGridItem, ThreeColBentoGrid} from "@/components/ui/bento-grid";
 import {ArticleResponse} from "@/components/layout/articles/article";
@@ -59,7 +59,7 @@ export default async function Home({params: {lang}}: HomeProps) {
   return (
     <main className='w-full flex flex-col py-24'>
       <div className="flex min-h-screen w-full items-center flex-col">
-        <div className="w-full flex flex-col gap-4 px-4 overflow-hidden max-w-4xl">
+        <div className="w-full flex flex-col gap-4 px-4 sm:px-0 overflow-hidden max-w-4xl">
           <Suspense fallback={<Skeleton className="h-[125px] w-[250px] rounded-xl"/>}>
             <MainHero translation={dict.landingPage.hero}/>
           </Suspense>
