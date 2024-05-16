@@ -39,8 +39,11 @@ const getProducts = (localeProducts: LocaleProduct[]): ParallaxProduct[] => {
 
 export async function PreviewParallax({lang}: PreviewParallaxProps) {
   const dict = await getDictionary(lang);
-  const title = dict.landingPage.previewParallax.title
+  /*const title = dict.landingPage.previewParallax.title
   const description = dict.landingPage.previewParallax.description
   const products = getProducts(dict.landingPage.previewParallax.images);
   return <HeroParallax products={products} title={title} description={description}/>;
+   */
+
+  return <p>Not implemented</p>;
 }

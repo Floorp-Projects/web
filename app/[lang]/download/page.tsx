@@ -118,7 +118,7 @@ export default async function DownloadPage({params: {lang}, searchParams}: Downl
   return (
     <div className="flex flex-col w-full sm:flex-row items-center justify-between sm:items-start gap-4">
       <PlatformSelect
-        locale={{...dict.downloadPage.dropdownLocale, detect: dict.downloadPage.dropdownLocale.detect}}
+        locale={{ detect: dict.downloadPage.detect}}
         checkbox={dict.downloadPage.daylight}
         alert={isDaylight ?
           <FAlert lang={lang} description={dict.downloadPage.daylight.alert} severity={'warning'}/> : null}
