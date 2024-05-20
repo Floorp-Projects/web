@@ -56,6 +56,8 @@ export default async function Home({params: {lang}}: HomeProps) {
   const dict = await getDictionary(lang);
   const heroProps = await getHeroProps(lang);
   const articles = await getFirstTwoArticles(4);
+  const features = dict.landingPage.features as Record<string, any>;
+  const featuresKeys = Object.keys(dict.landingPage.features);
   return (
     <main className='w-full flex flex-col py-24'>
       <div className="flex min-h-screen w-full items-center flex-col">
@@ -72,12 +74,12 @@ export default async function Home({params: {lang}}: HomeProps) {
               className="max-w-4xl mx-auto mb-24"
               height='12'
             >
-              {dict.landingPage.features.map((item, i) => (
+              {featuresKeys.map((item, i) => (
                 <HeaderGridItem
                   key={i}
-                  title={item.title}
-                  description={item.description}
-                  icon={iconMap[item.key]}
+                  title={features[item].title}
+                  description={features[item].description}
+                  icon={iconMap[item]}
                 />
               ))}
             </ThreeColBentoGrid>

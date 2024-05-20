@@ -4,7 +4,7 @@ import React from "react";
 
 type FeatureProps = {
   image: any;
-  header: string;
+  header: string | React.ReactNode;
   description: string | React.ReactNode;
   leftToRight?: boolean;
   link?: {
@@ -48,7 +48,7 @@ export default function Feature({
           width={500}
           height={500}
           src={image}
-          alt={header}
+          alt={typeof header === "string" ? header : "Feature Image"}
           className={`rounded-lg h-60 w-60 mt-4`}
         />
       </div>
