@@ -43,8 +43,8 @@ export default function Article(props: ArticleProps) {
     <div className={"relative my-4"}>
       {fadeOutDiv}
       <Link href={link} target={'_blank'}>
-        <Card className={'border-[#a96bff]'}>
-          <CardHeader className={'text-2xl font-bold'}>{title}</CardHeader>
+        <Card className={'border'}>
+          <CardHeader className={'text-2xl font-bold text-primary dark:text-primary-highlight'}>{title}</CardHeader>
           <CardContent>
             <div className="flex flex-col-reverse md:grid md:grid-cols-3">
               <div className="col-span-2">
