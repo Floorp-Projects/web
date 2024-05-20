@@ -71,7 +71,7 @@ export const Highlight = ({children, className}: HighlightProps) => {
       }}
       transition={{
         duration: 2,
-        ease: "linear",
+        ease: "easeInOut",
         delay: 0.5,
       }}
       style={{
