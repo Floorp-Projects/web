@@ -20,6 +20,8 @@ type DownloadPageProps = {
   };
 }
 
+export const dynamic = 'force-dynamic';
+
 export default async function DownloadPage({params: {lang}, searchParams}: DownloadPageProps) {
   const dict = await getDictionary(lang);
   const isDaylight = searchParams.daylight === 'true';
