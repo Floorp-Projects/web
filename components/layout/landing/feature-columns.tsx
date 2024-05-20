@@ -10,13 +10,15 @@ type FeatureColumnsProps = {
 
 export default async function FeatureColumns({lang}: FeatureColumnsProps) {
   const dict = await getDictionary(lang);
+  const columns = dict.landingPage.columns as Record<string, any>;
+  const columnKeys = Object.keys(columns);
   return (
     <>
-      {dict.landingPage.columns.map((item, i) => (
+      {columnKeys.map((item, i) => (
         <Feature
-          image={columnImageMap[item.key]}
-          header={item.title}
-          description={f(item.description)}
+          image={columnImageMap[item]}
+          header={f(columns[item].title)}
+          description={f(columns[item].description)}
           leftToRight={i % 2 === 0}
           key={i}
         />
