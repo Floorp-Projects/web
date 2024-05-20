@@ -4,17 +4,13 @@ import FAlert from "@/components/alert";
 import {replaceComponent as r} from "@/i18n/utils"
 import React from "react";
 import {getLink} from "@/i18n/common-components";
-import { ScrollArea } from "@/components/ui/scroll-area";
-import {Separator} from "@/components/ui/separator";
 
 type DownloadProps = {
   params: { lang: Locale };
   children: React.ReactNode;
 };
 
-const tags = Array.from({ length: 50 }).map(
-  (_, i, a) => `v1.2.0-beta.${a.length - i}`
-)
+export const dynamic = 'force-dynamic';
 
 export default async function Download({params: {lang}, children}: DownloadProps) {
   const dict = await getDictionary(lang);
