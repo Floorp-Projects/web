@@ -21,7 +21,7 @@ ENV BASE_URL=http://localhost:8887
 ENV NEXT_TELEMETRY_DISABLED 1
 ENV TZ=Asia/Tokyo
 
-COPY --from=builder /app/next.config.mjs ./
+COPY --from=builder /app/next.config.js ./
 COPY --from=builder /app/*.ts ./
 COPY --from=builder /app/public ./public
 COPY --from=builder /app/.next ./.next
