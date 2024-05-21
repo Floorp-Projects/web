@@ -5,7 +5,6 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
-    image: floorp-web
     ports:
       - "1005:3000"
     environment:
