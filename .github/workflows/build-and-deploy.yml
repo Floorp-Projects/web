@@ -1,8 +1,8 @@
 name: Docker Image CI
 
 on:
-  pull_request:
-    types: [ opened, synchronize, reopened ]
+  release:
+    types: [published]
 
 jobs:
   build-website:
@@ -28,13 +28,6 @@ jobs:
         with:
           platforms: amd64,arm64
           push: true
-          tags: ghcr.io/${{ env.REPO }}:${{ github.sha }}
-          file: ./Dockerfile
-
-      - name: Build and push container latest image to registry
-        uses: docker/build-push-action@v4
-        with:
-          platforms: amd64,arm64
-          push: true
-          tags: ghcr.io/${{ env.REPO }}:latest
+          # Hashed and latest tags
+          tags: ghcr.io/${{ env.REPO }}:${{ github.sha }} ghcr.io/${{ env.REPO }}:latest
           file: ./Dockerfile
