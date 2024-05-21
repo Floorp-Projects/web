@@ -31,5 +31,5 @@ jobs:
           platforms: amd64,arm64
           push: true
           # Hashed and latest tags
-          tags: ghcr.io/${{ env.REPO }}:${{ github.sha }} ghcr.io/${{ env.REPO }}:latest
+          tags: ghcr.io/${{ env.REPO }}:latest
           file: ./Dockerfile
