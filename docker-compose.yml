@@ -1,0 +1,14 @@
+name: floorp-web
+
+services:
+  web:
+    image: floorp-web
+    ports:
+      - "3000:3000"
+    environment:
+      REVIEWED_TRANSLATIONS: ja,en
+      NOT_STARTED_TRANSLATIONS: hu,ru
+      IN_REVIEW_TRANSLATIONS: none
+      DEFAULT_LOCALE: en
+      LOCALES: ja,hu,ru,en
+      ENV: development
