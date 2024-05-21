@@ -1,7 +1,10 @@
-name: floorp-web
+name: floorp
 
 services:
   web:
+    build:
+      context: .
+      dockerfile: Dockerfile
     image: floorp-web
     ports:
       - "1005:3000"
