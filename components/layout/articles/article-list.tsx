@@ -10,10 +10,11 @@ type ArticleListProps = {
   seeMore?: {
     text: string;
     link: string;
-  }
+  };
+  fixedImage?: React.ReactNode;
 }
 
-export default function ArticleList({articles, fadeOutAfter, seeMore}: ArticleListProps) {
+export default function ArticleList({articles, fadeOutAfter, seeMore, fixedImage}: ArticleListProps) {
   fadeOutAfter = fadeOutAfter || articles.length;
   articles = articles.slice(0, fadeOutAfter);
   const seeMoreContent = seeMore ? (
@@ -28,7 +29,7 @@ export default function ArticleList({articles, fadeOutAfter, seeMore}: ArticleLi
   return (
     <div className={"relative"}>
       {articles.map((article, index) => (
-        <Article key={index} {...article} isFadeOut={index === fadeOutAfter - 1} />
+        <Article key={index} {...article} isFadeOut={index === fadeOutAfter - 1} fixedImage={fixedImage} />
       ))}
       {seeMoreContent}
     </div>
