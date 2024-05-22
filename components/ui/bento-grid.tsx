@@ -16,16 +16,18 @@ type BentoCardProps = {
 
 export const BentoCard = ({className, hasShadow, children}: BentoCardProps) => {
   return (
-    <>
+    <div
+      className={'group/bento transition-all duration-200 rounded-xl row-span-1  border border-transparent hover:border-black/[0.2] hover:dark:border-white/[0.2] border-dashed justify-between flex flex-col space-y-4'}>
       <div className={cn(
-        "row-span-1 rounded-xl group/bento hover:shadow-xl transition duration-200 shadow-input p-4 dark:border-white/[0.2] bg-card border border-transparent justify-between flex flex-col space-y-4",
+        "z-30 hover:shadow-xl transition duration-200 shadow-input p-4 border border-black/[0.2] dark:border-white/[0.2] rounded-xl bg-card h-full",
         hasShadow ? shadow : '',
-        className
+        className,
+        "hover:shadow-xl transition duration-200 hover:translate-y-2 hover:translate-x-2"
       )}
       >
         {children}
       </div>
-    </>
+    </div>
   )
 }
 
@@ -161,11 +163,11 @@ export const HeaderGridItem = ({className, title, description, scrollable, heade
   return (
     <BentoCard
       className={cn(
-        className
+        className,
       )}
     >
       {header}
-      <div className={bentoTransition}>
+      <div>
         {icon}
         <div className="flex flex-col space-y-1">
           <div className="font-sans font-bold text-neutral-600 dark:text-neutral-200 mb-2 mt-2">
