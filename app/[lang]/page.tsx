@@ -1,15 +1,15 @@
 import {getDictionary} from "@/i18n/dictionaries";
 import {Locale} from "@/i18n/i18n.config";
-import {MainHero} from "@/components/layout/landing/main-hero";
 import MainHeroCard from "@/components/layout/landing/hero-card";
 import {BiBadgeCheck, BiBrush, BiCodeAlt, BiLockAlt, BiPaintRoll, BiShield} from 'react-icons/bi';
 import {HeaderGridItem, ThreeColBentoGrid} from "@/components/ui/bento-grid";
 import {ArticleResponse} from "@/components/layout/articles/article";
 import ArticleList from "@/components/layout/articles/article-list";
-import {PreviewParallax} from "@/components/layout/landing/preview-parallax";
 import FeatureColumns from "@/components/layout/landing/feature-columns";
-import {Suspense} from "react";
-import {Skeleton} from "@/components/ui/skeleton";
+import ThemedImage from "@/components/themed-image";
+import DarkArticle from "@/public/thumbnails/article-dark.png";
+import LightArticle from "@/public/thumbnails/article-light.png";
+import {MainHero} from "@/components/layout/landing/main-hero";
 
 type HomeProps = {
   params: { lang: Locale }
@@ -58,6 +58,16 @@ export default async function Home({params: {lang}}: HomeProps) {
   const articles = await getFirstTwoArticles(4);
   const features = dict.landingPage.features as Record<string, any>;
   const featuresKeys = Object.keys(dict.landingPage.features);
+
+  const articleImage = (
+    <ThemedImage
+      darkImage={DarkArticle}
+      lightImage={LightArticle}
+      alt={'Article'}
+      className={'rounded-xl'}
+    />
+  );
+
   return (
     <main className='w-full flex flex-col py-24'>
       <div className="flex min-h-screen w-full items-center flex-col">
@@ -90,10 +100,15 @@ export default async function Home({params: {lang}}: HomeProps) {
               <h2 className="text-4xl font-bold text-neutral-900 dark:text-neutral-100">
                 {dict.landingPage.latestArticle}
               </h2>
-              <ArticleList articles={articles} fadeOutAfter={3} seeMore={{
-                link: "https://blog.ablaze.one/category/ablaze/ablaze-project/floorp/",
-                text: dict.landingPage.article.readMore
-              }}/>
+              <ArticleList
+                articles={articles}
+                fadeOutAfter={3}
+                seeMore={{
+                  link: "https://blog.ablaze.one/category/ablaze/ablaze-project/floorp/",
+                  text: dict.landingPage.article.readMore
+                }}
+                fixedImage={articleImage}
+              />
             </div>
           </div>
         </div>
