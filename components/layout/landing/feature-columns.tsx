@@ -2,7 +2,15 @@ import {Locale} from "@/i18n/i18n.config";
 import Feature from "@/components/layout/feature";
 import {formatTranslation as f} from "@/i18n/utils";
 import {getDictionary} from "@/i18n/dictionaries";
-import {columnImageMap} from "./feature-scroll";
+import Feature1 from "@/public/feature1.svg";
+import Feature2 from "@/public/feature2.svg";
+import Feature3 from "@/public/feature3.svg";
+
+export const columnImageMap = {
+  "dualSidebar": Feature1,
+  "flexibleToolbar": Feature2,
+  "privacyProtection": Feature3
+} as Record<string, any>;
 
 type FeatureColumnsProps = {
   lang: Locale;
