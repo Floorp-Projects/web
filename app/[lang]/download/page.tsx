@@ -69,7 +69,7 @@ export default async function DownloadPage({params: {lang}, searchParams}: Downl
           </div>
           <AssetsTable items={items} locale={dict.downloadPage.assetsTable}/>
         </div>
-        <ScrollArea className="h-80 w-36 rounded-md relative pt-10 border self-center">
+        <ScrollArea className="bg-card h-80 w-36 rounded-md relative pt-10 border self-center">
           <div className="p-4">
             <h4 className="mb-4 text-sm font-medium absolute top-4 leading-none">{dict.downloadPage.versions}</h4>
             <Separator className="absolute top-10 left-0"/>
