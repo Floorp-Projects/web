@@ -36,8 +36,7 @@ export default async function RootLayout({ params: { lang }, children }: RootLay
   return (
     <html lang="en" suppressHydrationWarning>
     <body className={cn(
-      bodyClasses,
-      "overflow-x-hidden"
+      bodyClasses
     )}>
     <ThemeProvider
       attribute={"class"}
