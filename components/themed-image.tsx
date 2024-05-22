@@ -1,5 +1,6 @@
 import React from "react";
 import Image from "next/image";
+import {cn} from "@/lib/utils";
 
 type ThemedImageProps = {
   // TODO: Fix the type of darkImage and lightImage to be StaticImageData
@@ -11,26 +12,30 @@ type ThemedImageProps = {
   rest?: object;
 }
 
+const darkClasses = "hidden dark:block"
+const lightClasses = "block dark:hidden"
+
 export default function ThemedImage({darkImage, lightImage, alt, rest, className}: ThemedImageProps) {
-  const getDark = () =>{
+  const getDark = () => {
     if (React.isValidElement(darkImage)) {
-      return darkImage;
+      return <div className={cn(darkClasses, className)}>{darkImage}</div>
     }
 
-    return <Image src={darkImage} alt={alt} {...rest} />;
+    return <Image src={darkImage} alt={alt} className={cn(darkClasses, className)} {...rest} />;
   }
 
   const getLight = () => {
     if (React.isValidElement(lightImage)) {
-      return lightImage;
+      return <div className={cn(lightClasses, className)}>{lightImage}</div>
     }
 
-    return <Image src={lightImage} alt={alt} className={className} {...rest} />;
+    return <Image src={lightImage} alt={alt} className={cn(lightClasses, className)} {...rest} />;
   }
+
   return (
     <>
-      <div className="dark:hidden">{getLight()}</div>
-      <div className="hidden dark:block">{getDark()}</div>
+      {getDark()}
+      {getLight()}
     </>
   )
 }
