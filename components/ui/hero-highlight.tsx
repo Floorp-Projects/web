@@ -70,9 +70,9 @@ export const Highlight = ({children, className}: HighlightProps) => {
         backgroundSize: "100% 100%",
       }}
       transition={{
-        duration: 2,
+        duration: 1.2,
         ease: "easeInOut",
-        delay: 0.5,
+        delay: 0.6,
       }}
       style={{
         backgroundRepeat: "no-repeat",
