@@ -4,6 +4,7 @@ import {buttonVariants} from "@/components/ui/button";
 import {Card, CardContent, CardFooter, CardHeader} from "@/components/ui/card";
 import {CardContainer} from "@/components/ui/3d-card";
 import {cn} from "@/lib/utils";
+import React from "react";
 
 export type ArticleLocalizableProps = {
   postedBy: string;
@@ -24,10 +25,11 @@ type ArticleProps = {
   locale?: ArticleLocalizableProps;
   readMore?: string;
   isFadeOut?: boolean;
+  fixedImage?: React.ReactNode;
 } & ArticleResponse;
 
 export default function Article(props: ArticleProps) {
-  const {title, date, author, link, description, image, locale, readMore, isFadeOut} = props;
+  const {title, date, author, link, description, image, locale, readMore, isFadeOut, fixedImage} = props;
   const readMoreContent = readMore ? (
     <Link href={readMore}
           className={cn(
@@ -36,7 +38,8 @@ export default function Article(props: ArticleProps) {
   ) : <></>;
 
   const fadeOutDiv = isFadeOut ? (
-    <div className="absolute bottom-0 left-0 w-full h-full bg-gradient-to-b from-transparent from-0% to-background to-60%"/>
+    <div
+      className="absolute bottom-0 left-0 w-full h-full bg-gradient-to-b from-transparent from-0% to-background to-60%"/>
   ) : <></>;
 
   return (
@@ -44,7 +47,7 @@ export default function Article(props: ArticleProps) {
       {fadeOutDiv}
       <Link href={link} target={'_blank'}>
         <Card className={'border'}>
-          <CardHeader className={'text-2xl font-bold text-primary dark:text-primary-highlight'}>{title}</CardHeader>
+          <CardHeader className={'text-2xl font-bold text-foreground'}>{title}</CardHeader>
           <CardContent>
             <div className="flex flex-col-reverse md:grid md:grid-cols-3">
               <div className="col-span-2">
@@ -52,7 +55,7 @@ export default function Article(props: ArticleProps) {
                 {readMoreContent}
               </div>
               <div className={"flex justify-center items-center col-span-1 mb-4"}>
-                <Image src={image} alt={title} width={200} height={200}/>
+                {fixedImage ? fixedImage : <Image src={image} width={200} height={200} alt={title}/>}
               </div>
             </div>
           </CardContent>
