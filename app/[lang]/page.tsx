@@ -11,6 +11,8 @@ import DarkArticle from "@/public/thumbnails/article-dark.png";
 import LightArticle from "@/public/thumbnails/article-light.png";
 import {MainHero} from "@/components/layout/landing/main-hero";
 
+export const runtime = "edge";
+
 type HomeProps = {
   params: { lang: Locale }
 };

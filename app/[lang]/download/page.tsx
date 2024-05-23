@@ -12,6 +12,8 @@ import {buttonVariants} from "@/components/ui/button";
 import {Separator} from "@/components/ui/separator";
 import {ScrollArea} from "@/components/ui/scroll-area";
 
+export const runtime = "edge";
+
 type DownloadPageProps = {
   params: { lang: Locale };
   searchParams: {
