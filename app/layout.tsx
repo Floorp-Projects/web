@@ -2,7 +2,6 @@ import type {Metadata} from "next";
 import "./globals.css";
 import React from "react";
 import {Inter as FontSans} from "next/font/google"
-import {ThemeProvider} from "@/components/theme-provider";
 import {cn} from "@/lib/utils";
 
 export const runtime = 'edge';
@@ -28,12 +27,7 @@ export default async function RootLayout({children}: RootLayoutProps) {
     <body className={cn(
       bodyClasses
     )}>
-    <ThemeProvider
-      attribute={"class"}
-      defaultTheme={'system'}
-      enableSystem>
       {children}
-    </ThemeProvider>
     </body>
     </html>
   );
