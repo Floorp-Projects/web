@@ -3,6 +3,8 @@ name: Docker Image CI
 on:
   release:
     types: [published]
+  pull_request:
+    types: [opened, synchronize, reopened]
 
 jobs:
   build-website:
