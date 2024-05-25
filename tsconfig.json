@@ -20,6 +20,7 @@
     "paths": {
       "@/*": ["./*"],
       "@/i18n/*": ["./i18n/*"],
+      "@/components/*": ["./components/*"],
       "@/dictionaries/*": ["./i18n/dictionaries/*"],
     }
   },

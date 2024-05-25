@@ -1,14 +1,9 @@
 import type {Metadata} from "next";
 import "./globals.css";
-import {getDictionary} from "@/i18n/dictionaries";
-import {Locale} from "@/i18n/i18n.config";
 import React from "react";
 import {Inter as FontSans} from "next/font/google"
 import {ThemeProvider} from "@/components/theme-provider";
-import HeaderAndSideNav from "@/components/layout/header-and-side-nav";
-import Footer from "@/components/layout/footer";
 import {cn} from "@/lib/utils";
-import DevAlert from "@/components/layout/dev-alert";
 
 export const runtime = 'edge';
 
@@ -16,8 +11,10 @@ type RootLayoutProps = {
   children: React.ReactNode,
 }
 
+const url = process.env.SELF_URL || 'http://localhost:3000'
+
 export const metadata: Metadata = {
-  metadataBase: new URL('https://devtest.kou-gen.net')
+  metadataBase: new URL(url),
 }
 
 const fontSans = FontSans({
