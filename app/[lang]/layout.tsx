@@ -10,6 +10,8 @@ import Footer from "@/components/layout/footer";
 import {cn} from "@/lib/utils";
 import DevAlert from "@/components/layout/dev-alert";
 
+export const runtime = 'edge';
+
 type MetadataProps = {
   params: { lang: Locale }
 };
