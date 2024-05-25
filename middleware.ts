@@ -19,7 +19,16 @@ function getLocale(request: NextRequest): string | undefined {
   return matchLocale(languages, locales, i18n.defaultLocale)
 }
 
-const excludedPaths = ['api', '_next/static', '_next/image', '/favicon.ico', '/manifest.json', '/_next/webpack-hmr']
+const excludedPaths = [
+  'api',
+  '_next/static',
+  '_next/image',
+  '/favicon.ico',
+  '/manifest.json',
+  '/_next/webpack-hmr',
+  '/opengraph-image',
+  '/twitter-image',
+]
 
 export function middleware(request: NextRequest) {
   let {pathname} = request.nextUrl
@@ -27,8 +36,9 @@ export function middleware(request: NextRequest) {
     (locale) => pathname.startsWith(`/${locale}/`) || pathname === `/${locale}`
   )
 
-  if (excludedPaths.includes(pathname)) {
-    return;
+  // Check if any of the excluded paths are in the request
+  if (excludedPaths.some((path) => pathname.includes(path))) {
+    return
   }
 
   let locale = getLocale(request)
