@@ -27,8 +27,8 @@ const iconMap = {
 const getHeroProps = async (lang: Locale) => {
   const dict = await getDictionary(lang);
   return {
-    header: dict.landingPage.heroCard.title,
-    description: dict.landingPage.heroCard.description,
+    header: dict.common.title,
+    description: dict.common.description,
     sourceCode: dict.landingPage.heroCard.sourceCode,
     download: dict.landingPage.heroCard.download,
   }
