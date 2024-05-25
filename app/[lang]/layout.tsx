@@ -1,10 +1,8 @@
 import type {Metadata} from "next";
-import "../globals.css";
 import {getDictionary} from "@/i18n/dictionaries";
 import {Locale} from "@/i18n/i18n.config";
 import React from "react";
 import {Inter as FontSans} from "next/font/google"
-import {ThemeProvider} from "@/components/theme-provider";
 import HeaderAndSideNav from "@/components/layout/header-and-side-nav";
 import Footer from "@/components/layout/footer";
 import {cn} from "@/lib/utils";
