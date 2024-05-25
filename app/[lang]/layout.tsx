@@ -1,5 +1,5 @@
 import type {Metadata} from "next";
-import "./globals.css";
+import "../globals.css";
 import {getDictionary} from "@/i18n/dictionaries";
 import {Locale} from "@/i18n/i18n.config";
 import React from "react";
@@ -33,26 +33,19 @@ const fontSans = FontSans({
   subsets: ["latin"],
 })
 
-export default async function RootLayout({ params: { lang }, children }: RootLayoutProps) {
+export default async function RootLayout({params: {lang}, children}: RootLayoutProps) {
   const bodyClasses = fontSans.className
   return (
     <html lang="en" suppressHydrationWarning>
     <body className={cn(
       bodyClasses
     )}>
-    <ThemeProvider
-      attribute={"class"}
-      defaultTheme={'system'}
-      enableSystem>
-      <>
-        <HeaderAndSideNav lang={lang} />
-        <div className="relative">
-          <DevAlert />
-          {children}
-        </div>
-        <Footer />
-      </>
-    </ThemeProvider>
+    <HeaderAndSideNav lang={lang}/>
+    <div className="relative">
+      <DevAlert/>
+      {children}
+    </div>
+    <Footer/>
     </body>
     </html>
   );
