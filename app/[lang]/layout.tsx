@@ -7,6 +7,7 @@ import HeaderAndSideNav from "@/components/layout/header-and-side-nav";
 import Footer from "@/components/layout/footer";
 import {cn} from "@/lib/utils";
 import DevAlert from "@/components/layout/dev-alert";
+import {ThemeProvider} from "@/components/theme-provider";
 
 export const runtime = 'edge';
 
@@ -38,12 +39,17 @@ export default async function RootLayout({params: {lang}, children}: RootLayoutP
     <body className={cn(
       bodyClasses
     )}>
-    <HeaderAndSideNav lang={lang}/>
-    <div className="relative">
-      <DevAlert/>
-      {children}
-    </div>
-    <Footer/>
+    <ThemeProvider
+      attribute={"class"}
+      defaultTheme={'system'}
+      enableSystem>
+      <HeaderAndSideNav lang={lang}/>
+      <div className="relative">
+        <DevAlert/>
+        {children}
+      </div>
+      <Footer/>
+    </ThemeProvider>
     </body>
     </html>
   );
