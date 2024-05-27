@@ -1,0 +1,9 @@
+name: floorp
+
+services:
+  web:
+    image: 'ghcr.io/joshika39/web:latest'
+    ports:
+      - "1005:3000"
+    environment:
+      ENV: development
