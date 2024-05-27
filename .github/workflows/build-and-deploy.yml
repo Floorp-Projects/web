@@ -23,6 +23,9 @@ jobs:
 
       - name: Lowercase the repo name
         run: echo "REPO=${GITHUB_REPOSITORY,,}" >>${GITHUB_ENV}
+        # Image name should be lowercase and: ghcr.io/<repo>-<branch>:latest
+      - name: Get the image name
+        run: echo "IMAGE_NAME=ghcr.io/${{ env.REPO }}:${{ github.ref_name }}" >>${GITHUB_ENV}
 
       - name: Build and push container hashed image to registry
         uses: docker/build-push-action@v4
@@ -30,5 +33,5 @@ jobs:
           platforms: amd64,arm64
           push: true
           # Hashed and latest tags
-          tags: ghcr.io/${{ env.REPO }}:latest
+          tags: ${{ env.IMAGE_NAME }}:${{ github.sha }}, ${{ env.IMAGE_NAME }}:latest
           file: ./Dockerfile
