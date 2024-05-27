@@ -1,6 +1,6 @@
 import type {NextRequest} from 'next/server'
 import {NextResponse} from 'next/server'
-import {defaultLocale, i18n, isReviewed, locales} from './i18n/i18n.config'
+import {defaultLocale, i18n, isNotStarted, isReviewed, locales} from './i18n/i18n.config'
 import {match as matchLocale} from '@formatjs/intl-localematcher'
 //@ts-ignore
 import Negotiator from 'negotiator'
@@ -44,7 +44,7 @@ export function middleware(request: NextRequest) {
   let locale = getLocale(request)
   if (pathnameHasLocale) {
     const selectedLocale = pathname.split('/')[1]
-    if (!isReviewed(selectedLocale || '')) {
+    if (isNotStarted(selectedLocale || '')) {
       console.log(`Locale ${selectedLocale} is not reviewed, redirecting to en`)
       pathname = pathname.replace(`/${selectedLocale}`, '')
       locale = defaultLocale
@@ -53,7 +53,7 @@ export function middleware(request: NextRequest) {
     }
   }
 
-  if (!isReviewed(locale || '')) {
+  if (isNotStarted(locale || '')) {
     console.log(`Locale ${locale} is not reviewed, redirecting to en`)
     pathname = pathname.replace(`/${locale}`, '')
     locale = defaultLocale

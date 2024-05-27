@@ -59,7 +59,7 @@ export default function LanguageSelect({languageSelect, inReview, waitingForCont
         <DropdownMenuSeparator/>
         {i18n.locales.filter(locale => Object.keys(langDict).includes(locale)).map(locale => {
           return (
-            <DropdownMenuItem key={locale} disabled={!isReviewed(locale)} asChild>
+            <DropdownMenuItem key={locale} disabled={isNotStarted(locale)} asChild>
               <Link href={redirectedPathName(locale)}>
                 {extendLocaleIfNecessary(locale)}
               </Link>
