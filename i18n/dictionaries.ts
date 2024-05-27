@@ -5,7 +5,9 @@ const dictionaryFiles = [
   'en.json',
   'ja.json',
   'ru.json',
-  'hu.json'
+  'hu.json',
+  'fr.json',
+  'uk.json'
 ];
 
 const enDict = import('@/dictionaries/i18n/en/dictionary.json').then((module) => module.default);
