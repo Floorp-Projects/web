@@ -1,0 +1,38 @@
+name: Docker Image CI
+
+on:
+  push:
+    branches:
+      - dev
+      - master
+
+jobs:
+  build-website:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v2
+
+      - name: Log in to GitHub container registry
+        uses: docker/login-action@v2
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.DOCKER_PUSH }}
+
+      - name: Lowercase the repo name
+        run: echo "REPO=${GITHUB_REPOSITORY,,}" >>${GITHUB_ENV}
+        # Image name should be lowercase and: ghcr.io/<repo>-<branch>:latest
+      - name: Get the image name
+        run: echo "IMAGE_NAME=ghcr.io/${{ env.REPO }}-${{ github.ref_name }}" >>${GITHUB_ENV}
+
+      - name: Build and push container hashed image to registry
+        uses: docker/build-push-action@v4
+        with:
+          platforms: amd64,arm64
+          push: true
+          # Hashed and latest tags
+          tags: ${{ env.IMAGE_NAME }}:${{ github.sha }}, ${{ env.IMAGE_NAME }}:latest
+          file: ./Dockerfile
