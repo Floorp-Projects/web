@@ -24,17 +24,17 @@ export const getComponent = (node: React.ReactNode, returnIfProduction: boolean 
 export const platformOptions = {
   "windows": "Windows",
   "linux": "Linux",
-  "macos": "MacOS",
+  "macos": "macOS",
   "android": "Android",
-  "ios": "IOS",
+  "ios": "iOS",
 } as Record<string, string>;
 
 export enum Platform {
   Linux = 'Linux',
   Windows = 'Windows',
-  MacOS = 'MacOS',
+  MacOS = 'macOS',
   Android = 'Android',
-  IOS = 'IOS',
+  IOS = 'iOS',
 }
 
 export const convertOptionToPlatform = (option: string): Platform => {
