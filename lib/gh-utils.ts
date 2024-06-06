@@ -47,7 +47,7 @@ const getReadableName = (name: string): string => {
     return 'Windows Portable';
   }
   if (name.includes('dmg')) {
-    return 'MacOS';
+    return 'macOS';
   }
 
   return name;
