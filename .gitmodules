@@ -1,3 +1,6 @@
 [submodule "i18n/dictionaries"]
 	path = i18n/dictionaries
 	url = https://github.com/Floorp-Projects/web-i18n.git
+[submodule "toolkit"]
+	path = toolkit
+	url = https://github.com/Ablaze-MIRAI/nextjs-toolkit.git
