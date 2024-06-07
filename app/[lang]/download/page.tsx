@@ -117,15 +117,25 @@ export default async function DownloadPage({params: {lang}, searchParams}: Downl
     return options;
   }
 
+  const platformSelect = (
+    <PlatformSelect
+      locale={{ detect: dict.downloadPage.detect}}
+      checkbox={dict.downloadPage.daylight}
+      alert={isDaylight ?
+        <FAlert lang={lang} description={dict.downloadPage.daylight.alert} severity={'warning'}/> : null}
+      platforms={getPlatformOptions()}
+    />
+  )
+
+  const noRelease = (
+    <>
+      <p>{dict.downloadPage.noReleaseFound}</p>
+    </>
+  );
+
   return (
     <div className="flex flex-col w-full sm:flex-row items-center justify-between sm:items-start gap-4">
-      <PlatformSelect
-        locale={{ detect: dict.downloadPage.detect}}
-        checkbox={dict.downloadPage.daylight}
-        alert={isDaylight ?
-          <FAlert lang={lang} description={dict.downloadPage.daylight.alert} severity={'warning'}/> : null}
-        platforms={getPlatformOptions()}
-      />
+      {!release ? noRelease : platformSelect}
     </div>
   )
 }
