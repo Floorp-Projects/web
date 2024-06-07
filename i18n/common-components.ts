@@ -1,5 +1,5 @@
 import Link from "next/link";
-import {buttonVariants} from "@/components/ui/button";
+import {buttonVariants} from "@/toolkit/components/button";
 
 export const getLink = (href: string, key = 1, rest = {}) => {
   return {

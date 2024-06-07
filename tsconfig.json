@@ -1,6 +1,10 @@
 {
   "compilerOptions": {
-    "lib": ["dom", "dom.iterable", "esnext"],
+    "lib": [
+      "dom",
+      "dom.iterable",
+      "esnext"
+    ],
     "allowJs": true,
     "skipLibCheck": true,
     "strict": true,
@@ -18,12 +22,44 @@
       }
     ],
     "paths": {
-      "@/*": ["./*"],
-      "@/i18n/*": ["./i18n/*"],
-      "@/components/*": ["./components/*"],
-      "@/dictionaries/*": ["./i18n/dictionaries/*"],
+      "@/*": [
+        "./*"
+      ],
+      "@/i18n/*": [
+        "./i18n/*"
+      ],
+      "@/components/*": [
+        "./components/*"
+      ],
+      "@/dictionaries/*": [
+        "./i18n/dictionaries/*"
+      ],
+      "@/toolkit/components/*": [
+        "./toolkit/components/ui/*",
+        "./toolkit/components/layout/*",
+        "./toolkit/components/custom/*",
+        "./toolkit/components/markdown/*",
+        "./toolkit/components/*",
+        "./toolkit/helpers/*"
+      ],
+      "@/toolkit/lib/*": [
+        "./toolkit/lib/*"
+      ],
+      "@/toolkit/i18n/*": [
+        "./toolkit/i18n/*"
+      ],
+      "@/toolkit/*": [
+        "./toolkit/*"
+      ]
     }
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],
-  "exclude": ["node_modules"]
+  "include": [
+    "next-env.d.ts",
+    "**/*.ts",
+    "**/*.tsx",
+    ".next/types/**/*.ts"
+  ],
+  "exclude": [
+    "node_modules"
+  ]
 }

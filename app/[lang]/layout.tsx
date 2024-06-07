@@ -7,7 +7,7 @@ import HeaderAndSideNav from "@/components/layout/header-and-side-nav";
 import Footer from "@/components/layout/footer";
 import {cn} from "@/lib/utils";
 import DevAlert from "@/components/layout/dev-alert";
-import {ThemeProvider} from "@/components/theme-provider";
+import {ThemeProvider} from "@/toolkit/components/theme-provider";
 
 export const runtime = 'edge';
 

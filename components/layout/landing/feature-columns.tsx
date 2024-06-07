@@ -1,6 +1,6 @@
 import {Locale} from "@/i18n/i18n.config";
 import Feature from "@/components/layout/feature";
-import {formatTranslation as f} from "@/i18n/utils";
+import {formatTranslation as f} from "@/toolkit/i18n/utils";
 import {getDictionary} from "@/i18n/dictionaries";
 import Feature1 from "@/public/feature1.svg";
 import Feature2 from "@/public/feature2.svg";

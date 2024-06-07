@@ -1,8 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
-import {buttonVariants} from "@/components/ui/button";
-import {Card, CardContent, CardFooter, CardHeader} from "@/components/ui/card";
-import {CardContainer} from "@/components/ui/3d-card";
+import {buttonVariants} from "@/toolkit/components/ui/button";
+import {Card, CardContent, CardFooter, CardHeader} from "@/toolkit/components/ui/card";
 import {cn} from "@/lib/utils";
 import React from "react";
 

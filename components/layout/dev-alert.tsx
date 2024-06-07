@@ -1,8 +1,8 @@
-import {HoverCard, HoverCardContent, HoverCardTrigger} from "@/components/ui/hover-card";
 import Link from "next/link";
-import {Badge} from "@/components/ui/badge";
-import {buttonVariants} from "@/components/ui/button";
 import {getComponent, isDevelopment} from "@/lib/utils";
+import {HoverCard, HoverCardContent, HoverCardTrigger} from "@/toolkit/components/hover-card";
+import {Badge} from "@/toolkit/components/badge";
+import { buttonVariants } from "@/toolkit/components/ui/button";
 
 
 export default function DevAlert() {

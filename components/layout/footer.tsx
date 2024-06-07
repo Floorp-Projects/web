@@ -3,7 +3,7 @@ import Image from "next/image";
 import Logo from "@/public/logo.png";
 import ALogoDark from '@/public/a-logo-onlight.png';
 import ALogoLight from '@/public/a-logo-ondark.png';
-import ThemedImage from "@/components/themed-image";
+import ThemedImage from "@/toolkit/components/themed-image";
 import LogoDark from "@/public/logo-dark.png";
 
 export default function Footer() {

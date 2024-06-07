@@ -1,5 +1,5 @@
 import type {Metadata} from "next";
-import "./globals.css";
+import "@/toolkit/styles/floorp/globals.css";
 import React from "react";
 import {Inter as FontSans} from "next/font/google"
 import {cn} from "@/lib/utils";

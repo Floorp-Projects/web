@@ -1,15 +1,15 @@
 import Link from "next/link";
 import {RiDiscordFill, RiGithubFill, RiMenuUnfoldLine, RiStarLine, RiTwitterXFill} from "@remixicon/react"
-import {Sheet, SheetContent, SheetTrigger} from "@/components/ui/sheet";
-import {Button, buttonVariants} from "@/components/ui/button";
+import {Sheet, SheetContent, SheetTrigger} from "@/toolkit/components/ui/sheet";
+import {Button, buttonVariants} from "@/toolkit/components/ui/button";
 import Logo from "@/public/logo.png";
 import LogoDark from "@/public/logo-dark.png";
-import {ThemeSwitch} from "@/components/theme-switch";
+import {ThemeSwitch} from "@/toolkit/components/theme-switch";
 import {cn} from "@/lib/utils";
 import LanguageSelect from "@/components/language-select";
 import {Locale} from "@/i18n/i18n.config";
 import {getDictionary} from "@/i18n/dictionaries";
-import ThemedImage from "@/components/themed-image";
+import ThemedImage from "@/toolkit/components/themed-image";
 import {FaDiscord, FaGithub, FaTwitter} from "react-icons/fa";
 
 type HeaderAndSideNavProps = {
@@ -44,7 +44,7 @@ export default async function HeaderAndSideNav({lang}: HeaderAndSideNavProps) {
                   darkImage={LogoDark}
                   lightImage={Logo}
                   alt={"logo"}
-                  rest={{width: 100, height: 50}}
+                  className={'w-32'}
                 />
                 <span className="sr-only">Floorp</span>
               </Link>
@@ -79,7 +79,7 @@ export default async function HeaderAndSideNav({lang}: HeaderAndSideNavProps) {
               darkImage={LogoDark}
               lightImage={Logo}
               alt={"logo"}
-              rest={{width: 100, height: 50}}
+              className={'w-32'}
             />
             <span className="sr-only">Floorp</span>
           </Link>

@@ -6,7 +6,7 @@ import {HeaderGridItem, ThreeColBentoGrid} from "@/components/ui/bento-grid";
 import {ArticleResponse} from "@/components/layout/articles/article";
 import ArticleList from "@/components/layout/articles/article-list";
 import FeatureColumns from "@/components/layout/landing/feature-columns";
-import ThemedImage from "@/components/themed-image";
+import ThemedImage from "@/toolkit/components/themed-image";
 import DarkArticle from "@/public/thumbnails/article-dark.png";
 import LightArticle from "@/public/thumbnails/article-light.png";
 import {MainHero} from "@/components/layout/landing/main-hero";

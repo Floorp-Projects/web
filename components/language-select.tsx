@@ -12,9 +12,9 @@ import {
   DropdownMenuRadioItem,
   DropdownMenuSeparator,
   DropdownMenuTrigger
-} from './ui/dropdown-menu';
-import {Button} from './ui/button';
+} from '@/toolkit/components/ui/dropdown-menu';
 import {LanguagesIcon} from "lucide-react";
+import {Button} from "@/toolkit/components/button";
 
 export interface LanguageSelectProps {
   languageSelect: string;

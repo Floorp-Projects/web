@@ -1,12 +1,8 @@
 import {cn} from "@/lib/utils";
 import React from "react";
-import {Separator} from "@/components/ui/separator";
-import {ScrollArea} from "@/components/ui/scroll-area";
-
 
 const inputs = (height: string) => `grid md:auto-rows-[${height}rem] grid-cols-1 gap-4 max-w-7xl mx-auto`;
 const shadow = 'shadow-[rgba(6,_24,_44,_0.4)_0px_0px_0px_2px,_rgba(6,_24,_44,_0.65)_0px_4px_6px_-1px,_rgba(255,_255,_255,_0.08)_0px_1px_0px_inset]';
-export const bentoTransition = "group-hover/bento:translate-x-2 group-hover/bento:translate-y-1 transition duration-200";
 
 type BentoCardProps = {
   className?: string;
@@ -37,35 +33,6 @@ type BentoGridProps = {
   height?: string;
 }
 
-export const BentoGrid = ({className, children, height = '18'}: BentoGridProps) => {
-  return (
-    <div
-      className={cn(
-        inputs(height),
-        className
-      )}
-    >
-      {children}
-    </div>
-  );
-
-}
-
-export const TwoColBentoGrid = ({className, children, height = '18'}: BentoGridProps) => {
-  console.log(inputs);
-  return (
-    <div
-      className={cn(
-        inputs(height),
-        'md:grid-cols-2',
-        className
-      )}
-    >
-      {children}
-    </div>
-  );
-};
-
 export const ThreeColBentoGrid = ({className, children, height = '18'}: BentoGridProps) => {
   return (
     <div
@@ -79,75 +46,6 @@ export const ThreeColBentoGrid = ({className, children, height = '18'}: BentoGri
     </div>
   );
 };
-
-type CardGridItemProps = {
-  className?: string;
-  title?: string;
-  description?: string;
-  icon?: React.ReactNode;
-  extra?: React.ReactNode;
-  iconSize?: "sm" | "md" | "lg";
-}
-
-export const CardGridItem = ({className, title, description, icon, extra, iconSize = 'sm'}: CardGridItemProps) => {
-  const titleAndDescription = (
-    <div className="flex flex-col space-y-1">
-      <div className="font-sans font-bold text-neutral-600 dark:text-neutral-200 mb-2 mt-2">
-        {title}
-      </div>
-      <div className="font-sans font-normal text-neutral-600 text-xs dark:text-neutral-300">
-        {description}
-      </div>
-    </div>
-  );
-
-  const mainContent = () => {
-    if (!icon) {
-      return titleAndDescription;
-    }
-
-    switch (iconSize) {
-      case "sm":
-        return (
-          <>
-            {icon}
-            {titleAndDescription}
-          </>
-        );
-      case "md":
-      case "lg":
-      default:
-        return (
-          <div className="flex h-full items-center space-x-4 shrink-0">
-            <div>{icon}</div>
-            <Separator orientation="vertical" className={'mt-0'} />
-            {titleAndDescription}
-          </div>
-        );
-    }
-  }
-
-  const extraContent = extra ? (
-    <div className={bentoTransition}>
-      {extra}
-    </div>
-  ) : <></>;
-
-  return (
-    <BentoCard
-      className={cn(
-        "relative justify-start",
-        className
-      )}
-    >
-      {extraContent}
-      <Separator className={bentoTransition} orientation="horizontal"/>
-      <div className={bentoTransition}>
-        {mainContent()}
-      </div>
-    </BentoCard>
-  );
-}
 
 
 type BentoGridItemProps = {
@@ -181,32 +79,3 @@ export const HeaderGridItem = ({className, title, description, scrollable, heade
     </BentoCard>
   );
 };
-
-export const ReverseHeaderGridItem = ({className, title, scrollable, description, header, icon}: BentoGridItemProps) => {
-
-  const headerComponent = scrollable ? (
-    <ScrollArea className='max-h-[22rem]'>
-      {header}
-    </ScrollArea> ) : header;
-
-  return (
-    <BentoCard
-      className={cn(
-        className
-      )}
-    >
-      <div className={bentoTransition}>
-        {icon}
-        <div className="flex flex-col space-y-1">
-          <div className="font-sans font-bold text-neutral-600 dark:text-neutral-200 mb-2 mt-2">
-            {title}
-          </div>
-          <div className="font-sans font-normal text-neutral-600 text-xs dark:text-neutral-300">
-            {description}
-          </div>
-        </div>
-      </div>
-      {headerComponent}
-    </BentoCard>
-  );
-}

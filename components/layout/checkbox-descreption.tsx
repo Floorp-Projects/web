@@ -1,5 +1,5 @@
 "use client"
-import {Checkbox} from "@/components/ui/checkbox"
+import {Checkbox} from "@/toolkit/components/ui/checkbox"
 import {CheckedState} from "@radix-ui/react-checkbox";
 import React from "react";
 import {cn} from "@/lib/utils";

@@ -2,7 +2,7 @@ import Article, {ArticleResponse} from "@/components/layout/articles/article";
 import React from "react";
 import Link from "next/link";
 import {cn} from "@/lib/utils";
-import {buttonVariants} from "@/components/ui/button";
+import {buttonVariants} from "@/toolkit/components/ui/button";
 
 type ArticleListProps = {
   articles: ArticleResponse[];

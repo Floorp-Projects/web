@@ -1,16 +1,16 @@
 import {Locale} from "@/i18n/i18n.config";
-import FAlert from "@/components/alert";
+import FAlert from "@/toolkit/components/custom/alert";
 import {getDictionary} from "@/i18n/dictionaries";
 import PlatformSelect, {PlatformOption} from "@/components/layout/download/platform-select";
 import React from "react";
 import {AssetInfo, getRelease, getTags} from "@/lib/gh-utils";
 import {cn, convertOptionToPlatform, Platform, platformOptions} from "@/lib/utils";
 import {AssetsTable} from "@/components/layout/download/assets-table";
-import {formatTranslation as f} from "@/i18n/utils"
+import {formatTranslation as f} from "@/toolkit/i18n/utils"
 import Link from "next/link";
-import {buttonVariants} from "@/components/ui/button";
-import {Separator} from "@/components/ui/separator";
-import {ScrollArea} from "@/components/ui/scroll-area";
+import {buttonVariants} from "@/toolkit/components/ui/button";
+import {Separator} from "@/toolkit/components/ui/separator";
+import {ScrollArea} from "@/toolkit/components/ui/scroll-area";
 
 type DownloadPageProps = {
   params: { lang: Locale };
@@ -24,6 +24,7 @@ export const dynamic = 'force-dynamic';
 
 export default async function DownloadPage({params: {lang}, searchParams}: DownloadPageProps) {
   const dict = await getDictionary(lang);
+  const alertLocale = dict.components.alerts;
   const isDaylight = searchParams.daylight === 'true';
   const release = await getRelease();
   const tags = await getTags();
@@ -122,7 +123,7 @@ export default async function DownloadPage({params: {lang}, searchParams}: Downl
       locale={{ detect: dict.downloadPage.detect}}
       checkbox={dict.downloadPage.daylight}
       alert={isDaylight ?
-        <FAlert lang={lang} description={dict.downloadPage.daylight.alert} severity={'warning'}/> : null}
+        <FAlert titles={alertLocale} description={dict.downloadPage.daylight.alert} severity={'warning'}/> : null}
       platforms={getPlatformOptions()}
     />
   )

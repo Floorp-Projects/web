@@ -1,8 +1,8 @@
-import {CardBody, CardContainer, CardItem} from "@/components/ui/3d-card";
+import {CardBody, CardContainer, CardItem} from "@/toolkit/components/ui/3d-card";
 import Image from "next/image";
 import hero from "@/public/hero.png";
 import Link from "next/link";
-import {buttonVariants} from "@/components/ui/button";
+import {buttonVariants} from "@/toolkit/components/ui/button";
 
 export type MainHeroCardProps = {
   header: string;

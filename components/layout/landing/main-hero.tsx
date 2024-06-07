@@ -1,7 +1,7 @@
 "use client";
 import { motion } from "framer-motion";
-import { HeroHighlight, Highlight } from "../../ui/hero-highlight";
-import {replaceComponent as rC} from "@/i18n/utils";
+import {replaceComponent as rC} from "@/toolkit/i18n/utils";
+import {HeroHighlight, Highlight} from "@/toolkit/components/hero-highlight";
 
 type MainHeroProps = {
   translation: string;
