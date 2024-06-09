@@ -28,26 +28,26 @@ export type Release = {
 }
 
 const getReadableName = (name: string): string => {
-  if(name.includes('aarch64')) {
+  if (name.includes('aarch64')) {
     return 'Linux ARM';
   }
-  if(name.includes('x86_64') && name.includes('linux')) {
+  if (name.includes('x86_64') && name.includes('linux')) {
     return 'Linux x86/x64';
   }
   if (name.includes('stub') && name.includes('exe')) {
     return 'Windows 64bit Online Installer';
   }
-  if (name.includes('exe') && name.includes('win32')){
+  if (name.includes('exe') && name.includes('win32')) {
     return 'Windows 32-bit';
   }
-  if (name.includes('exe') && name.includes('win64')){
+  if (name.includes('exe') && name.includes('win64')) {
     return 'Windows 64-bit';
   }
-  if (name.includes('portable') && name.includes('zip') && name.includes('win')){
+  if (name.includes('portable') && name.includes('zip') && name.includes('win')) {
     return 'Windows Portable';
   }
   if (name.includes('dmg')) {
-    return 'MacOS';
+    return 'macOS';
   }
 
   return name;
@@ -75,61 +75,86 @@ const getPlatformTypByAssetName = (name: string): Platform => {
   return Platform.Linux;
 }
 
-export async function getRelease(): Promise<Release | null> {
-  const octokit = new Octokit();
-  const response = await octokit.rest.repos.getLatestRelease({
-    owner: 'Floorp-Projects',
-    repo: 'Floorp',
-  });
+const accessToken = process.env.GITHUB_TOKEN;
+const options = accessToken ? {auth: accessToken} : {};
 
-  if (!response.data.assets || response.data.published_at === null) {
-    console.error('Failed to fetch release data');
+const hasQuota = async (octokit: Octokit): Promise<boolean> => {
+  const rateLimitResponse = await octokit.rest.rateLimit.get();
+
+  if (rateLimitResponse.data.resources.core.remaining === 0) {
+    console.log('Request quota exhausted before making request');
+    return false;
+  }
+
+  return true;
+}
+
+export async function getRelease(): Promise<Release | null> {
+  const octokit = new Octokit(options);
+  if (!await hasQuota(octokit)) {
     return null;
   }
-  const date = new Date(response.data.published_at);
+  try {
+    const response = await octokit.rest.repos.getLatestRelease({
+      owner: 'Floorp-Projects',
+      repo: 'Floorp',
+    });
 
-  let hashes = '';
-  const assets: Record<string, AssetInfo[]> = {}
-  for (let i = 0; i < response.data.assets.length; i++) {
-    const asset = response.data.assets[i];
+    if (!response?.data.assets || response?.data.published_at === null) {
+      console.error('Failed to fetch release data');
+      return null;
+    }
+    const date = new Date(response.data.published_at);
 
-    if (asset.name === "hashes.txt") {
-      hashes = asset.browser_download_url;
+    let hashes = '';
+    const assets: Record<string, AssetInfo[]> = {}
+    for (let i = 0; i < response.data.assets.length; i++) {
+      const asset = response.data.assets[i];
+
+      if (asset.name === "hashes.txt") {
+        hashes = asset.browser_download_url;
+      }
+
+      if (asset.name.includes('.mar') || asset.name.includes('.txt')) {
+        continue;
+      }
+      const platform = getPlatformTypByAssetName(asset.name);
+      if (!assets[platform]) {
+        assets[platform] = [];
+      }
+      assets[platform].push(getAssetInfo(asset));
     }
 
-    if (asset.name.includes('.mar') || asset.name.includes('.txt')) {
-      continue;
+    const portableResponse = await octokit.rest.repos.getLatestRelease({
+      owner: 'Floorp-Projects',
+      repo: 'Floorp-Portable',
+    });
+    let targetAsset = portableResponse.data.assets.find((asset) => asset.name.includes('windows'));
+    if (targetAsset) {
+      if (!assets[Platform.Windows]) {
+        assets[Platform.Windows] = [];
+      }
+      assets[Platform.Windows].push(getAssetInfo(targetAsset));
     }
-    const platform = getPlatformTypByAssetName(asset.name);
-    if (!assets[platform]) {
-      assets[platform] = [];
-    }
-    assets[platform].push(getAssetInfo(asset));
-  }
 
-  const portableResponse = await octokit.rest.repos.getLatestRelease({
-    owner: 'Floorp-Projects',
-    repo: 'Floorp-Portable',
-  });
-  let targetAsset = portableResponse.data.assets.find((asset) => asset.name.includes('windows'));
-  if (targetAsset) {
-    if (!assets[Platform.Windows]) {
-      assets[Platform.Windows] = [];
+    return {
+      version: response.data.tag_name,
+      name: response.data.name || response.data.tag_name,
+      publishedAt: date,
+      downloads: assets,
+      hashes
     }
-    assets[Platform.Windows].push(getAssetInfo(targetAsset));
-  }
-
-  return {
-    version: response.data.tag_name,
-    name: response.data.name || response.data.tag_name,
-    publishedAt: date,
-    downloads: assets,
-    hashes
+  } catch (e) {
+    console.error('Failed to fetch release data', e);
+    return null;
   }
 }
 
 export async function getTags(): Promise<string[]> {
-  const octokit = new Octokit();
+  const octokit = new Octokit(options);
+  if (!await hasQuota(octokit)) {
+    return [];
+  }
   const response = await octokit.rest.repos.listTags({
     owner: 'Floorp-Projects',
     repo: 'Floorp',

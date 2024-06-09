@@ -4,6 +4,7 @@ import React from "react";
 import {Inter as FontSans} from "next/font/google"
 import {cn} from "@/lib/utils";
 import {headers} from "next/headers";
+import {getDictionary} from "@/i18n/dictionaries";
 
 export const runtime = 'edge';
 
@@ -12,8 +13,11 @@ type RootLayoutProps = {
 }
 
 export async function generateMetadata(): Promise<Metadata> {
+  const dict = await getDictionary("en");
   return {
     metadataBase: new URL(`https://${headers().get("host")}`),
+    title: dict.common.title,
+    description: dict.common.description,
   };
 }
 
