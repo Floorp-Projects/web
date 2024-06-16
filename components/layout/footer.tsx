@@ -29,7 +29,7 @@ export default function Footer() {
           />
         </Link>
         <p className={'text-center text-sm text-neutral-600 dark:text-gray-50'}>
-          &copy;{new Date().getFullYear()} Floorp Browser
+          &copy; {new Date().getFullYear()} Floorp Projects & Ablaze
         </p>
       </div>
     </footer>
