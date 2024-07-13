@@ -137,7 +137,7 @@ export const CardItem = (props: CardImageProps) => {
   return (
     <Tag
       ref={ref}
-      className={cn("w-fit transition duration-200 ease-linear", className)}
+      className={cn("w-fit transition duration-200 ease-linear outline outline-transparent", className)}
       {...rest}
     >
       {children}
