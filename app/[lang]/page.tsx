@@ -42,7 +42,7 @@ const getFirstTwoArticles = async (top: number = 2) => {
     const article = articles[i] as ArticleResponse;
     result.push({
       title: article.title,
-      date: article.date,
+      date: article.date.replace('T', " "),
       description: article.description,
       author: article.author,
       image: article.image,
