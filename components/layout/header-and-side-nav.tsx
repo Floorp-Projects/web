@@ -10,7 +10,7 @@ import LanguageSelect from "@/components/language-select";
 import {Locale} from "@/i18n/i18n.config";
 import {getDictionary} from "@/i18n/dictionaries";
 import ThemedImage from "@/components/themed-image";
-import {FaDiscord, FaGithub, FaTwitter} from "react-icons/fa";
+import {FaDiscord, FaGithub, FaXTwitter, FaFile} from "react-icons/fa6";
 
 type HeaderAndSideNavProps = {
   lang: Locale;
@@ -90,10 +90,13 @@ export default async function HeaderAndSideNav({lang}: HeaderAndSideNavProps) {
               <FaDiscord/>
             </Link>
             <Link href="https://twitter.com/Floorp_Browser" className={buttonVariants({variant: 'ghost'})}>
-              <FaTwitter/>
+              <FaXTwitter/>
             </Link>
             <Link href="https://github.com/floorp-Projects/floorp/" className={buttonVariants({variant: 'ghost'})}>
               <FaGithub/>
+            </Link>
+            <Link href="https://docs.floorp.app" className={buttonVariants({variant: 'ghost'})}>
+              <FaFile />
             </Link>
           </div>
           <LanguageSelect
