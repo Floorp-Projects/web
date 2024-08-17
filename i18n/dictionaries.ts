@@ -4,6 +4,7 @@ import type {Locale} from './i18n.config';
 const dictionaryFiles = [
   'en.json',
   'ja.json',
+  'ko.json',
   'ru.json',
   'hu.json',
   'fr.json',
