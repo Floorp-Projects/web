@@ -1,6 +1,6 @@
 import {CardBody, CardContainer, CardItem} from "@/components/ui/3d-card";
 import Image from "next/image";
-import hero from "@/public/hero.png";
+import hero from "@/public/hero.webp";
 import Link from "next/link";
 import {buttonVariants} from "@/components/ui/button";
 
@@ -34,7 +34,7 @@ export default function MainHeroCard({header, description, sourceCode, download}
             src={hero}
             height="1000"
             width="1000"
-            className="h-60 w-full object-cover rounded-xl group-hover/card:shadow-xl"
+            className="h-60 w-full object-cover rounded group-hover/card:shadow-xl"
             alt="thumbnail"
           />
         </CardItem>
