@@ -1,7 +1,7 @@
 export const defaultLocale = "en"
-export const locales = ["en", "ja", "ko", "ru", "uk", "fr", "hu"];
+export const locales = ["en", "ja", "ru", "uk", "fr", "hu"];
 
-export const reviewedTranslations: string[] = ["en", "ja", "ko", "fr", "ru"]
+export const reviewedTranslations: string[] = ["en", "ja", "fr", "ru"]
 export const inReviewTranslations: string[] = ["uk", "hu"]
 export const notStartedTranslations: string[] = []
 export const isReviewed = (locale: string) => reviewedTranslations.includes(locale);
@@ -11,7 +11,7 @@ export const isNotStarted = (locale: string) => notStartedTranslations.includes(
 export const langDict = {
   en: "English",
   ja: "日本語",
-  ko: "한국어",
+  // ko: "한국어", TODO: Had to be removed due to low quality translations
   ru: "Русский",
   hu: "Magyar",
   fr: "Français",
