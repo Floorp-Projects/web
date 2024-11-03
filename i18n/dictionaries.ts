@@ -3,15 +3,15 @@ import type { Locale } from "./i18n.config";
 
 const dictionaryFiles = [
   "en.json",
-  "ja.json",
-  "ko.json",
+  "ja_JP",
+  // "ko", TODO: Korean needs translation improvement
   "zh-CN",
   "zh-TW",
-  "ru.json",
-  "hu.json",
-  "fr.json",
-  "uk.json",
-  "da.json",
+  "ru_RU",
+  "hu_HU",
+  "fr_FR",
+  "uk_UA",
+  "da_DK",
 ];
 
 const enDict = import("@/dictionaries/i18n/en/dictionary.json").then(
