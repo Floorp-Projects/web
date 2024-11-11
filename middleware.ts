@@ -15,17 +15,22 @@ function combinePath(request: NextRequest, path: string): boolean {
   return request.nextUrl.pathname.startsWith(`/${getLocale(request)}/${path}`);
 }
 
+function formatSpecialValues(value: string) {
+  return value;
+}
+
 function getLocale(request: NextRequest): string {
   const negotiatorHeaders: Record<string, string> = {};
-  request.headers.forEach((value, key) => (negotiatorHeaders[key] = value));
+  request.headers.forEach((value, key) => (negotiatorHeaders[key] = formatSpecialValues(value)));
 
   const locales: string[] = i18n.locales.map((locale) =>
-    locale?.replace("_", "-"),
+    locale?.replaceAll("_", "-"),
   );
   let languages = new Negotiator({ headers: negotiatorHeaders }).languages(
     locales,
   );
-  console.log("Languages: ", languages);
+  console.log("languages", languages);
+  console.log("locales", locales);
   return matchLocale(languages, locales, i18n.defaultLocale);
 }
 
@@ -47,7 +52,7 @@ export function middleware(request: NextRequest) {
       .map((locale) => locale.replace("_", "-"))
       .some(
         (locale) =>
-          pathname.startsWith(`/${locale}/`) || pathname === `/${locale}`,
+          pathname.startsWith(`/${locale}`) || pathname === `/${locale}`,
       );
 
     // Check if any of the excluded paths are in the request
