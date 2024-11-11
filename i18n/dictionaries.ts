@@ -1,18 +1,5 @@
 import "server-only";
-import type { Locale } from "./i18n.config";
-
-const dictionaryFiles = [
-  "en.json",
-  "ja_JP",
-  // "ko", TODO: Korean needs translation improvement
-  "zh-CN",
-  "zh-TW",
-  "ru_RU",
-  "hu_HU",
-  "fr_FR",
-  "uk_UA",
-  "da_DK",
-];
+import {Locale, locales, supportedFiles} from "./i18n.config";
 
 const enDict = import("@/dictionaries/i18n/en/dictionary.json").then(
   (module) => module.default,
@@ -20,10 +7,10 @@ const enDict = import("@/dictionaries/i18n/en/dictionary.json").then(
 export type Dictionary = typeof enDict extends Promise<infer T> ? T : never;
 
 const dictionaries = Object.fromEntries(
-  dictionaryFiles
-    .filter((file) => file.endsWith(".json"))
+  supportedFiles
     .map((file) => {
       const language = file.split(".")[0];
+      console.log("language", language);
       return [
         language,
         async () => {
@@ -36,5 +23,30 @@ const dictionaries = Object.fromEntries(
     }),
 ) as Record<Locale, () => Promise<Dictionary>>;
 
-export const getDictionary = async (locale: Locale) =>
-  dictionaries[locale]?.() ?? (await dictionaries.en());
+const specialCases = (locale: string): Locale => {
+  switch (locale) {
+    case "zh":
+      locale = "zh_CN";
+      break;
+    case "zh-Hans-CN":
+      locale = "zh_CN";
+      break;
+    case "zh-Hant-TW":
+      locale = "zh_TW";
+      break;
+  }
+  console.log("formatting locale", locale);
+
+  for (const _locale of locales) {
+    if (_locale.startsWith(locale) && _locale !== locale) {
+      locale = _locale;
+      break;
+    }
+  }
+
+  return locale.replace("-", "_") as Locale;
+}
+
+export const getDictionary = async (locale: Locale) => {
+  return dictionaries[specialCases(locale)]?.() ?? (await dictionaries.en());
+}
