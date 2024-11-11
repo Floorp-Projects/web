@@ -44,18 +44,19 @@ const excludedPaths = [
 
 export function middleware(request: NextRequest) {
   let { pathname } = request.nextUrl;
+
+  // NOTE: Check if any of the excluded paths are in the request
+  if (excludedPaths.some((path) => pathname.includes(path))) {
+    return;
+  }
+
   try {
     const pathnameHasLocale = locales
-      .map((locale) => locale.replace("_", "-"))
+      .map((locale) => locale.replaceAll("_", "-"))
       .some(
         (locale) =>
           pathname.startsWith(`/${locale}`) || pathname === `/${locale}`,
       );
-
-    // NOTE: Check if any of the excluded paths are in the request
-    if (excludedPaths.some((path) => pathname.includes(path))) {
-      return;
-    }
 
     let locale = getLocale(request);
     if (pathnameHasLocale) {
