@@ -16,15 +16,21 @@ function combinePath(request: NextRequest, path: string): boolean {
 }
 
 function getLocale(request: NextRequest): string | undefined {
-  const negotiatorHeaders: Record<string, string> = {};
-  request.headers.forEach((value, key) => (negotiatorHeaders[key] = value));
+  try {
+    const negotiatorHeaders: Record<string, string> = {};
+    request.headers.forEach((value, key) => (negotiatorHeaders[key] = value));
 
-  // @ts-ignore locales are readonly
-  const locales: string[] = i18n.locales;
-  let languages = new Negotiator({ headers: negotiatorHeaders }).languages(
-    locales,
-  );
-  return matchLocale(languages, locales, i18n.defaultLocale);
+    // @ts-ignore locales are readonly
+    const locales: string[] = i18n.locales;
+    let languages = new Negotiator({ headers: negotiatorHeaders }).languages(
+      locales,
+    );
+    return matchLocale(languages, locales, i18n.defaultLocale);
+  } catch (e) {
+    console.log("getLocale failed");
+    console.error(e);
+    return undefined;
+  }
 }
 
 const excludedPaths = [
@@ -52,6 +58,12 @@ export function middleware(request: NextRequest) {
     }
 
     let locale = getLocale(request);
+    if (locale === undefined) {
+      console.log("Could not determine locale, redirecting to en");
+      locale = defaultLocale;
+    } else {
+      console.log(`Detected locale: ${locale}`);
+    }
     if (pathnameHasLocale) {
       const selectedLocale = pathname.split("/")[1];
       if (isNotStarted(selectedLocale || "")) {

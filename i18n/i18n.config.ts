@@ -44,7 +44,7 @@ export const langDict = {
 
 export const i18n = {
   defaultLocale,
-  locales: locales,
+  locales,
 } as const;
 
 export type Locale = (typeof i18n)["locales"][number];
