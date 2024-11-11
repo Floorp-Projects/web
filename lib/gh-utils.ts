@@ -82,7 +82,6 @@ const hasQuota = async (octokit: Octokit): Promise<boolean> => {
   const rateLimitResponse = await octokit.rest.rateLimit.get();
 
   if (rateLimitResponse.data.resources.core.remaining === 0) {
-    console.log('Request quota exhausted before making request');
     return false;
   }
 

@@ -52,7 +52,6 @@ export const BentoGrid = ({className, children, height = '18'}: BentoGridProps) 
 }
 
 export const TwoColBentoGrid = ({className, children, height = '18'}: BentoGridProps) => {
-  console.log(inputs);
   return (
     <div
       className={cn(
