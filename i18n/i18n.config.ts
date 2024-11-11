@@ -2,14 +2,22 @@ export const defaultLocale = "en";
 export const locales = [
   "en",
   "ja_JP",
+  "zh",
   "zh_CN",
+  "zh_Hans_CN",
   "zh_TW",
+  "zh_Hant_TW",
   "ru_RU",
   "uk_UA",
   "fr_FR",
   "hu_HU",
   "da_DK",
 ] as const;
+
+export const supportedFiles = locales
+  .filter((locale) => locale !== "zh")
+  .filter((locale) => !locale.startsWith("zh_Hans"))
+  .filter((locale) => !locale.startsWith("zh_Hant"));
 
 export const reviewedTranslations: string[] = [
   "en",
