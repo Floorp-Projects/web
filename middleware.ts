@@ -22,15 +22,12 @@ function formatSpecialValues(value: string) {
 function getLocale(request: NextRequest): string {
   const negotiatorHeaders: Record<string, string> = {};
   request.headers.forEach((value, key) => (negotiatorHeaders[key] = formatSpecialValues(value)));
-
   const locales: string[] = i18n.locales.map((locale) =>
     locale?.replaceAll("_", "-"),
   );
   let languages = new Negotiator({ headers: negotiatorHeaders }).languages(
     locales,
   );
-  console.log("languages", languages);
-  console.log("locales", locales);
   return matchLocale(languages, locales, i18n.defaultLocale);
 }
 
@@ -55,7 +52,7 @@ export function middleware(request: NextRequest) {
           pathname.startsWith(`/${locale}`) || pathname === `/${locale}`,
       );
 
-    // Check if any of the excluded paths are in the request
+    // NOTE: Check if any of the excluded paths are in the request
     if (excludedPaths.some((path) => pathname.includes(path))) {
       return;
     }

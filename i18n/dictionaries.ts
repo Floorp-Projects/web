@@ -10,7 +10,6 @@ const dictionaries = Object.fromEntries(
   supportedFiles
     .map((file) => {
       const language = file.split(".")[0];
-      console.log("language", language);
       return [
         language,
         async () => {
@@ -35,7 +34,6 @@ const specialCases = (locale: string): Locale => {
       locale = "zh_TW";
       break;
   }
-  console.log("formatting locale", locale);
 
   for (const _locale of locales) {
     if (_locale.startsWith(locale) && _locale !== locale) {
@@ -44,7 +42,7 @@ const specialCases = (locale: string): Locale => {
     }
   }
 
-  return locale.replace("-", "_") as Locale;
+  return locale.replaceAll("-", "_") as Locale;
 }
 
 export const getDictionary = async (locale: Locale) => {
