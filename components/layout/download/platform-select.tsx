@@ -69,7 +69,6 @@ export default function PlatformSelect({locale, platforms, className, alert, che
 
   useEffect(() => {
     if (isDetecting) {
-      console.log('detecting');
       const ua = navigator.userAgent;
       const _p = getPlatform(ua);
       setPlatform(_p);
