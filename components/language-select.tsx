@@ -28,12 +28,15 @@ export default function LanguageSelect({languageSelect, inReview, waitingForCont
   const searchParams = useSearchParams();
 
   const redirectedPathName = (locale: string) => {
-    if (!pathName) return '/'
-    const segments = pathName.split('/')
-    segments[1] = locale
+    if (!pathName) {
+      return '/'
+    }
+
+    const segments = pathName.split('/');
+    segments[1] = locale.replaceAll('_', '-');
     const url = segments.join('/');
     const params = new URLSearchParams(searchParams.toString())
-    return `${url}?${params.toString()}`
+    return params.size > 0 ? `${url}?${params.toString()} ` : url;
   }
 
   const extendLocaleIfNecessary = (locale: string) => {
