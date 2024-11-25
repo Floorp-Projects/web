@@ -23,6 +23,8 @@ export async function generateMetadata(): Promise<Metadata> {
 
 const fontSans = FontSans({
   subsets: ["latin"],
+  fallback: ["sans-serif"],
+  adjustFontFallback: false
 })
 
 export default async function RootLayout({children}: RootLayoutProps) {
