@@ -35,7 +35,10 @@ const getHeroProps = async (lang: Locale) => {
 }
 
 const getFirstTwoArticles = async (top: number = 2) => {
-  const res = await fetch('https://wpapi.ablaze.one/?home=https://blog.ablaze.one/&categories=45');
+  const res = await fetch(
+    'https://wpapi.ablaze.one/?home=https://blog.ablaze.one/&categories=45',
+    { next: { revalidate: 3600 } }
+  );
   const articles = (await res.json()).items;
   let result: ArticleResponse[] = [];
   for (let i = 0; i < Math.min(articles.length, top); i++) {
