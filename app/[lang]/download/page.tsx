@@ -20,7 +20,7 @@ type DownloadPageProps = {
   };
 }
 
-export const dynamic = 'force-dynamic';
+export const revalidate = 180;
 
 export default async function DownloadPage({params: {lang}, searchParams}: DownloadPageProps) {
   const dict = await getDictionary(lang);
