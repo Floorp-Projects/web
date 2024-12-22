@@ -34,26 +34,38 @@ export type Release = {
 }
 
 const getReadableName = (name: string): string => {
-  if (name.includes('aarch64')) {
-    return 'Linux ARM';
-  }
-  if (name.includes('x86_64') && name.includes('linux')) {
-    return 'Linux x86/x64';
-  }
-  if (name.includes('stub') && name.includes('exe')) {
-    return 'Windows 64bit Online Installer';
-  }
-  if (name.includes('exe') && name.includes('win32')) {
-    return 'Windows 32-bit';
-  }
-  if (name.includes('exe') && name.includes('win64')) {
-    return 'Windows 64-bit';
-  }
-  if (name.includes('portable') && name.includes('zip') && name.includes('win')) {
-    return 'Windows Portable';
-  }
-  if (name.includes('dmg')) {
-    return 'macOS';
+  if (!name.includes('portable')) {
+    if (name.includes('aarch64') && name.includes('linux')) {
+      return 'Linux ARM64';
+    }
+    if (name.includes('x86_64') && name.includes('linux')) {
+      return 'Linux x86/x64';
+    }
+    if (name.includes('stub') && name.includes('exe')) {
+      return 'Windows 64bit Online Installer';
+    }
+    if (name.includes('exe') && name.includes('win32')) {
+      return 'Windows 32-bit';
+    }
+    if (name.includes('exe') && name.includes('win64') && !name.includes('aarch64') /* aarch64 package filename: floorp-win64-aarch64.installer.exe */) {
+      return 'Windows 64-bit';
+    }
+    if (name.includes('exe') && name.includes('aarch64')) {
+      return 'Windows ARM64'
+    }
+    if (name.includes('dmg')) {
+      return 'macOS';
+    }
+  } else {
+    if (name.includes('tar.zst') && name.includes('aarch64') && name.includes('linux')) {
+      return 'Linux ARM64 Portable';
+    }
+    if (name.includes('tar.zst') && name.includes('x86_64') && name.includes('linux')) {
+      return 'Linux 64-bit Portable';
+    }
+    if (name.includes('zip') && name.includes('x86_64') && name.includes('win')) {
+      return 'Windows 64-bit Portable';
+    }
   }
 
   return name;
@@ -163,12 +175,24 @@ export async function getRelease(): Promise<Release | null> {
       owner: 'Floorp-Projects',
       repo: 'Floorp-Portable',
     });
-    let targetAsset = portableResponse?.assets.find((asset) => asset.name.includes('windows'));
-    if (targetAsset) {
-      if (!assets[Platform.Windows]) {
-        assets[Platform.Windows] = [];
+    if (portableResponse?.assets) {
+      for (let i = 0; i < portableResponse.assets.length; i++) {
+        const asset = portableResponse.assets[i];
+
+        if (asset.name.includes("windows")) {
+          if (!assets[Platform.Windows]) {
+            assets[Platform.Windows] = [];
+          }
+          assets[Platform.Windows].push(getAssetInfo(asset));
+        }
+
+        if (asset.name.includes("linux")) {
+          if (!assets[Platform.Linux]) {
+            assets[Platform.Linux] = [];
+          }
+          assets[Platform.Linux].push(getAssetInfo(asset));
+        }
       }
-      assets[Platform.Windows].push(getAssetInfo(targetAsset));
     }
 
     return {
