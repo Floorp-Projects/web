@@ -10,8 +10,6 @@ type DownloadProps = {
   children: React.ReactNode;
 };
 
-export const dynamic = 'force-dynamic';
-
 export default async function Download({params: {lang}, children}: DownloadProps) {
   const dict = await getDictionary(lang);
   return (
