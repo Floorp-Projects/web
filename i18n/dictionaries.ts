@@ -6,22 +6,6 @@ const enDict = import("@/dictionaries/i18n/en/dictionary.json").then(
 );
 export type Dictionary = typeof enDict extends Promise<infer T> ? T : never;
 
-const dictionaries = Object.fromEntries(
-  supportedFiles
-    .map((file) => {
-      const language = file.split(".")[0];
-      return [
-        language,
-        async () => {
-          const dictionary = await import(
-            `@/dictionaries/i18n/${language}/dictionary.json`
-          );
-          return dictionary.default;
-        },
-      ];
-    }),
-) as Record<Locale, () => Promise<Dictionary>>;
-
 const specialCases = (locale: string): Locale => {
   switch (locale) {
     case "zh":
@@ -46,5 +30,21 @@ const specialCases = (locale: string): Locale => {
 }
 
 export const getDictionary = async (locale: Locale) => {
+  const dictionaries = Object.fromEntries(
+    supportedFiles
+      .map((file) => {
+        const language = file.split(".")[0];
+        return [
+          language,
+          async () => {
+            const dictionary = await import(
+              `@/dictionaries/i18n/${language}/dictionary.json`
+            );
+            return dictionary.default;
+          },
+        ];
+      }),
+  ) as Record<Locale, () => Promise<Dictionary>>;
+
   return dictionaries[specialCases(locale)]?.() ?? (await dictionaries.en());
 }
