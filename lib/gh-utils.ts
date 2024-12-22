@@ -1,5 +1,11 @@
-import {Octokit} from "octokit";
+import { Endpoints } from "@octokit/types";
 import {Platform} from "@/lib/utils";
+
+type GitHubLatestRelease = Endpoints["GET /repos/{owner}/{repo}/releases/latest"]["response"]["data"];
+
+type GitHubListTags = Endpoints["GET /repos/{owner}/{repo}/tags"]["response"]["data"];
+
+type GitHubRateLimit = Endpoints["GET /rate_limit"]["response"]["data"];
 
 type RawAsset = {
   name: string;
@@ -76,39 +82,68 @@ const getPlatformTypByAssetName = (name: string): Platform => {
 }
 
 const accessToken = process.env.GITHUB_TOKEN;
-const options = accessToken ? {auth: accessToken} : {};
+const fetchOptions = accessToken ? {
+  headers: {
+    'Authorization': `Bearer ${accessToken}`
+  }
+} : {};
 
-const hasQuota = async (octokit: Octokit): Promise<boolean> => {
-  const rateLimitResponse = await octokit.rest.rateLimit.get();
+const hasQuota = async (): Promise<boolean> => {
+  const result = await fetch(`https://api.github.com/rate_limit`, fetchOptions);
+  if (!result.ok) {
+    console.error(`Failed to fetch rate limit data: ${result.status} ${result.statusText}`);
+    return false;
+  }
 
-  if (rateLimitResponse.data.resources.core.remaining === 0) {
+  const rateLimitResponse = (await result.json()) as GitHubRateLimit;
+
+  if (rateLimitResponse.resources.core.remaining === 0) {
     return false;
   }
 
   return true;
 }
 
+const getLatestRelease = async ({ owner, repo }: { owner: string, repo: string }): Promise<GitHubLatestRelease | null> => {
+  const result = await fetch(`https://api.github.com/repos/${owner}/${repo}/releases/latest`, fetchOptions);
+  if (!result.ok) {
+    console.error(`Failed to fetch release data: ${result.status} ${result.statusText}`);
+    return null;
+  }
+
+  return (await result.json()) as GitHubLatestRelease;
+}
+
+const listTags = async ({ owner, repo }: { owner: string, repo: string }): Promise<GitHubListTags | null> => {
+  const result = await fetch(`https://api.github.com/repos/${owner}/${repo}/tags`, fetchOptions);
+  if (!result.ok) {
+    console.error(`Failed to fetch release data: ${result.status} ${result.statusText}`);
+    return null;
+  }
+
+  return (await result.json()) as GitHubListTags;
+}
+
 export async function getRelease(): Promise<Release | null> {
-  const octokit = new Octokit(options);
-  if (!await hasQuota(octokit)) {
+  if (!await hasQuota()) {
     return null;
   }
   try {
-    const response = await octokit.rest.repos.getLatestRelease({
+    const response = await getLatestRelease({
       owner: 'Floorp-Projects',
       repo: 'Floorp',
     });
 
-    if (!response?.data.assets || response?.data.published_at === null) {
+    if (!response?.assets || response?.published_at === null) {
       console.error('Failed to fetch release data');
       return null;
     }
-    const date = new Date(response.data.published_at);
+    const date = new Date(response.published_at);
 
     let hashes = '';
     const assets: Record<string, AssetInfo[]> = {}
-    for (let i = 0; i < response.data.assets.length; i++) {
-      const asset = response.data.assets[i];
+    for (let i = 0; i < response.assets.length; i++) {
+      const asset = response.assets[i];
 
       if (asset.name === "hashes.txt") {
         hashes = asset.browser_download_url;
@@ -124,11 +159,11 @@ export async function getRelease(): Promise<Release | null> {
       assets[platform].push(getAssetInfo(asset));
     }
 
-    const portableResponse = await octokit.rest.repos.getLatestRelease({
+    const portableResponse = await getLatestRelease({
       owner: 'Floorp-Projects',
       repo: 'Floorp-Portable',
     });
-    let targetAsset = portableResponse.data.assets.find((asset) => asset.name.includes('windows'));
+    let targetAsset = portableResponse?.assets.find((asset) => asset.name.includes('windows'));
     if (targetAsset) {
       if (!assets[Platform.Windows]) {
         assets[Platform.Windows] = [];
@@ -137,8 +172,8 @@ export async function getRelease(): Promise<Release | null> {
     }
 
     return {
-      version: response.data.tag_name,
-      name: response.data.name || response.data.tag_name,
+      version: response.tag_name,
+      name: response.name || response.tag_name,
       publishedAt: date,
       downloads: assets,
       hashes
@@ -150,14 +185,13 @@ export async function getRelease(): Promise<Release | null> {
 }
 
 export async function getTags(): Promise<string[]> {
-  const octokit = new Octokit(options);
-  if (!await hasQuota(octokit)) {
+  if (!await hasQuota()) {
     return [];
   }
-  const response = await octokit.rest.repos.listTags({
+  const response = await listTags({
     owner: 'Floorp-Projects',
     repo: 'Floorp',
-  });
-  return response.data.map((tag) => tag.name);
+  }) ?? [];
+  return response.map((tag) => tag.name);
 }
 

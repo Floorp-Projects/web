@@ -1,26 +1,8 @@
 import "server-only";
 import {Locale, locales, supportedFiles} from "./i18n.config";
+import enDict from "@/dictionaries/i18n/en/dictionary.json" with { type: "json" };
 
-const enDict = import("@/dictionaries/i18n/en/dictionary.json").then(
-  (module) => module.default,
-);
-export type Dictionary = typeof enDict extends Promise<infer T> ? T : never;
-
-const dictionaries = Object.fromEntries(
-  supportedFiles
-    .map((file) => {
-      const language = file.split(".")[0];
-      return [
-        language,
-        async () => {
-          const dictionary = await import(
-            `@/dictionaries/i18n/${language}/dictionary.json`
-          );
-          return dictionary.default;
-        },
-      ];
-    }),
-) as Record<Locale, () => Promise<Dictionary>>;
+export type Dictionary = typeof enDict;
 
 const specialCases = (locale: string): Locale => {
   switch (locale) {
@@ -46,5 +28,21 @@ const specialCases = (locale: string): Locale => {
 }
 
 export const getDictionary = async (locale: Locale) => {
+  const dictionaries = Object.fromEntries(
+    supportedFiles
+      .map((file) => {
+        const language = file.split(".")[0];
+        return [
+          language,
+          async () => {
+            const dictionary = await import(
+              `@/dictionaries/i18n/${language}/dictionary.json`
+            );
+            return dictionary.default;
+          },
+        ];
+      }),
+  ) as Record<Locale, () => Promise<Dictionary>>;
+
   return dictionaries[specialCases(locale)]?.() ?? (await dictionaries.en());
 }
