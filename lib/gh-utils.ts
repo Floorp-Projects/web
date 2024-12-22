@@ -47,8 +47,11 @@ const getReadableName = (name: string): string => {
     if (name.includes('exe') && name.includes('win32')) {
       return 'Windows 32-bit';
     }
-    if (name.includes('exe') && name.includes('win64')) {
+    if (name.includes('exe') && name.includes('win64') && !name.includes('aarch64') /* aarch64 package filename: floorp-win64-aarch64.installer.exe */) {
       return 'Windows 64-bit';
+    }
+    if (name.includes('exe') && name.includes('aarch64')) {
+      return 'Windows ARM64'
     }
     if (name.includes('dmg')) {
       return 'macOS';
