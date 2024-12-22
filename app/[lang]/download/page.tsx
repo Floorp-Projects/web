@@ -26,6 +26,22 @@ export default async function DownloadPage({params: {lang}, searchParams}: Downl
   const dict = await getDictionary(lang);
   const isDaylight = searchParams.daylight === 'true';
   const release = await getRelease();
+  if (release?.downloads.Linux) {
+    const ppaAsset: AssetInfo = {
+      name: "Floorp PPA",
+      url: "https://ppa.floorp.app",
+      fileName: "",
+      fileSize: "",
+    }
+    release.downloads.Linux.unshift(ppaAsset);
+    const flatpakAsset: AssetInfo = {
+      name: "Floorp Flatpak",
+      url: "https://flathub.org/apps/one.ablaze.floorp",
+      fileName: "",
+      fileSize: "",
+    }
+    release.downloads.Linux.unshift(flatpakAsset);
+  }
   const tags = await getTags();
   const date = release?.publishedAt.toLocaleDateString(lang, {
     year: 'numeric',
