@@ -39,7 +39,7 @@ const getReadableName = (name: string): string => {
       return 'Linux ARM64';
     }
     if (name.includes('x86_64') && name.includes('linux')) {
-      return 'Linux x86/x64';
+      return 'Linux 64-bit';
     }
     if (name.includes('stub') && name.includes('exe')) {
       return 'Windows 64bit Online Installer';
