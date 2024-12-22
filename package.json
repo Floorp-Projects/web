@@ -35,7 +35,6 @@
     "negotiator": "^0.6.3",
     "next": "14.2.15",
     "next-themes": "^0.3.0",
-    "octokit": "^4.0.2",
     "react": "^18",
     "react-dom": "^18",
     "react-icons": "^5.2.1",
@@ -44,6 +43,8 @@
     "tailwindcss-animate": "^1.0.7"
   },
   "devDependencies": {
+    "@cloudflare/next-on-pages": "^1.13.7",
+    "@octokit/types": "^13.6.2",
     "@types/node": "^20",
     "@types/react": "^18",
     "@types/react-dom": "^18",
