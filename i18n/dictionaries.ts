@@ -1,10 +1,8 @@
 import "server-only";
 import {Locale, locales, supportedFiles} from "./i18n.config";
+import enDict from "@/dictionaries/i18n/en/dictionary.json" with { type: "json" };
 
-const enDict = import("@/dictionaries/i18n/en/dictionary.json").then(
-  (module) => module.default,
-);
-export type Dictionary = typeof enDict extends Promise<infer T> ? T : never;
+export type Dictionary = typeof enDict;
 
 const specialCases = (locale: string): Locale => {
   switch (locale) {
