@@ -14,7 +14,6 @@
     "@emotion/react": "^11.11.4",
     "@emotion/styled": "^11.11.5",
     "@formatjs/intl-localematcher": "^0.5.4",
-    "@octokit/rest": "^20.1.1",
     "@radix-ui/react-checkbox": "^1.0.4",
     "@radix-ui/react-dialog": "^1.0.5",
     "@radix-ui/react-dropdown-menu": "^2.0.6",
