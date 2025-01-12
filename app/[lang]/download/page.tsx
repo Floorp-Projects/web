@@ -11,6 +11,7 @@ import Link from "next/link";
 import {buttonVariants} from "@/components/ui/button";
 import {Separator} from "@/components/ui/separator";
 import {ScrollArea} from "@/components/ui/scroll-area";
+import CodeBlock from "@/components/code/code-block";
 
 type DownloadPageProps = {
   params: { lang: Locale };
@@ -49,14 +50,40 @@ export default async function DownloadPage({params: {lang}, searchParams}: Downl
     day: 'numeric'
   }) || '';
 
-  const table = (items: AssetInfo[]) => {
+  const tabContent = (items: AssetInfo[], currentTab: string) => {
     if (!release) {
       return <></>
     }
 
+    const linuxPPA = currentTab === 'linux' ? <>
+      <h3 className={'text-lg font-medium mb-2'}>{dict.downloadPage.downloadPPA}</h3>
+      <CodeBlock copyString={`sudo add-apt-repository ppa:floorp/ppa && sudo apt update && sudo apt install floorp`}>
+        {`# Add the Floorp PPA on Ubuntu
+sudo add-apt-repository ppa:floorp/ppa
+sudo apt update
+sudo apt install floorp
+        `}
+      </CodeBlock>
+    </> : null;
+
+    const linuxFlatpak = currentTab === 'linux' ? <>
+      <h3 className={'text-lg font-medium mb-2'}>{dict.downloadPage.downloadFlatpak}</h3>
+      <CodeBlock copyString={`flatpak install flathub one.ablaze.floorp`}>
+      {`# Install Floorp Flatpak
+flatpak install flathub one.ablaze.floorp
+        `}
+      </CodeBlock>
+    </> : null;
+
     return (
       <div className={'flex flex-col sm:flex-row mt-8 gap-4 justify-between w-full'}>
         <div>
+          <div className={'mb-8'}>
+            {linuxPPA}
+          </div>
+          <div className={'mb-8'}>
+            {linuxFlatpak}
+          </div>
           <div className={'flex items-center gap-4 ml-4 mb-2'}>
             <div className={'flex flex-col sm:flex-row gap-2 justify-center sm:justify-between w-full'}>
               <p className={'text-sm text-muted-foreground text-center sm:text-left'}>
@@ -122,11 +149,12 @@ export default async function DownloadPage({params: {lang}, searchParams}: Downl
       if (pKey === Platform.Android || pKey === Platform.IOS) {
         continue;
       }
+
       const assets = release.downloads[convertOptionToPlatform(key)] || [];
       options.push({
         label: platformOptions[key],
         value: key,
-        content: table(assets)
+        content: tabContent(assets, key)
       })
     }
 
