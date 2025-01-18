@@ -94,6 +94,8 @@ const getPlatformTypByAssetName = (name: string): Platform => {
 }
 
 const accessToken = process.env.GITHUB_TOKEN;
+
+// NOTE: Optionally, we can provide an access token to increase the rate limit
 const fetchOptions = accessToken ? {
   headers: {
     'Authorization': `Bearer ${accessToken}`
