@@ -12,6 +12,7 @@ import {buttonVariants} from "@/components/ui/button";
 import {Separator} from "@/components/ui/separator";
 import {ScrollArea} from "@/components/ui/scroll-area";
 import CodeBlock from "@/components/code/code-block";
+import {Accordion, AccordionContent, AccordionItem, AccordionTrigger} from "@/components/ui/accordion";
 
 type DownloadPageProps = {
   params: { lang: Locale };
@@ -22,6 +23,8 @@ type DownloadPageProps = {
 }
 
 export const revalidate = 180;
+
+const ppaInstall = `curl -fsSL https://ppa.floorp.app/KEY.gpg | sudo gpg --dearmor -o /usr/share/keyrings/Floorp.gpg && sudo curl -sS --compressed -o /etc/apt/sources.list.d/Floorp.list "https://ppa.floorp.app/Floorp.list" && sudo apt update && sudo apt install floorp`
 
 export default async function DownloadPage({params: {lang}, searchParams}: DownloadPageProps) {
   const dict = await getDictionary(lang);
@@ -55,85 +58,100 @@ export default async function DownloadPage({params: {lang}, searchParams}: Downl
       return <></>
     }
 
-    const linuxPPA = currentTab === 'linux' ? <>
-      <h3 className={'text-lg font-medium mb-2'}>{dict.downloadPage.downloadPPA}</h3>
-      <CodeBlock copyString={`sudo add-apt-repository ppa:floorp/ppa && sudo apt update && sudo apt install floorp`}>
-        {`# Add the Floorp PPA on Ubuntu
-sudo add-apt-repository ppa:floorp/ppa
-sudo apt update
-sudo apt install floorp
-        `}
-      </CodeBlock>
-    </> : null;
-
-    const linuxFlatpak = currentTab === 'linux' ? <>
-      <h3 className={'text-lg font-medium mb-2'}>{dict.downloadPage.downloadFlatpak}</h3>
+    const linux = currentTab === 'linux' ? <div>
+      <h3 className={'text-lg font-medium mb-2'}>{dict.downloadPage.downloadConvenience.title}</h3>
       <CodeBlock copyString={`flatpak install flathub one.ablaze.floorp`}>
-      {`# Install Floorp Flatpak
+        {`f`}
+      </CodeBlock>
+      <Accordion type="single" collapsible>
+        <AccordionItem value="item-1">
+          <AccordionTrigger>Install from Flatpak</AccordionTrigger>
+          <AccordionContent>
+            <h3 className={'text-lg font-medium mb-2'}>{dict.downloadPage.downloadFlatpak.title}</h3>
+            <CodeBlock copyString={`flatpak install flathub one.ablaze.floorp`}>
+              {dict.downloadPage.downloadFlatpak.command.comment1}
+              {`
 flatpak install flathub one.ablaze.floorp
         `}
-      </CodeBlock>
-    </> : null;
+            </CodeBlock>
+          </AccordionContent>
+        </AccordionItem>
+        <AccordionItem value={'item-2'}>
+          <AccordionTrigger>Install from PPA</AccordionTrigger>
+          <AccordionContent>
+            <h3 className={'text-lg font-medium mb-2'}>{dict.downloadPage.downloadPPA.title}</h3>
+            <CodeBlock copyString={ppaInstall}>
+              {dict.downloadPage.downloadPPA.command.comment1}
+              {`\ncurl -fsSL https://ppa.floorp.app/KEY.gpg | sudo gpg --dearmor -o /usr/share/keyrings/Floorp.gpg`}
+              {dict.downloadPage.downloadPPA.command.comment2}
+              {`\nsudo curl -sS --compressed -o /etc/apt/sources.list.d/Floorp.list "https://ppa.floorp.app/Floorp.list"`}
+              {dict.downloadPage.downloadPPA.command.comment3}
+              {`\nsudo apt update\n`}
+              {`sudo apt install floorp`}
+            </CodeBlock>
+          </AccordionContent>
+        </AccordionItem>
+      </Accordion>
+    </div> : null;
 
     return (
-      <div className={'flex flex-col sm:flex-row mt-8 gap-4 justify-between w-full'}>
-        <div>
-          <div className={'mb-8'}>
-            {linuxPPA}
-          </div>
-          <div className={'mb-8'}>
-            {linuxFlatpak}
-          </div>
-          <div className={'flex items-center gap-4 ml-4 mb-2'}>
-            <div className={'flex flex-col sm:flex-row gap-2 justify-center sm:justify-between w-full'}>
-              <p className={'text-sm text-muted-foreground text-center sm:text-left'}>
-                {f(dict.downloadPage.releaseDate, {date})}
-              </p>
-              <Separator orientation="vertical" className={'h-5 hidden sm:block'}/>
-              <Link
-                href={`https://github.com/Floorp-Projects/Floorp/releases/tag/${release.version}`}
-                target={'_blank'}
-                className={cn(
-                  buttonVariants({variant: 'link', paddingV: 'none', paddingH: 'none', size: 'auto'}),
-                )}
-              >
-                {release.version}
-              </Link>
-              <Separator orientation="vertical" className={'h-5 hidden sm:block'}/>
-              <Link
-                href={release.hashes}
-                className={cn(
-                  buttonVariants({variant: 'link', paddingV: 'none', paddingH: 'none', size: 'auto'}),
-                )}
-              >
-                {dict.downloadPage.downloadHashes}
-              </Link>
-            </div>
-          </div>
-          <AssetsTable items={items} locale={dict.downloadPage.assetsTable}/>
+      <div>
+        <div className={"mb-10"}>
+          {linux}
         </div>
-        <ScrollArea className="bg-card h-80 w-36 rounded-md relative pt-10 border self-center">
-          <div className="p-4">
-            <h4 className="mb-4 text-sm font-medium absolute top-4 leading-none">{dict.downloadPage.versions}</h4>
-            <Separator className="absolute top-10 left-0"/>
-            {tags.map((tag, i) => (
-              <>
-                <div key={tag} className="text-sm">
-                  <Link
-                    href={`https://github.com/Floorp-Projects/Floorp/releases/tag/${tag}`}
-                    target={'_blank'}
-                    className={cn(
-                      buttonVariants({variant: 'link', paddingV: 'none', paddingH: 'none', size: 'auto'}),
-                    )}
-                  >
-                    {tag}{i === 0 ? " - " + dict.downloadPage.latest : ''}
-                  </Link>
-                </div>
-                <Separator className="my-2"/>
-              </>
-            ))}
+        <div className={'flex flex-col sm:flex-row mt-8 gap-4 justify-between w-full'}>
+          <div>
+            <div className={'flex items-center gap-4 ml-4 mb-2'}>
+              <div className={'flex flex-col sm:flex-row gap-2 justify-center sm:justify-between w-full'}>
+                <p className={'text-sm text-muted-foreground text-center sm:text-left'}>
+                  {f(dict.downloadPage.releaseDate, {date})}
+                </p>
+                <Separator orientation="vertical" className={'h-5 hidden sm:block'}/>
+                <Link
+                  href={`https://github.com/Floorp-Projects/Floorp/releases/tag/${release.version}`}
+                  target={'_blank'}
+                  className={cn(
+                    buttonVariants({variant: 'link', paddingV: 'none', paddingH: 'none', size: 'auto'}),
+                  )}
+                >
+                  {release.version}
+                </Link>
+                <Separator orientation="vertical" className={'h-5 hidden sm:block'}/>
+                <Link
+                  href={release.hashes}
+                  className={cn(
+                    buttonVariants({variant: 'link', paddingV: 'none', paddingH: 'none', size: 'auto'}),
+                  )}
+                >
+                  {dict.downloadPage.downloadHashes}
+                </Link>
+              </div>
+            </div>
+            <AssetsTable items={items} locale={dict.downloadPage.assetsTable}/>
           </div>
-        </ScrollArea>
+          <ScrollArea className="bg-card h-80 w-36 rounded-md relative pt-10 border self-center">
+            <div className="p-4">
+              <h4 className="mb-4 text-sm font-medium absolute top-4 leading-none">{dict.downloadPage.versions}</h4>
+              <Separator className="absolute top-10 left-0"/>
+              {tags.map((tag, i) => (
+                <>
+                  <div key={tag} className="text-sm">
+                    <Link
+                      href={`https://github.com/Floorp-Projects/Floorp/releases/tag/${tag}`}
+                      target={'_blank'}
+                      className={cn(
+                        buttonVariants({variant: 'link', paddingV: 'none', paddingH: 'none', size: 'auto'}),
+                      )}
+                    >
+                      {tag}{i === 0 ? " - " + dict.downloadPage.latest : ''}
+                    </Link>
+                  </div>
+                  <Separator className="my-2"/>
+                </>
+              ))}
+            </div>
+          </ScrollArea>
+        </div>
       </div>
     )
   }
@@ -163,7 +181,7 @@ flatpak install flathub one.ablaze.floorp
 
   const platformSelect = (
     <PlatformSelect
-      locale={{ detect: dict.downloadPage.detect}}
+      locale={{detect: dict.downloadPage.detect}}
       checkbox={dict.downloadPage.daylight}
       alert={isDaylight ?
         <FAlert lang={lang} description={dict.downloadPage.daylight.alert} severity={'warning'}/> : null}
