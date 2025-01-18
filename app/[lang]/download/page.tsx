@@ -60,8 +60,8 @@ export default async function DownloadPage({params: {lang}, searchParams}: Downl
 
     const linux = currentTab === 'linux' ? <div>
       <h3 className={'text-lg font-medium mb-2'}>{dict.downloadPage.downloadConvenience.title}</h3>
-      <CodeBlock copyString={`flatpak install flathub one.ablaze.floorp`}>
-        {`f`}
+      <CodeBlock copyString={`curl -fsSL https://floorp.app/install.sh | sh`}>
+        {`curl -fsSL https://floorp.app/install.sh | sh`}
       </CodeBlock>
       <Accordion type="single" collapsible>
         <AccordionItem value="item-1">
