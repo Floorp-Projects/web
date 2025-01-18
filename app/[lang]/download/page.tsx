@@ -58,18 +58,75 @@ export default async function DownloadPage({params: {lang}, searchParams}: Downl
       return <></>
     }
 
-    const linux = currentTab === 'linux' ? <div>
-      <h3 className={'text-lg font-medium mb-2'}>{dict.downloadPage.downloadConvenience.title}</h3>
-      <CodeBlock copyString={`curl -fsSL https://floorp.app/install.sh | sh`}>
-        {`curl -fsSL https://floorp.app/install.sh | sh`}
-      </CodeBlock>
+    const table = <>
+      <div className={'flex flex-col sm:flex-row mt-8 gap-4 justify-between w-full'}>
+        <div>
+          <div className={'flex items-center gap-4 ml-4 mb-2'}>
+            <div className={'flex flex-col sm:flex-row gap-2 justify-center sm:justify-between w-full'}>
+              <p className={'text-sm text-muted-foreground text-center sm:text-left'}>
+                {f(dict.downloadPage.releaseDate, {date})}
+              </p>
+              <Separator orientation="vertical" className={'h-5 hidden sm:block'}/>
+              <Link
+                href={`https://github.com/Floorp-Projects/Floorp/releases/tag/${release.version}`}
+                target={'_blank'}
+                className={cn(
+                  buttonVariants({variant: 'link', paddingV: 'none', paddingH: 'none', size: 'auto'}),
+                )}
+              >
+                {release.version}
+              </Link>
+              <Separator orientation="vertical" className={'h-5 hidden sm:block'}/>
+              <Link
+                href={release.hashes}
+                className={cn(
+                  buttonVariants({variant: 'link', paddingV: 'none', paddingH: 'none', size: 'auto'}),
+                )}
+              >
+                {dict.downloadPage.downloadHashes}
+              </Link>
+            </div>
+          </div>
+          <AssetsTable items={items} locale={dict.downloadPage.assetsTable}/>
+        </div>
+        <ScrollArea className="bg-card h-80 w-36 rounded-md relative pt-10 border self-center">
+          <div className="p-4">
+            <h4 className="mb-4 text-sm font-medium absolute top-4 leading-none">{dict.downloadPage.versions}</h4>
+            <Separator className="absolute top-10 left-0"/>
+            {tags.map((tag, i) => (
+              <>
+                <div key={tag} className="text-sm">
+                  <Link
+                    href={`https://github.com/Floorp-Projects/Floorp/releases/tag/${tag}`}
+                    target={'_blank'}
+                    className={cn(
+                      buttonVariants({variant: 'link', paddingV: 'none', paddingH: 'none', size: 'auto'}),
+                    )}
+                  >
+                    {tag}{i === 0 ? " - " + dict.downloadPage.latest : ''}
+                  </Link>
+                </div>
+                <Separator className="my-2"/>
+              </>
+            ))}
+          </div>
+        </ScrollArea>
+      </div>
+    </>
+
+    const linux = currentTab === 'linux' && <div>
+      <div className={"mb-8"}>
+        <h3 className={'font-medium mb-2'}>{dict.downloadPage.downloadConvenience.title}</h3>
+        <CodeBlock copyString={`curl -fsSL https://floorp.app/install.sh | sh`} className={'py-2'}>
+          {`curl -fsSL https://floorp.app/install.sh | sh\n`}
+        </CodeBlock>
+      </div>
       <Accordion type="single" collapsible>
         <AccordionItem value="item-1">
-          <AccordionTrigger>Install from Flatpak</AccordionTrigger>
+          <AccordionTrigger>{dict.downloadPage.downloadFlatpak.title}</AccordionTrigger>
           <AccordionContent>
-            <h3 className={'text-lg font-medium mb-2'}>{dict.downloadPage.downloadFlatpak.title}</h3>
             <CodeBlock copyString={`flatpak install flathub one.ablaze.floorp`}>
-              {dict.downloadPage.downloadFlatpak.command.comment1}
+              <p className={'text-gray-700 dark:text-gray-400'}>{dict.downloadPage.downloadFlatpak.command.comment1}</p>
               {`
 flatpak install flathub one.ablaze.floorp
         `}
@@ -77,81 +134,34 @@ flatpak install flathub one.ablaze.floorp
           </AccordionContent>
         </AccordionItem>
         <AccordionItem value={'item-2'}>
-          <AccordionTrigger>Install from PPA</AccordionTrigger>
+          <AccordionTrigger>{dict.downloadPage.downloadPPA.title}</AccordionTrigger>
           <AccordionContent>
-            <h3 className={'text-lg font-medium mb-2'}>{dict.downloadPage.downloadPPA.title}</h3>
             <CodeBlock copyString={ppaInstall}>
-              {dict.downloadPage.downloadPPA.command.comment1}
+              <p className={'text-gray-700 dark:text-gray-400'}>{dict.downloadPage.downloadPPA.command.comment1}</p>
               {`curl -fsSL https://ppa.floorp.app/KEY.gpg | sudo gpg --dearmor -o /usr/share/keyrings/Floorp.gpg\n\n`}
-              {dict.downloadPage.downloadPPA.command.comment2}
+
+              <p className={'text-gray-700 dark:text-gray-400'}>{dict.downloadPage.downloadPPA.command.comment2}</p>
               {`sudo curl -sS --compressed -o /etc/apt/sources.list.d/Floorp.list "https://ppa.floorp.app/Floorp.list"\n\n`}
-              {dict.downloadPage.downloadPPA.command.comment3}
+
+              <p className={'text-gray-700 dark:text-gray-400'}>{dict.downloadPage.downloadPPA.command.comment3}</p>
               {`sudo apt update\n`}
               {`sudo apt install floorp`}
             </CodeBlock>
           </AccordionContent>
         </AccordionItem>
+        <AccordionItem value={'item-3'}>
+          <AccordionTrigger>{dict.downloadPage.downloadOtherTable.title}</AccordionTrigger>
+          <AccordionContent>
+            {table}
+          </AccordionContent>
+        </AccordionItem>
       </Accordion>
-    </div> : null;
+    </div>;
 
     return (
       <div>
-        <div className={"mb-10"}>
-          {linux}
-        </div>
-        <div className={'flex flex-col sm:flex-row mt-8 gap-4 justify-between w-full'}>
-          <div>
-            <div className={'flex items-center gap-4 ml-4 mb-2'}>
-              <div className={'flex flex-col sm:flex-row gap-2 justify-center sm:justify-between w-full'}>
-                <p className={'text-sm text-muted-foreground text-center sm:text-left'}>
-                  {f(dict.downloadPage.releaseDate, {date})}
-                </p>
-                <Separator orientation="vertical" className={'h-5 hidden sm:block'}/>
-                <Link
-                  href={`https://github.com/Floorp-Projects/Floorp/releases/tag/${release.version}`}
-                  target={'_blank'}
-                  className={cn(
-                    buttonVariants({variant: 'link', paddingV: 'none', paddingH: 'none', size: 'auto'}),
-                  )}
-                >
-                  {release.version}
-                </Link>
-                <Separator orientation="vertical" className={'h-5 hidden sm:block'}/>
-                <Link
-                  href={release.hashes}
-                  className={cn(
-                    buttonVariants({variant: 'link', paddingV: 'none', paddingH: 'none', size: 'auto'}),
-                  )}
-                >
-                  {dict.downloadPage.downloadHashes}
-                </Link>
-              </div>
-            </div>
-            <AssetsTable items={items} locale={dict.downloadPage.assetsTable}/>
-          </div>
-          <ScrollArea className="bg-card h-80 w-36 rounded-md relative pt-10 border self-center">
-            <div className="p-4">
-              <h4 className="mb-4 text-sm font-medium absolute top-4 leading-none">{dict.downloadPage.versions}</h4>
-              <Separator className="absolute top-10 left-0"/>
-              {tags.map((tag, i) => (
-                <>
-                  <div key={tag} className="text-sm">
-                    <Link
-                      href={`https://github.com/Floorp-Projects/Floorp/releases/tag/${tag}`}
-                      target={'_blank'}
-                      className={cn(
-                        buttonVariants({variant: 'link', paddingV: 'none', paddingH: 'none', size: 'auto'}),
-                      )}
-                    >
-                      {tag}{i === 0 ? " - " + dict.downloadPage.latest : ''}
-                    </Link>
-                  </div>
-                  <Separator className="my-2"/>
-                </>
-              ))}
-            </div>
-          </ScrollArea>
-        </div>
+        {linux}
+        {currentTab !== 'linux' ? table : null}
       </div>
     )
   }
