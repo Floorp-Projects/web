@@ -82,11 +82,11 @@ flatpak install flathub one.ablaze.floorp
             <h3 className={'text-lg font-medium mb-2'}>{dict.downloadPage.downloadPPA.title}</h3>
             <CodeBlock copyString={ppaInstall}>
               {dict.downloadPage.downloadPPA.command.comment1}
-              {`\ncurl -fsSL https://ppa.floorp.app/KEY.gpg | sudo gpg --dearmor -o /usr/share/keyrings/Floorp.gpg`}
+              {`curl -fsSL https://ppa.floorp.app/KEY.gpg | sudo gpg --dearmor -o /usr/share/keyrings/Floorp.gpg\n\n`}
               {dict.downloadPage.downloadPPA.command.comment2}
-              {`\nsudo curl -sS --compressed -o /etc/apt/sources.list.d/Floorp.list "https://ppa.floorp.app/Floorp.list"`}
+              {`sudo curl -sS --compressed -o /etc/apt/sources.list.d/Floorp.list "https://ppa.floorp.app/Floorp.list"\n\n`}
               {dict.downloadPage.downloadPPA.command.comment3}
-              {`\nsudo apt update\n`}
+              {`sudo apt update\n`}
               {`sudo apt install floorp`}
             </CodeBlock>
           </AccordionContent>
