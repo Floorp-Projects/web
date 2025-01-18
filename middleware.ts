@@ -40,6 +40,7 @@ const excludedPaths = [
   "/_next/webpack-hmr",
   "/opengraph-image",
   "/twitter-image",
+  "/install.sh"
 ];
 
 export function middleware(request: NextRequest) {
