@@ -1,0 +1,60 @@
+name: Build Test
+
+on:
+  workflow_dispatch:
+  pull_request:
+
+permissions: read-all
+
+jobs:
+  build-website:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          submodules: true
+
+      - name: Install packages
+        run: |
+          sudo add-apt-repository ppa:mozillateam/ppa
+          sudo tee /etc/apt/preferences.d/mozillateamppa <<EOF
+          Package: firefox*
+          Pin: release o=LP-PPA-mozillateam
+          Pin-Priority: 1001
+
+          Package: firefox*
+          Pin: release o=Ubuntu
+          Pin-Priority: -1
+          EOF
+          
+          sudo apt update
+          sudo apt install firefox xvfb imagemagick
+          npm install
+
+      - name: Build
+        run: |
+          npx @cloudflare/next-on-pages
+
+      - name: Run & Get screenshot
+        run: |
+          npx wrangler pages dev .vercel/output/static --compatibility-flag=nodejs_compat --compatibility-date=2024-06-03 &
+
+          Xvfb :2 -screen 0 1920x1080x24 &
+          export DISPLAY=:2
+          
+          firefox http://localhost:8788 -width 1920 -height 1080 -foreground &
+
+          sleep 30
+
+          import -window root -crop 1920x1080+0+0 /tmp/screenshot.png
+
+          pkill firefox
+          pkill node
+          pkill Xvfb
+
+      - uses: actions/upload-artifact@v4
+        name: Upload
+        with:
+          name: screenshot
+          path: |
+            /tmp/screenshot.png
