@@ -7,6 +7,7 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
+    "export": "next build && next export && next-export-optimize-images",
     "lint": "next lint"
   },
   "dependencies": {
