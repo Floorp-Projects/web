@@ -8,6 +8,8 @@ jobs:
     runs-on: ubuntu-24.04
     steps:
       - uses: actions/checkout@v4
+        with:
+          submodules: true
 
       - name: Install packages
         run: |
@@ -42,6 +44,10 @@ jobs:
           sleep 60
 
           import -window root -crop 1920x1080+0+0 /tmp/screenshot.png
+
+          pkill firefox
+          pkill node
+          pkill Xvfb
 
       - uses: actions/upload-artifact@v4
         name: Upload
