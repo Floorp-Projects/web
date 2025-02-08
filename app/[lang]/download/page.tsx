@@ -94,7 +94,7 @@ export default async function DownloadPage({params: {lang}, searchParams}: Downl
             <h4 className="mb-4 text-sm font-medium absolute top-4 leading-none">{dict.downloadPage.versions}</h4>
             <Separator className="absolute top-10 left-0"/>
             {tags.map((tag, i) => (
-              <>
+              <div key={tag}>
                 <div key={tag} className="text-sm">
                   <Link
                     href={`https://github.com/Floorp-Projects/Floorp/releases/tag/${tag}`}
@@ -107,7 +107,7 @@ export default async function DownloadPage({params: {lang}, searchParams}: Downl
                   </Link>
                 </div>
                 <Separator className="my-2"/>
-              </>
+              </div>
             ))}
           </div>
         </ScrollArea>

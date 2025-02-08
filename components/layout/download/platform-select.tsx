@@ -132,19 +132,16 @@ export default function PlatformSelect({locale, platforms, className, alert, che
             <TabsList
               className={''}
             >
-              {platforms.map(({value, label}) => (
-                <TabsTrigger key={value} value={value}>{label}</TabsTrigger>
-              ))}
+              {platforms.map(({value, label}) =>
+                <TabsTrigger key={value} value={value}>{label}</TabsTrigger>)}
             </TabsList>
           </div>
           {/* TODO: Add the checkbox here after the daylight release is merged with the rest. */}
-            {
-              platforms.map(({value, content}) => (
-                <TabsContent key={value} value={value}>
-                  {content}
-                </TabsContent>
-              ))
-            }
+          {platforms.map(({value, content}) => (
+            <TabsContent key={value.toString()} value={value}>
+              {content}
+            </TabsContent>
+          ))}
         </Tabs>
       </div>
     </div>
