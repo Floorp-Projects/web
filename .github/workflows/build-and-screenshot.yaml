@@ -30,3 +30,58 @@ jobs:
       - name: Build
         run: |
           npx @cloudflare/next-on-pages@1
+          
+
+  take-screenshot:
+    needs: build-website
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          submodules: 'true'
+
+      - name: Install firefox
+        run: |
+          sudo add-apt-repository ppa:mozillateam/ppa
+          sudo tee /etc/apt/preferences.d/mozillateamppa <<EOF
+          Package: firefox*
+          Pin: release o=LP-PPA-mozillateam
+          Pin-Priority: 1001
+          Package: firefox*
+          Pin: release o=Ubuntu
+          Pin-Priority: -1
+          EOF
+          
+          sudo apt update
+          sudo apt install firefox xvfb imagemagick
+
+      - name: Install Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: 'pnpm'
+
+      - name: Build
+        run: |
+          npx @cloudflare/next-on-pages@1
+
+      - name: Run & Get screenshot
+        run: |
+          npx wrangler pages dev .vercel/output/static --compatibility-flag=nodejs_compat --compatibility-date=2024-06-03 &
+          Xvfb :2 -screen 0 1920x1080x24 &
+          export DISPLAY=:2
+          sleep 10
+          
+          firefox http://localhost:8788 -width 1920 -height 1080 -foreground &
+          sleep 30
+          import -window root -crop 1920x1080+0+0 /tmp/screenshot.png
+          pkill firefox
+          pkill node
+          pkill Xvfb
+
+      - uses: actions/upload-artifact@v4
+        name: Upload
+        with:
+          name: screenshot
+          path: |
+            /tmp/screenshot.png
