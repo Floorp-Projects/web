@@ -3,6 +3,14 @@ import React, {ReactNode} from "react";
 import CopyButton from "@/components/code/copy2clipboard";
 import {cn} from "@/lib/utils";
 
+/**
+ * CodeBlock component
+ * @param children
+ * @param className
+ * @param copyString
+ * @param preClassName
+ * @constructor
+ */
 export default function CodeBlock({children, className, copyString, preClassName}: {
   children: ReactNode,
   className?: string,
