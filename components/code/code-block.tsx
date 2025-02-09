@@ -16,7 +16,7 @@ export default function CodeBlock({children, className, copyString}: {
         className
       )}
     >
-      <pre className={'text-foreground col-span-5 whitespace-pre-wrap w-full content-center overflow-x-auto '}>
+      <pre className={'text-foreground col-span-5 whitespace-pre-wrap w-full content-center overflow-x-auto'}>
         {children}
       </pre>
       <CopyButton content={copyString || children as string} className={'m-0 self-center'}/>
