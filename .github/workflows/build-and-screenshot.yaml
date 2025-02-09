@@ -33,6 +33,7 @@ jobs:
           
 
   take-screenshot:
+    runs-on: ubuntu-24.04
     needs: build-website
     steps:
       - name: Checkout
