@@ -18,6 +18,7 @@ jobs:
       - name: Install node
         uses: actions/setup-node@v3
         with:
+          # see: https://developers.cloudflare.com/pages/configuration/build-image/#languages-and-runtime
           node-version: 18.17.1
 
       - name: Install pnpm
@@ -40,8 +41,11 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: next-on-pages-build
+          # .gitignore should be included.
+          # see: https://github.com/actions/upload-artifact/issues/174#issuecomment-2649189928
           path: |
             .vercel/output/static
+            .gitignore
           include-hidden-files: true
 
   take-screenshot:
@@ -62,6 +66,7 @@ jobs:
       - name: Install node
         uses: actions/setup-node@v3
         with:
+          # see: https://developers.cloudflare.com/pages/configuration/build-image/#languages-and-runtime
           node-version: 18.17.1
 
       - name: Install pnpm
