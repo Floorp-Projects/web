@@ -41,7 +41,8 @@ jobs:
         with:
           name: next-on-pages-build
           path: |
-            .vercel
+            .vercel/output/static
+          include-hidden-files: true
 
   take-screenshot:
     runs-on: ubuntu-24.04
