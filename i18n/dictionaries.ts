@@ -1,8 +1,24 @@
 import "server-only";
 import {Locale, locales, supportedFiles} from "./i18n.config";
-import enDict from "@/dictionaries/i18n/en/dictionary.json" with { type: "json" };
+import enDict from "@/dictionaries/i18n/en/dictionary.json" with {type: "json"};
 
 export type Dictionary = typeof enDict;
+
+const mergeDictionaries = (dict1: Record<string, any>, dict2: Record<string, any>): Dictionary => {
+  const mergedDict = {...dict1};
+  for (const key in dict2) {
+    if (dict2.hasOwnProperty(key)) {
+      const value = dict2[key];
+      if (mergedDict[key]) {
+        mergedDict[key] = {...mergedDict[key], ...value};
+      } else {
+        mergedDict[key] = value;
+      }
+    }
+  }
+
+  return mergedDict as Dictionary;
+}
 
 const specialCases = (locale: string): Locale => {
   switch (locale) {
@@ -37,12 +53,19 @@ export const getDictionary = async (locale: Locale) => {
           async () => {
             const dictionary = await import(
               `@/dictionaries/i18n/${language}/dictionary.json`
-            );
+              );
             return dictionary.default;
           },
         ];
       }),
   ) as Record<Locale, () => Promise<Dictionary>>;
 
-  return dictionaries[specialCases(locale)]?.() ?? (await dictionaries.en());
+  const defaultDict = await dictionaries.en();
+  const dictionary = await dictionaries[specialCases(locale)]?.() ?? defaultDict;
+
+  if (locale === "en") {
+    return defaultDict;
+  }
+
+  return mergeDictionaries(defaultDict, dictionary);
 }

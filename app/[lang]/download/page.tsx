@@ -11,6 +11,8 @@ import Link from "next/link";
 import {buttonVariants} from "@/components/ui/button";
 import {Separator} from "@/components/ui/separator";
 import {ScrollArea} from "@/components/ui/scroll-area";
+import CodeBlock from "@/components/code/code-block";
+import {Accordion, AccordionContent, AccordionItem, AccordionTrigger} from "@/components/ui/accordion";
 
 type DownloadPageProps = {
   params: { lang: Locale };
@@ -21,6 +23,8 @@ type DownloadPageProps = {
 }
 
 export const revalidate = 180;
+
+const ppaInstall = `curl -fsSL https://ppa.floorp.app/KEY.gpg | sudo gpg --dearmor -o /usr/share/keyrings/Floorp.gpg && sudo curl -sS --compressed -o /etc/apt/sources.list.d/Floorp.list "https://ppa.floorp.app/Floorp.list" && sudo apt update && sudo apt install floorp`
 
 export default async function DownloadPage({params: {lang}, searchParams}: DownloadPageProps) {
   const dict = await getDictionary(lang);
@@ -49,12 +53,12 @@ export default async function DownloadPage({params: {lang}, searchParams}: Downl
     day: 'numeric'
   }) || '';
 
-  const table = (items: AssetInfo[]) => {
+  const tabContent = (items: AssetInfo[], currentTab: string) => {
     if (!release) {
       return <></>
     }
 
-    return (
+    const table = <>
       <div className={'flex flex-col sm:flex-row mt-8 gap-4 justify-between w-full'}>
         <div>
           <div className={'flex items-center gap-4 ml-4 mb-2'}>
@@ -90,7 +94,7 @@ export default async function DownloadPage({params: {lang}, searchParams}: Downl
             <h4 className="mb-4 text-sm font-medium absolute top-4 leading-none">{dict.downloadPage.versions}</h4>
             <Separator className="absolute top-10 left-0"/>
             {tags.map((tag, i) => (
-              <>
+              <div key={tag}>
                 <div key={tag} className="text-sm">
                   <Link
                     href={`https://github.com/Floorp-Projects/Floorp/releases/tag/${tag}`}
@@ -103,10 +107,61 @@ export default async function DownloadPage({params: {lang}, searchParams}: Downl
                   </Link>
                 </div>
                 <Separator className="my-2"/>
-              </>
+              </div>
             ))}
           </div>
         </ScrollArea>
+      </div>
+    </>
+
+    const linux = currentTab === 'linux' && <div>
+      <div className={"mb-8"}>
+        <h3 className={'font-medium mb-2'}>{dict.downloadPage.downloadConvenience.title}</h3>
+        <CodeBlock copyString={`curl -fsSL https://floorp.app/install.sh | sh`} className={'py-2'}>
+          {`curl -fsSL https://floorp.app/install.sh | sh\n`}
+        </CodeBlock>
+      </div>
+      <Accordion type="single" collapsible>
+        <AccordionItem value="item-1">
+          <AccordionTrigger>{dict.downloadPage.downloadFlatpak.title}</AccordionTrigger>
+          <AccordionContent>
+            <CodeBlock copyString={`flatpak install flathub one.ablaze.floorp`}>
+              <p className={'text-gray-700 dark:text-gray-400'}>{dict.downloadPage.downloadFlatpak.command.comment1}</p>
+              {`
+flatpak install flathub one.ablaze.floorp
+        `}
+            </CodeBlock>
+          </AccordionContent>
+        </AccordionItem>
+        <AccordionItem value={'item-2'}>
+          <AccordionTrigger>{dict.downloadPage.downloadPPA.title}</AccordionTrigger>
+          <AccordionContent>
+            <CodeBlock copyString={ppaInstall}>
+              <p className={'text-gray-700 dark:text-gray-400'}>{dict.downloadPage.downloadPPA.command.comment1}</p>
+              {`curl -fsSL https://ppa.floorp.app/KEY.gpg | sudo gpg --dearmor -o /usr/share/keyrings/Floorp.gpg\n\n`}
+
+              <p className={'text-gray-700 dark:text-gray-400'}>{dict.downloadPage.downloadPPA.command.comment2}</p>
+              {`sudo curl -sS --compressed -o /etc/apt/sources.list.d/Floorp.list "https://ppa.floorp.app/Floorp.list"\n\n`}
+
+              <p className={'text-gray-700 dark:text-gray-400'}>{dict.downloadPage.downloadPPA.command.comment3}</p>
+              {`sudo apt update\n`}
+              {`sudo apt install floorp`}
+            </CodeBlock>
+          </AccordionContent>
+        </AccordionItem>
+        <AccordionItem value={'item-3'}>
+          <AccordionTrigger>{dict.downloadPage.downloadOtherTable.title}</AccordionTrigger>
+          <AccordionContent>
+            {table}
+          </AccordionContent>
+        </AccordionItem>
+      </Accordion>
+    </div>;
+
+    return (
+      <div>
+        {linux}
+        {currentTab !== 'linux' ? table : null}
       </div>
     )
   }
@@ -122,11 +177,12 @@ export default async function DownloadPage({params: {lang}, searchParams}: Downl
       if (pKey === Platform.Android || pKey === Platform.IOS) {
         continue;
       }
+
       const assets = release.downloads[convertOptionToPlatform(key)] || [];
       options.push({
         label: platformOptions[key],
         value: key,
-        content: table(assets)
+        content: tabContent(assets, key)
       })
     }
 
@@ -135,7 +191,7 @@ export default async function DownloadPage({params: {lang}, searchParams}: Downl
 
   const platformSelect = (
     <PlatformSelect
-      locale={{ detect: dict.downloadPage.detect}}
+      locale={{detect: dict.downloadPage.detect}}
       checkbox={dict.downloadPage.daylight}
       alert={isDaylight ?
         <FAlert lang={lang} description={dict.downloadPage.daylight.alert} severity={'warning'}/> : null}
