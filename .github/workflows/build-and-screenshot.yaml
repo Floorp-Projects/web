@@ -22,31 +22,26 @@ jobs:
 
       - name: Install pnpm
         uses: pnpm/action-setup@v4
-        with:
-          version: 8.7.1
 
       - name: Install asdf & tools
         uses: asdf-vm/actions/install@v3
         with:
           asdf_branch: v0.15.0
 
-      - name: Enable corepack
-        run: |
-          corepack enable
-          corepack enable pnpm
-
-      - name: Check version
-        run: |
-          node -v
-          pnpm -v
-
       - name: Install dependencies
         run: |
-          pnpm install
+          pnpm install --frozen-lockfile
 
       - name: Build
         run: |
           npx @cloudflare/next-on-pages@1
+
+      - name: Upload Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: next-on-pages-build
+          path: |
+            .vercel
 
   take-screenshot:
     runs-on: ubuntu-24.04
@@ -57,6 +52,12 @@ jobs:
         with:
           submodules: 'true'
 
+      - name: Download artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: next-on-pages-build
+          path: .
+
       - name: Install node
         uses: actions/setup-node@v3
         with:
@@ -64,31 +65,15 @@ jobs:
 
       - name: Install pnpm
         uses: pnpm/action-setup@v4
-        with:
-          version: 8.7.1
 
       - name: Install asdf & tools
         uses: asdf-vm/actions/install@v3
         with:
           asdf_branch: v0.15.0
 
-      - name: Enable corepack
-        run: |
-          corepack enable
-          corepack enable pnpm
-
-      - name: Check version
-        run: |
-          node -v
-          pnpm -v
-
       - name: Install dependencies
         run: |
-          pnpm install
-
-      - name: Build
-        run: |
-          npx @cloudflare/next-on-pages@1
+          pnpm install --frozen-lockfile
 
       - name: Install firefox
         run: |
