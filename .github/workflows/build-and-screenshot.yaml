@@ -17,6 +17,8 @@ jobs:
 
       - name: Install asdf & tools
         uses: asdf-vm/actions/install@v3
+        with:
+          asdf_branch: v0.15.0
 
       - name: Enable corepack
         run: |
@@ -42,6 +44,8 @@ jobs:
 
       - name: Install asdf & tools
         uses: asdf-vm/actions/install@v3
+        with:
+          asdf_branch: v0.15.0
 
       - name: Enable corepack
         run: |
