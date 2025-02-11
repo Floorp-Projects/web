@@ -15,12 +15,15 @@ jobs:
         with:
           submodules: true
 
-      - uses: actions/setup-node@v3
+      - name: Install node
+        uses: actions/setup-node@v3
         with:
-          node-version: "lts/*"
+          node-version: 18.17.1
 
-      - uses: pnpm/action-setup@v4
-        name: Install pnpm
+      - name: Install pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: 8.7.1
 
       - name: Install asdf & tools
         uses: asdf-vm/actions/install@v3
@@ -54,12 +57,15 @@ jobs:
         with:
           submodules: 'true'
 
-      - uses: actions/setup-node@v3
+      - name: Install node
+        uses: actions/setup-node@v3
         with:
-          node-version: "lts/*"
+          node-version: 18.17.1
 
-      - uses: pnpm/action-setup@v4
-        name: Install pnpm
+      - name: Install pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: 8.7.1
 
       - name: Install asdf & tools
         uses: asdf-vm/actions/install@v3
