@@ -15,6 +15,10 @@ jobs:
         with:
           submodules: true
 
+      - uses: actions/setup-node@v3
+        with:
+          node-version: "lts/*"
+
       - name: Install asdf & tools
         uses: asdf-vm/actions/install@v3
         with:
@@ -41,6 +45,10 @@ jobs:
         uses: actions/checkout@v4
         with:
           submodules: 'true'
+
+      - uses: actions/setup-node@v3
+        with:
+          node-version: "lts/*"
 
       - name: Install asdf & tools
         uses: asdf-vm/actions/install@v3
