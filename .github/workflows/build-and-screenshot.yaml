@@ -21,6 +21,7 @@ jobs:
       - name: Enable corepack
         run: |
           corepack enable
+          corepack enable pnpm
 
       - name: Install dependencies
         run: |
@@ -45,6 +46,7 @@ jobs:
       - name: Enable corepack
         run: |
           corepack enable
+          corepack enable pnpm
 
       - name: Install dependencies
         run: |
