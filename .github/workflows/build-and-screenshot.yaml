@@ -16,7 +16,7 @@ jobs:
           submodules: true
 
       - name: Install node
-        uses: actions/setup-node@v3
+        uses: actions/setup-node@v4
         with:
           # see: https://developers.cloudflare.com/pages/configuration/build-image/#languages-and-runtime
           node-version: 18.17.1
@@ -52,41 +52,20 @@ jobs:
     runs-on: ubuntu-24.04
     needs: build-website
     steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-        with:
-          submodules: 'true'
-
       - name: Download artifact
         uses: actions/download-artifact@v4
         with:
           name: next-on-pages-build
           path: .
 
-      - name: Install node
-        uses: actions/setup-node@v3
-        with:
-          # see: https://developers.cloudflare.com/pages/configuration/build-image/#languages-and-runtime
-          node-version: 18.17.1
-
-      - name: Install pnpm
-        uses: pnpm/action-setup@v4
-
-      - name: Install asdf & tools
-        uses: asdf-vm/actions/install@v3
-        with:
-          asdf_branch: v0.15.0
-
-      - name: Install dependencies
-        run: |
-          pnpm install --frozen-lockfile
-
       - name: Install firefox
         run: |
-          sudo add-apt-repository ppa:mozillateam/ppa
-          sudo tee /etc/apt/preferences.d/mozillateamppa <<EOF
+          sudo mkdir -p /etc/apt/keyrings
+          wget -q https://packages.mozilla.org/apt/repo-signing-key.gpg -O- | sudo tee /etc/apt/keyrings/packages.mozilla.org.asc > /dev/null
+          echo "deb [signed-by=/etc/apt/keyrings/packages.mozilla.org.asc] https://packages.mozilla.org/apt mozilla main" | sudo tee /etc/apt/sources.list.d/mozilla.list > /dev/null
+          sudo tee /etc/apt/preferences.d/mozilla <<EOF
           Package: firefox*
-          Pin: release o=LP-PPA-mozillateam
+          Pin: origin packages.mozilla.org
           Pin-Priority: 1001
           Package: firefox*
           Pin: release o=Ubuntu
