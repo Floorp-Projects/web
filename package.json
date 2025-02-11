@@ -54,11 +54,8 @@
     "postcss": "^8",
     "tailwindcss": "^3.4.1",
     "typescript": "^5",
-    "vercel": "^39.1.1",
+    "vercel": "^41.0.3",
     "wrangler": "^3.107.3"
-  },
-  "overrides": {
-    "vercel": "$vercel"
   },
   "engines": {
     "node": ">=22",
