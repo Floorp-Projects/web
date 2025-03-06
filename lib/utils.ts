@@ -83,3 +83,16 @@ export function getPlatform(ua: string): Platform {
 
   return Platform.Linux;
 }
+
+export function htmlUnescape(str: string): string {
+  return str.replace(/&(lt|gt|amp|quot|#x27|#x60);/g, (match) => {
+    return {
+      '&lt;': '<',
+      '&gt;': '>',
+      '&amp;': '&',
+      '&quot;': '"',
+      '&#x27;': "'",
+      '&#x60;': '`',
+    }[match]!
+  });
+}

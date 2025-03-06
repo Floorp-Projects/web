@@ -10,6 +10,7 @@ import ThemedImage from "@/components/themed-image";
 import DarkArticle from "@/public/thumbnails/article-dark.png";
 import LightArticle from "@/public/thumbnails/article-light.png";
 import {MainHero} from "@/components/layout/landing/main-hero";
+import { htmlUnescape } from "@/lib/utils";
 
 type HomeProps = {
   params: { lang: Locale }
@@ -46,7 +47,7 @@ const getFirstTwoArticles = async (top: number = 2) => {
     result.push({
       title: article.title,
       date: article.date.replace('T', " "),
-      description: article.description,
+      description: htmlUnescape(htmlUnescape(article.description)), // example: "Release notes tell you what’s new in Floorp. Your&amp;nbsp;feedback&amp;nbsp;T "
       author: article.author,
       image: article.image,
       link: article.link
