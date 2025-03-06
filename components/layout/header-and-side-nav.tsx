@@ -63,8 +63,8 @@ export default async function HeaderAndSideNav({lang}: HeaderAndSideNavProps) {
               <Link href="https://aka.ablaze.one/discord" className={linkClasses}>
                 <RiDiscordFill className="h-5 w-5"/> Discord
               </Link>
-              <Link href="https://twitter.com/Floorp_Browser" className={linkClasses}>
-                <RiTwitterXFill className="h-5 w-5"/>
+              <Link href="https://x.com/Floorp_Browser" className={linkClasses}>
+                <RiTwitterXFill className="h-5 w-5"/> X
               </Link>
             </nav>
           </SheetContent>
@@ -89,7 +89,7 @@ export default async function HeaderAndSideNav({lang}: HeaderAndSideNavProps) {
             <Link href="https://aka.ablaze.one/discord" className={buttonVariants({variant: 'ghost'})}>
               <FaDiscord/>
             </Link>
-            <Link href="https://twitter.com/Floorp_Browser" className={buttonVariants({variant: 'ghost'})}>
+            <Link href="https://x.com/Floorp_Browser" className={buttonVariants({variant: 'ghost'})}>
               <FaXTwitter/>
             </Link>
             <Link href="https://github.com/floorp-Projects/floorp/" className={buttonVariants({variant: 'ghost'})}>
