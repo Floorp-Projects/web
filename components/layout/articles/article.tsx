@@ -51,7 +51,7 @@ export default function Article(props: ArticleProps) {
           <CardContent>
             <div className="flex flex-col-reverse md:grid md:grid-cols-3">
               <div className="col-span-2">
-                {description}
+                {`${description}…`}
                 {readMoreContent}
               </div>
               <div className={"flex justify-center items-center col-span-1 mb-4"}>
