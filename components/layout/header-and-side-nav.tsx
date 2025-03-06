@@ -1,5 +1,5 @@
 import Link from "next/link";
-import {RiDiscordFill, RiGithubFill, RiMenuUnfoldLine, RiStarLine, RiTwitterXFill} from "@remixicon/react"
+import {RiDownload2Fill, RiDiscordFill, RiGithubFill, RiMenuUnfoldLine, RiStarLine, RiTwitterXFill} from "@remixicon/react"
 import {Sheet, SheetContent, SheetTrigger} from "@/components/ui/sheet";
 import {Button, buttonVariants} from "@/components/ui/button";
 import Logo from "@/public/logo.png";
@@ -11,6 +11,7 @@ import {Locale} from "@/i18n/i18n.config";
 import {getDictionary} from "@/i18n/dictionaries";
 import ThemedImage from "@/components/themed-image";
 import {FaDiscord, FaGithub, FaXTwitter, FaFile} from "react-icons/fa6";
+import { Separator } from "@/components/ui/separator";
 
 type HeaderAndSideNavProps = {
   lang: Locale;
@@ -55,8 +56,9 @@ export default async function HeaderAndSideNav({lang}: HeaderAndSideNavProps) {
                 {dict.components.starUs} <RiStarLine className="h-5 w-5" color="#eac54f"/>
               </Link>
               <Link href={`/${lang}/download`} className="text-muted-foreground hover:text-foreground">
-                {dict.components.header.links.download}
+                <RiDownload2Fill /> {dict.components.header.links.download}
               </Link>
+              <Separator className="my-2"/>
               <Link href="https://github.com/floorp-Projects/floorp/" className={linkClasses}>
                 <RiGithubFill className="h-5 w-5"/> GitHub
               </Link>
