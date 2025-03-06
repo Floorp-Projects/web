@@ -58,7 +58,7 @@ export default async function HeaderAndSideNav({lang}: HeaderAndSideNavProps) {
               <Link href={`/${lang}/download`} className={linkClasses}>
                 <RiDownload2Fill className="h-5 w-5"/> {dict.components.header.links.download}
               </Link>
-              <Separator className="my-2"/>
+              <Separator className="my-1"/>
               <Link href="https://github.com/floorp-Projects/floorp/" className={linkClasses}>
                 <RiGithubFill className="h-5 w-5"/> GitHub
               </Link>
