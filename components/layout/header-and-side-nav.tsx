@@ -56,7 +56,7 @@ export default async function HeaderAndSideNav({lang}: HeaderAndSideNavProps) {
                 {dict.components.starUs} <RiStarLine className="h-5 w-5" color="#eac54f"/>
               </Link>
               <Link href={`/${lang}/download`} className="text-muted-foreground hover:text-foreground">
-                <RiDownload2Fill /> {dict.components.header.links.download}
+                <RiDownload2Fill className="h-5 w-5"/> {dict.components.header.links.download}
               </Link>
               <Separator className="my-2"/>
               <Link href="https://github.com/floorp-Projects/floorp/" className={linkClasses}>
