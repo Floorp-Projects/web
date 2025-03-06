@@ -85,7 +85,7 @@ export function getPlatform(ua: string): Platform {
 }
 
 export function htmlUnescape(str: string): string {
-  return str.replace(/&(lt|gt|amp|quot|#x27|#x60);/g, (match) => {
+  return str.replace(/&(lt|gt|amp|quot|#x27|#x60|nbsp);/g, (match) => {
     return {
       '&lt;': '<',
       '&gt;': '>',
@@ -93,6 +93,7 @@ export function htmlUnescape(str: string): string {
       '&quot;': '"',
       '&#x27;': "'",
       '&#x60;': '`',
+      '&nbsp;': ' ',
     }[match]!
   });
 }
