@@ -52,7 +52,7 @@ export default async function HeaderAndSideNav({lang}: HeaderAndSideNavProps) {
                 href="https://github.com/Floorp-Projects/Floorp"
                 className={linkClasses}
               >
-                {dict.components.starUs} <RiStarLine className="h-5 w-5" color="yellow"/>
+                {dict.components.starUs} <RiStarLine className="h-5 w-5" color="#eac54f"/>
               </Link>
               <Link href={`/${lang}/download`} className="text-muted-foreground hover:text-foreground">
                 {dict.components.header.links.download}
