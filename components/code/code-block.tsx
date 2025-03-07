@@ -21,11 +21,11 @@ export default function CodeBlock({children, className, copyString, preClassName
   return (
     <div
       className={cn(
-        'relative bg-gray-300 grid grid-cols-6 gap-x-2 w-full dark:bg-gray-700 rounded-md p-4 justify-between',
+        'relative bg-gray-100 flex gap-x-2 w-full dark:bg-gray-900 rounded-md p-4 justify-between',
         className
       )}
     >
-      <pre className={cn('text-foreground col-span-5 whitespace-pre-wrap w-full content-center overflow-x-auto', preClassName)}>
+      <pre className={cn('text-foreground basis-full whitespace-pre-wrap content-center overflow-x-auto', preClassName)}>
         {children}
       </pre>
       <CopyButton content={copyString || children as string} className={'m-0 self-center'}/>
