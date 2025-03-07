@@ -36,7 +36,7 @@ export default function PlatformSelect({locale, platforms, className, alert, che
   const pathname = usePathname()
   const searchParams = useSearchParams()
   const initPlatform = searchParams.get('platform') ? convertOptionToPlatform(searchParams.get('platform')!) : Platform.Windows;
-  const [platform, setPlatform] = useState(initPlatform);
+  const [platform, setPlatform] = useState<Platform>();
   const [isDetecting, setIsDetecting] = useState(false);
 
   const createQueryString = useCallback(
@@ -84,7 +84,16 @@ export default function PlatformSelect({locale, platforms, className, alert, che
     const ua = navigator.userAgent;
     const _p = getPlatform(ua);
     setPlatform(_p);
-  }, []);
+  }, [searchParams]);
+
+  useEffect(() => {
+    if (!searchParams.get('platform')) {
+      return;
+    }
+
+    const platform = convertOptionToPlatform(searchParams.get('platform')!);
+    setPlatform(platform);
+  }, [searchParams]);
 
   useEffect(() => {
     if (!platform) {
@@ -92,11 +101,7 @@ export default function PlatformSelect({locale, platforms, className, alert, che
     }
     const _p = convertPlatformToOption(platform);
     const query = createQueryString('platform', _p);
-    if (searchParams.get('platform')) {
-      router.push(`${pathname}?${query}`);
-    } else {
-      router.replace(`${pathname}?${query}`);
-    }
+    router.replace(`${pathname}?${query}`);
   }, [platform])
 
   const onTabChange = (value: Platform) => {
@@ -124,7 +129,7 @@ export default function PlatformSelect({locale, platforms, className, alert, che
     )}>
       <div className='flex w-full h-full flex-col gap-4'>
         <Tabs
-          value={convertPlatformToOption(platform)}
+          value={convertPlatformToOption(platform ?? initPlatform)}
           defaultValue={convertPlatformToOption(initPlatform)}
           onValueChange={e => onTabChange(convertOptionToPlatform(e))}
           className={'flex flex-col gap-4 justify-between h-full'}
