@@ -1,3 +1,4 @@
+import { Button } from "@/components/ui/button";
 import {
   Table,
   TableBody,
@@ -42,9 +43,11 @@ export function AssetsTable({items, locale}: AssetsTableProps) {
             <TableCell className={'hidden sm:table-cell'}>{item.fileName}</TableCell>
             <TableCell>{item.fileSize}</TableCell>
             <TableCell className="text-right">
-              <Link href={item.url}>
-                <RiDownload2Fill className="h-5 w-5"/>
-              </Link>
+              <Button asChild variant="outline">
+                <Link href={item.url}>
+                  <RiDownload2Fill className="h-5 w-5"/>
+                </Link>
+              </Button>
             </TableCell>
           </TableRow>
         ))}
