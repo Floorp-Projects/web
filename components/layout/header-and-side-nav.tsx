@@ -1,6 +1,6 @@
 import Link from "next/link";
 import {RiDownload2Fill, RiDiscordFill, RiGithubFill, RiMenuUnfoldLine, RiStarLine, RiTwitterXFill} from "@remixicon/react"
-import {Sheet, SheetContent, SheetTrigger} from "@/components/ui/sheet";
+import {Sheet, SheetClose, SheetContent, SheetTrigger} from "@/components/ui/sheet";
 import {Button, buttonVariants} from "@/components/ui/button";
 import Logo from "@/public/logo.png";
 import LogoDark from "@/public/logo-dark.png";
@@ -37,37 +37,49 @@ export default async function HeaderAndSideNav({lang}: HeaderAndSideNavProps) {
           </SheetTrigger>
           <SheetContent side="left">
             <nav className="grid gap-6 text-lg font-medium">
-              <Link
-                href={`/${lang}`}
-                className="flex items-center gap-2 text-lg font-semibold"
-              >
-                <ThemedImage
-                  darkImage={LogoDark}
-                  lightImage={Logo}
-                  alt={"logo"}
-                  rest={{width: 100, height: 50}}
-                />
-                <span className="sr-only">Floorp</span>
-              </Link>
-              <Link
-                href="https://github.com/Floorp-Projects/Floorp"
-                className={linkClasses}
-              >
-                {dict.components.starUs} <RiStarLine className="h-5 w-5" color="#eac54f"/>
-              </Link>
-              <Link href={`/${lang}/download`} className={linkClasses}>
-                <RiDownload2Fill className="h-5 w-5"/> {dict.components.header.links.download}
-              </Link>
+              <SheetClose asChild>
+                <Link
+                  href={`/${lang}`}
+                  className="flex items-center gap-2 text-lg font-semibold"
+                >
+                  <ThemedImage
+                    darkImage={LogoDark}
+                    lightImage={Logo}
+                    alt={"logo"}
+                    rest={{width: 100, height: 50}}
+                  />
+                  <span className="sr-only">Floorp</span>
+                </Link>
+              </SheetClose>
+              <SheetClose asChild>
+                <Link
+                  href="https://github.com/Floorp-Projects/Floorp"
+                  className={linkClasses}
+                >
+                  {dict.components.starUs} <RiStarLine className="h-5 w-5" color="#eac54f"/>
+                </Link>
+              </SheetClose>
+              <SheetClose asChild>
+                <Link href={`/${lang}/download`} className={linkClasses}>
+                  <RiDownload2Fill className="h-5 w-5"/> {dict.components.header.links.download}
+                </Link>
+              </SheetClose>
               <Separator />
-              <Link href="https://github.com/floorp-Projects/floorp/" className={linkClasses}>
-                <RiGithubFill className="h-5 w-5"/> GitHub
-              </Link>
-              <Link href="https://aka.ablaze.one/discord" className={linkClasses}>
-                <RiDiscordFill className="h-5 w-5"/> Discord
-              </Link>
-              <Link href="https://x.com/Floorp_Browser" className={linkClasses}>
-                <RiTwitterXFill className="h-5 w-5"/> X
-              </Link>
+              <SheetClose asChild>
+                <Link href="https://github.com/floorp-Projects/floorp/" className={linkClasses}>
+                  <RiGithubFill className="h-5 w-5"/> GitHub
+                </Link>
+              </SheetClose>
+              <SheetClose asChild>
+                <Link href="https://aka.ablaze.one/discord" className={linkClasses}>
+                  <RiDiscordFill className="h-5 w-5"/> Discord
+                </Link>
+              </SheetClose>
+              <SheetClose asChild>
+                <Link href="https://x.com/Floorp_Browser" className={linkClasses}>
+                  <RiTwitterXFill className="h-5 w-5"/> X
+                </Link>
+              </SheetClose>
             </nav>
           </SheetContent>
         </Sheet>
