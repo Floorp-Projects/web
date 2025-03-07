@@ -30,6 +30,8 @@ export async function generateMetadata({params: {lang}}: MetadataProps): Promise
 
 const fontSans = FontSans({
   subsets: ["latin"],
+  fallback: ["sans-serif"],
+  adjustFontFallback: false
 })
 
 export default async function RootLayout({params: {lang}, children}: RootLayoutProps) {
