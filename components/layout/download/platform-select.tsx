@@ -92,7 +92,11 @@ export default function PlatformSelect({locale, platforms, className, alert, che
     }
     const _p = convertPlatformToOption(platform);
     const query = createQueryString('platform', _p);
-    router.push(`${pathname}?${query}`)
+    if (searchParams.get('platform')) {
+      router.push(`${pathname}?${query}`);
+    } else {
+      router.replace(`${pathname}?${query}`);
+    }
   }, [platform])
 
   const onTabChange = (value: Platform) => {
