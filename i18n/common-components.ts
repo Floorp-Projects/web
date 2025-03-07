@@ -3,7 +3,7 @@ import {buttonVariants} from "@/components/ui/button";
 
 export const getLink = (href: string, key = 1, rest = {}) => {
   return {
-    key: "1",
+    key: String(key),
     type: Link,
     rest: {
       href: href,
