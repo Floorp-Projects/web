@@ -1,10 +1,10 @@
 import Link from "next/link";
 import Image from "next/image";
-import Logo from "@/public/logo.png";
-import ALogoDark from '@/public/a-logo-onlight.png';
-import ALogoLight from '@/public/a-logo-ondark.png';
+import Logo from "@/public/logo.webp";
+import ALogoDark from '@/public/a-logo-onlight.webp';
+import ALogoLight from '@/public/a-logo-ondark.webp';
 import ThemedImage from "@/components/themed-image";
-import LogoDark from "@/public/logo-dark.png";
+import LogoDark from "@/public/logo-dark.webp";
 
 export default function Footer() {
   return (

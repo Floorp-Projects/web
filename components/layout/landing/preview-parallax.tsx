@@ -2,7 +2,7 @@ import React from "react";
 import {HeroParallax, ParallaxProduct} from "@/components/ui/hero-parallax";
 import {Locale} from "@/i18n/i18n.config";
 import {getDictionary} from "@/i18n/dictionaries";
-import Dummy1 from "@/public/hero/floorp1.png";
+import Dummy1 from "@/public/hero/floorp1.webp";
 
 type LocaleProduct = {
   title: string;

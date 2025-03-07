@@ -31,6 +31,7 @@ export default function MainHeroCard({header, description, sourceCode, download}
         </CardItem>
         <CardItem translateZ="100" className="w-full mt-4">
           <Image
+            unoptimized
             src={hero}
             height="1000"
             width="1000"

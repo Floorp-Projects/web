@@ -21,7 +21,7 @@ export default function ThemedImage({darkImage, lightImage, alt, rest, className
       return <div className={cn(darkClasses, className)}>{darkImage}</div>
     }
 
-    return <Image src={darkImage} alt={alt} className={cn(darkClasses, className)} {...rest} />;
+    return <Image unoptimized src={darkImage} alt={alt} className={cn(darkClasses, className)} {...rest} />;
   }
 
   const getLight = () => {
@@ -29,7 +29,7 @@ export default function ThemedImage({darkImage, lightImage, alt, rest, className
       return <div className={cn(lightClasses, className)}>{lightImage}</div>
     }
 
-    return <Image src={lightImage} alt={alt} className={cn(lightClasses, className)} {...rest} />;
+    return <Image unoptimized src={lightImage} alt={alt} className={cn(lightClasses, className)} {...rest} />;
   }
 
   return (

@@ -140,6 +140,7 @@ export const ProductCard = ({product, translate}: ProductCardProps) => {
 
   const image = (
     <Image
+      unoptimized
       src={product.thumbnail}
       height="600"
       width="600"

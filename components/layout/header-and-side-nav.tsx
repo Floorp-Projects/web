@@ -2,8 +2,8 @@ import Link from "next/link";
 import {RiDownload2Fill, RiDiscordFill, RiGithubFill, RiMenuUnfoldLine, RiStarLine, RiTwitterXFill} from "@remixicon/react"
 import {Sheet, SheetClose, SheetContent, SheetTrigger} from "@/components/ui/sheet";
 import {Button, buttonVariants} from "@/components/ui/button";
-import Logo from "@/public/logo.png";
-import LogoDark from "@/public/logo-dark.png";
+import Logo from "@/public/logo.webp";
+import LogoDark from "@/public/logo-dark.webp";
 import {ThemeSwitch} from "@/components/theme-switch";
 import {cn} from "@/lib/utils";
 import LanguageSelect from "@/components/language-select";

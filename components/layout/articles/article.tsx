@@ -55,7 +55,7 @@ export default function Article(props: ArticleProps) {
                 {readMoreContent}
               </div>
               <div className={"flex justify-center items-center col-span-1 mb-4"}>
-                {fixedImage ? fixedImage : <Image src={image} width={200} height={200} alt={title}/>}
+                {fixedImage ? fixedImage : <Image unoptimized src={image} width={200} height={200} alt={title}/>}
               </div>
             </div>
           </CardContent>
