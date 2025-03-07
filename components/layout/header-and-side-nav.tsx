@@ -111,7 +111,7 @@ export default async function HeaderAndSideNav({lang}: HeaderAndSideNavProps) {
               <FaGithub/>
             </Link>
             <Link href="https://docs.floorp.app" className={buttonVariants({variant: 'ghost'})}>
-              <LucideScrollText />
+              <LucideScrollText className="w-4 h-4" />
             </Link>
           </div>
           <LanguageSelect
