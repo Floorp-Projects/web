@@ -12,6 +12,7 @@ import {getDictionary} from "@/i18n/dictionaries";
 import ThemedImage from "@/components/themed-image";
 import {FaDiscord, FaGithub, FaXTwitter, FaFile} from "react-icons/fa6";
 import { Separator } from "@/components/ui/separator";
+import { LucideScrollText } from "lucide-react";
 
 type HeaderAndSideNavProps = {
   lang: Locale;
@@ -110,7 +111,7 @@ export default async function HeaderAndSideNav({lang}: HeaderAndSideNavProps) {
               <FaGithub/>
             </Link>
             <Link href="https://docs.floorp.app" className={buttonVariants({variant: 'ghost'})}>
-              <FaFile />
+              <LucideScrollText />
             </Link>
           </div>
           <LanguageSelect
