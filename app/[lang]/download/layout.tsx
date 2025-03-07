@@ -15,7 +15,7 @@ export default async function Download({params: {lang}, children}: DownloadProps
   return (
     <main className='w-full py-24'>
       <div className="flex min-h-screen w-full flex-col items-center">
-        <div className="flex flex-col max-w-4xl p-4 lg:w-[56rem]">
+        <div className="flex flex-col max-w-4xl p-4 w-full">
           <h1 className="text-4xl mb-8 font-bold">{dict.downloadPage.download}</h1>
           <FAlert
             severity="info"
