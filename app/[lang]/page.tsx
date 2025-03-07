@@ -76,7 +76,7 @@ export default async function Home({params: {lang}}: HomeProps) {
     <main className='w-full flex flex-col pb-24'>
       <div className="flex min-h-screen w-full items-center flex-col">
         <div className="w-full flex flex-col gap-4 px-4 sm:px-0 max-w-4xl">
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 w-full">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 w-full py-20 gap-y-20">
             <MainHero translation={dict.landingPage.hero}/>
             <MainHeroCard {...heroProps}/>
           </div>
