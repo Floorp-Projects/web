@@ -7,8 +7,8 @@ import {ArticleResponse} from "@/components/layout/articles/article";
 import ArticleList from "@/components/layout/articles/article-list";
 import FeatureColumns from "@/components/layout/landing/feature-columns";
 import ThemedImage from "@/components/themed-image";
-import DarkArticle from "@/public/thumbnails/article-dark.png";
-import LightArticle from "@/public/thumbnails/article-light.png";
+import DarkArticle from "@/public/thumbnails/article-dark.webp";
+import LightArticle from "@/public/thumbnails/article-light.webp";
 import {MainHero} from "@/components/layout/landing/main-hero";
 import { htmlUnescape } from "@/lib/utils";
 
