@@ -72,7 +72,7 @@ export const convertPlatformToOption = (platform: Platform): string => {
 }
 
 
-export function getPlatform(ua: string): Platform {
+export function getPlatformFromUA(ua: string): Platform {
   ua = ua.toLowerCase()
   if (ua.indexOf('windows') !== -1) {
     return Platform.Windows;

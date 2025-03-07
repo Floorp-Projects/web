@@ -3,7 +3,7 @@
 import React, {useCallback, useEffect, useState} from "react";
 import {
   Platform,
-  getPlatform,
+  getPlatformFromUA,
   convertOptionToPlatform,
   convertPlatformToOption,
   cn
@@ -70,7 +70,7 @@ export default function PlatformSelect({locale, platforms, className, alert, che
   useEffect(() => {
     if (isDetecting) {
       const ua = navigator.userAgent;
-      const _p = getPlatform(ua);
+      const _p = getPlatformFromUA(ua);
       setPlatform(_p);
       setIsDetecting(false);
     }
@@ -82,7 +82,7 @@ export default function PlatformSelect({locale, platforms, className, alert, che
     }
 
     const ua = navigator.userAgent;
-    const _p = getPlatform(ua);
+    const _p = getPlatformFromUA(ua);
     setPlatform(_p);
   }, [searchParams]);
 
