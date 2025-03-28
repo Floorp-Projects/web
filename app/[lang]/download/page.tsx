@@ -99,12 +99,6 @@ export default async function DownloadPage({params: {lang}, searchParams}: Downl
     </>
 
     const linux = currentTab === 'linux' && <div>
-      <div className={"mb-8"}>
-        <h3 className={'font-medium mb-2'}>{dict.downloadPage.downloadConvenience.title}</h3>
-        <CodeBlock copyString={`curl -fsSL https://floorp.app/install.sh | sh`} className={'py-2'}>
-          {`curl -fsSL https://floorp.app/install.sh | sh\n`}
-        </CodeBlock>
-      </div>
       <Accordion type="single" collapsible>
         <AccordionItem value="item-1">
           <AccordionTrigger>{dict.downloadPage.downloadFlatpak.title}</AccordionTrigger>
